@@ -1,0 +1,38 @@
+/* You can add global styles to this file, and also import other style files */
+
+/* Provide sufficient contrast against white background */
+@import './app/scss/animation';
+$main_color: #ED213A;
+
+* {
+    font-family: 'Roboto Condensed';
+}
+
+a {
+    text-decoration: none !important;
+    color          : black !important;
+}
+
+.font-15 {
+    font-size: 15px;
+}
+
+.font-14 {
+    font-size: 14px;
+}
+
+.font-12 {
+    font-size: 12px;
+}
+
+.caption__button {
+    border-radius: 30px;
+    padding      : 0.75rem 3rem;
+
+    letter-spacing: 1px;
+
+    &:hover {
+        color     : white;
+        background: $main_color;
+    }
+}
