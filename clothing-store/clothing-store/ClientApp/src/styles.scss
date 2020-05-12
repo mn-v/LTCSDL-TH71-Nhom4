@@ -2,7 +2,7 @@
 
 /* Provide sufficient contrast against white background */
 @import './app/scss/animation';
-$main_color: #ED213A;
+@import './app/scss/variable';
 
 * {
     font-family: 'Roboto Condensed';
