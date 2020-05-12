@@ -1,8 +1,8 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <RootNamespace>clothing_store.DAL</RootNamespace>
+    <RootNamespace>clothing_store.BLL</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\clothing-store.Common\clothing-store.Common.csproj" />
+    <ProjectReference Include="..\clothing-store.DAL\clothing-store.DAL.csproj" />
   </ItemGroup>
 
 </Project>
