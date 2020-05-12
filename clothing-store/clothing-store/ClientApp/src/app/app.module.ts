@@ -12,6 +12,7 @@ import { SaleComponent } from './pages/sale/sale.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { ContactComponent } from './pages/contact/contact.component';
+import { LoginComponent } from './pages/login/login.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { ContactComponent } from './pages/contact/contact.component';
     SaleComponent,
     FooterComponent,
     ContactComponent,
+    LoginComponent,
     
   ],
   imports: [
