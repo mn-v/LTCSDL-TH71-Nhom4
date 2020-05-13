@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace LTCSDL.Common.Req
+namespace clothing_store.Common.Req
 {
     public class SimpleReq : BaseReq<BaseModel>
     {

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace LTCSDL.Common.Rsp
+namespace clothing_store.Common.Rsp
 {
     public class MultipleRsp : BaseRsp
     {
