@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 
-namespace LTCSDL.Common.DAL
+namespace clothing_store.Common.DAL
 {
     public class GenericRep<C, T> : IGenericRep<T> where T : class where C : DbContext, new()
     {
