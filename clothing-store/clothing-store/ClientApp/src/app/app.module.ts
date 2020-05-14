@@ -12,6 +12,9 @@ import { SaleComponent } from './pages/sale/sale.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { ContactComponent } from './pages/contact/contact.component';
+import { LoginComponent } from './pages/login/login.component';
+import { SignupComponent } from './pages/signup/signup.component';
+import { CartComponent } from './pages/cart/cart.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +25,10 @@ import { ContactComponent } from './pages/contact/contact.component';
     SaleComponent,
     FooterComponent,
     ContactComponent,
-    
+    LoginComponent,
+    SignupComponent,
+    CartComponent,
+
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
