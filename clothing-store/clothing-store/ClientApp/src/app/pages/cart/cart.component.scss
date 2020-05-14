@@ -1,0 +1,24 @@
+    .product--header,
+    .product--body--container {
+        background-color: white;
+        box-shadow      : 0 1px 1px 0 rgba(0, 0, 0, .05);
+    }
+
+    .product--header__color,
+    .product--body--details {
+        width     : 12%;
+        text-align: center;
+    }
+
+    .product--header__color {
+        color: grey;
+    }
+
+    .product--body:not(:last-child) {
+        padding-bottom: 0.75rem;
+    }
+
+    .product__trash i:hover {
+        cursor: pointer;
+        color : var(--darkred);
+    }

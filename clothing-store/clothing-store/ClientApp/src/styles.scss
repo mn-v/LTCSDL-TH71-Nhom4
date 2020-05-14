@@ -21,6 +21,10 @@ a {
     font-size: 14px;
 }
 
+.font-13 {
+    font-size: 13px;
+}
+
 .font-12 {
     font-size: 12px;
 }
@@ -37,4 +41,10 @@ a {
         color     : white;
         background: var(--darkred);
     }
+}
+
+.d-flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

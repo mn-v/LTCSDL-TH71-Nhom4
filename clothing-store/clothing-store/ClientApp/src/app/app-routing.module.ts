@@ -6,15 +6,17 @@ import { SaleComponent } from './pages/sale/sale.component';
 import { ContactComponent } from './pages/contact/contact.component';
 import { LoginComponent } from './pages/login/login.component';
 import { SignupComponent } from './pages/signup/signup.component';
+import { CartComponent } from './pages/cart/cart.component';
 
 
 const routes: Routes = [
-    { path: '', component: HomePageComponent},
-    { path: 'shop', component: ShopComponent},
-    { path: 'sale', component: SaleComponent},
-    { path: 'contact', component: ContactComponent},
-    { path: 'login', component: LoginComponent},
-    { path: 'signup', component: SignupComponent},
+  { path: '', component: HomePageComponent },
+  { path: 'shop', component: ShopComponent },
+  { path: 'sale', component: SaleComponent },
+  { path: 'contact', component: ContactComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'signup', component: SignupComponent },
+  { path: 'cart', component: CartComponent }
 
 ];
 
