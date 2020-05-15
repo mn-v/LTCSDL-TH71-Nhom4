@@ -3,8 +3,7 @@ header {
     top     : 0;
     z-index : 1000;
 
-    background-color: rgba(255, 255, 255, .95);
-    // box-shadow: 0 0 0.5px 1px #cccccc;
+    background-color: var(--header);
     box-shadow      : 0 1px 1px 0 rgba(0, 0, 0, .05);
 }
 
@@ -18,12 +17,12 @@ header {
 
 #menu {
     a {
-        color: black!important;
+        color         : black;
         text-transform: uppercase;
         padding       : 0.5rem 1rem;
 
         &:hover {
-            opacity: 0.7 !important;
+            opacity: 0.8;
         }
     }
 }
@@ -32,8 +31,46 @@ header {
     font-size: 1.5rem;
 
     &:hover {
-        cursor    : pointer;
-        color     : #cccccc;
-        transition: color 0.2s ease-in-out;
+        cursor: pointer;
     }
+}
+
+.cart--icon {
+    position: relative;
+
+    .cart--show {
+        display         : none;
+        background-color: white;
+
+        position: absolute;
+        top     : 3.2rem;
+        right   : -3rem;
+
+        width     : 20rem;
+        max-height: 25rem;
+
+        box-shadow: 0 40px 40px 0 rgba(0, 0, 0, .05);
+    }
+}
+
+.cart--show {
+    position: relative;
+
+    &::after {
+        content: "";
+
+        position: absolute;
+        top     : -1.5rem;
+        right   : 3.9rem;
+
+        border-style : solid;
+        border       : 12px solid transparent;
+        border-bottom: 12px solid white;
+        box-shadow   : 40px 40px 40px 0 rgba(0, 0, 0, .05);
+    }
+}
+
+.cart--icon:hover .cart--show {
+    display   : block;
+    transition: 0.3s ease-in-out;
 }
