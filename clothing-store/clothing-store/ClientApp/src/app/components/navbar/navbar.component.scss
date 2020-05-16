@@ -35,42 +35,85 @@ header {
     }
 }
 
-.cart--icon {
-    position: relative;
+// Mutual
+.cart--icon,
+.user--function {
 
-    .cart--show {
-        display         : none;
+    .cart--show,
+    .user--func--show {
         background-color: white;
 
         position: absolute;
-        top     : 3.2rem;
+        top     : 3rem;
         right   : -3rem;
-
-        width     : 20rem;
-        max-height: 25rem;
 
         box-shadow: 0 40px 40px 0 rgba(0, 0, 0, .05);
     }
 }
 
-.cart--show {
+.cart--icon {
+    position: relative;
+
+    .cart--show {
+        display: none;
+
+        width     : 20rem;
+        max-height: 25rem;
+    }
+}
+
+.user--function {
+    position: relative;
+
+    .user--func--show {
+        display: none;
+        width  : 9rem;
+
+        p:hover {
+            background-color: var(--whitesmoke);
+            color           : var(--darkred);
+        }
+    }
+}
+
+.cart--icon:hover .cart--show,
+.user--function:hover .user--func--show {
+    display   : block;
+    transition: 0.3s ease-in-out;
+}
+
+// Show
+.cart--show,
+.user--func--show {
     position: relative;
 
     &::after {
         content: "";
 
         position: absolute;
-        top     : -1.5rem;
-        right   : 3.9rem;
 
-        border-style : solid;
-        border       : 12px solid transparent;
-        border-bottom: 12px solid white;
-        box-shadow   : 40px 40px 40px 0 rgba(0, 0, 0, .05);
+        border-style: solid;
+        box-shadow  : 40px 40px 40px 0 rgba(0, 0, 0, .05);
     }
 }
 
-.cart--icon:hover .cart--show {
-    display   : block;
-    transition: 0.3s ease-in-out;
+// Triangle
+.cart--show {
+    &::after {
+        top  : -1.5rem;
+        right: 3.9rem;
+
+        border       : 12px solid transparent;
+        border-bottom: 12px solid white;
+    }
+}
+
+.user--func--show {
+    &::after {
+        top  : -1rem;
+        right: 4.2rem;
+
+        border       : 8px solid transparent;
+        border-bottom: 8px solid white;
+    }
 }
