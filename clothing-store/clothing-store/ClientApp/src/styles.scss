@@ -4,8 +4,12 @@
 @import './app/scss/animation';
 @import './app/scss/variable';
 
-* {
-    font-family: 'Roboto Condensed';
+body {
+    font-family: 'Montserrat';
+}
+
+li{
+    list-style-type: none;
 }
 
 a {

@@ -8,7 +8,8 @@ header {
 }
 
 #logo-brand {
-    font-size: 3rem;
+    font-family: 'Roboto';
+    font-size  : 3rem;
 
     &:hover {
         cursor: pointer;
@@ -17,9 +18,10 @@ header {
 
 #menu {
     a {
-        color         : black;
+        font-size     : 14px;
         text-transform: uppercase;
-        padding       : 0.5rem 1rem;
+
+        padding: 0.5rem 1rem;
 
         &:hover {
             opacity: 0.8;
