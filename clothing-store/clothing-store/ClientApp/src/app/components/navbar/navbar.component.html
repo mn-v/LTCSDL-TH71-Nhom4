@@ -1,14 +1,14 @@
-<div class="py-2 text-secondary font-15" style="background: var(--whitesmoke);">
+<div class="py-2 text-secondary font-15" style="background: #dddddd;">
     <div class="container">
         <div class="row">
-            <div class="col-4">
+            <div class="col-4 font-13">
                 <i class="fab fa-facebook-f mr-2"></i>
                 <i class="fab fa-instagram mx-2"></i>
                 <i class="fab fa-pinterest-p mx-2"></i>
                 <i class="fab fa-youtube mx-2"></i>
             </div>
-            <div class="col-4 text-center">Miễn phí giao hàng với hóa đơn trên 1.000.000 VND</div>
-            <div class="col-4 d-flex justify-content-end">
+            <div class="col-4 text-center font-13">Miễn phí giao hàng với hóa đơn trên 1.000.000 VND</div>
+            <div class="col-4 d-flex justify-content-end font-13">
                 support@kidi.vn
             </div>
         </div>
@@ -20,14 +20,14 @@
     <div class="container">
         <nav class="row d-flex justify-content-center align-items-center">
             <div id="logo-brand" class="col-md-2 font-weight-bold">
-                <a routerLink="/">KIDI<span style="color: #ED213A">.</span></a>
+                <a routerLink="/" class="text-dark">KIDI<span style="color: var(--darkred);">.</span></a>
             </div>
             <div id="menu" class="col-md-8 d-flex justify-content-center align-items-center">
                 <ul class="m-0 p-0 list-unstyled">
                     <li>
                         <a routerLink="/">Trang chủ</a>
-                        <a href="#">Nam</a>
-                        <a href="#">Nữ</a>
+                        <a routerLink="/men">Nam</a>
+                        <a routerLink="/women">Nữ</a>
                         <a routerLink="/sale" style="color: red!important;">Sale</a>
                         <a href="#">Phụ kiện</a>
                         <a href="#">Blog</a>
@@ -36,11 +36,20 @@
                 </ul>
             </div>
             <div class="col-md-2 d-flex justify-content-end py-3">
-                <div id="icon" style="border-right: 0.5px solid #dddddd;">
-                    <i class="far fa-user-circle mx-3" routerLink="/login"></i>
+                <div id="icon" class="user--function" style="border-right: 0.5px solid #dddddd;">
+                    <i class="far fa-user-circle px-3" routerLink="/login"></i>
+                    <div class="user--func--show m-0 p-2">
+                        <p class="font-14 m-0 py-1 text-center" routerLink="/login">Đăng nhập</p>
+                        <p class="font-14 m-0 py-1 text-center" routerLink="/signup">Đăng ký</p>
+                    </div>
                 </div>
-                <div id="icon">
-                    <i class="fas fa-shopping-bag mx-3" routerLink="/cart"></i>
+                <div id="icon" class="cart--icon">
+                    <i class="fas fa-shopping-bag px-3" routerLink="/cart"></i>
+                    <div class="cart--show p-4">
+                        <p class="font-13 m-0 p-0">Hiện tại chưa có sản phẩm nào được chọn :D</p>
+                        <a href="#" class="font-12"><i class="fas fa-long-arrow-alt-left font-12 mr-2"></i><u>Tiếp tục
+                                mua hàng</u></a>
+                    </div>
                 </div>
             </div>
         </nav>

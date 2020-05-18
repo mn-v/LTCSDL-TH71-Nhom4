@@ -15,6 +15,8 @@ import { ContactComponent } from './pages/contact/contact.component';
 import { LoginComponent } from './pages/login/login.component';
 import { SignupComponent } from './pages/signup/signup.component';
 import { CartComponent } from './pages/cart/cart.component';
+import { MenComponent } from './pages/men/men.component';
+import { WomenComponent } from './pages/women/women.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +30,8 @@ import { CartComponent } from './pages/cart/cart.component';
     LoginComponent,
     SignupComponent,
     CartComponent,
+    MenComponent,
+    WomenComponent,
 
   ],
   imports: [

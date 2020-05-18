@@ -3,13 +3,13 @@ header {
     top     : 0;
     z-index : 1000;
 
-    background-color: rgba(255, 255, 255, .95);
-    // box-shadow: 0 0 0.5px 1px #cccccc;
+    background-color: var(--header);
     box-shadow      : 0 1px 1px 0 rgba(0, 0, 0, .05);
 }
 
 #logo-brand {
-    font-size: 3rem;
+    font-family: 'Roboto';
+    font-size  : 3rem;
 
     &:hover {
         cursor: pointer;
@@ -18,12 +18,13 @@ header {
 
 #menu {
     a {
-        color: black!important;
+        font-size     : 14px;
         text-transform: uppercase;
-        padding       : 0.5rem 1rem;
+
+        padding: 0.5rem 1rem;
 
         &:hover {
-            opacity: 0.7 !important;
+            opacity: 0.8;
         }
     }
 }
@@ -32,8 +33,89 @@ header {
     font-size: 1.5rem;
 
     &:hover {
-        cursor    : pointer;
-        color     : #cccccc;
-        transition: color 0.2s ease-in-out;
+        cursor: pointer;
+    }
+}
+
+// Mutual
+.cart--icon,
+.user--function {
+
+    .cart--show,
+    .user--func--show {
+        background-color: white;
+
+        position: absolute;
+        top     : 3rem;
+        right   : -3rem;
+
+        box-shadow: 0 40px 40px 0 rgba(0, 0, 0, .05);
+    }
+}
+
+.cart--icon {
+    position: relative;
+
+    .cart--show {
+        display: none;
+
+        width     : 20rem;
+        max-height: 25rem;
+    }
+}
+
+.user--function {
+    position: relative;
+
+    .user--func--show {
+        display: none;
+        width  : 9rem;
+
+        p:hover {
+            background-color: var(--whitesmoke);
+            color           : var(--darkred);
+        }
+    }
+}
+
+.cart--icon:hover .cart--show,
+.user--function:hover .user--func--show {
+    display   : block;
+    transition: 0.3s ease-in-out;
+}
+
+// Show
+.cart--show,
+.user--func--show {
+    position: relative;
+
+    &::after {
+        content: "";
+
+        position: absolute;
+
+        border-style: solid;
+        box-shadow  : 40px 40px 40px 0 rgba(0, 0, 0, .05);
+    }
+}
+
+// Triangle
+.cart--show {
+    &::after {
+        top  : -1.5rem;
+        right: 3.9rem;
+
+        border       : 12px solid transparent;
+        border-bottom: 12px solid white;
+    }
+}
+
+.user--func--show {
+    &::after {
+        top  : -1rem;
+        right: 4.2rem;
+
+        border       : 8px solid transparent;
+        border-bottom: 8px solid white;
     }
 }

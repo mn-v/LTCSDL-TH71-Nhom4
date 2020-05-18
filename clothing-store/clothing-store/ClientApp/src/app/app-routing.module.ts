@@ -7,12 +7,16 @@ import { ContactComponent } from './pages/contact/contact.component';
 import { LoginComponent } from './pages/login/login.component';
 import { SignupComponent } from './pages/signup/signup.component';
 import { CartComponent } from './pages/cart/cart.component';
+import { MenComponent } from './pages/men/men.component';
+import { WomenComponent } from './pages/women/women.component';
 
 
 const routes: Routes = [
   { path: '', component: HomePageComponent },
   { path: 'shop', component: ShopComponent },
   { path: 'sale', component: SaleComponent },
+  { path: 'men', component: MenComponent },
+  { path: 'women', component: WomenComponent },
   { path: 'contact', component: ContactComponent },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },

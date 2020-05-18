@@ -1,6 +1,6 @@
 .carousel-item {
     img {
-        height    : 570px;
+        height    : 100vh;
         background: no-repeat cover auto;
     }
 }
@@ -70,11 +70,6 @@
 
     padding   : 4rem 2rem 3rem;
     background: var(--whitesmoke);
-
-    p {
-        font-size: 18px;
-        flex-grow: 1;
-    }
 }
 
 .blog__content__block {
