@@ -9,6 +9,7 @@ import { SignupComponent } from './pages/signup/signup.component';
 import { CartComponent } from './pages/cart/cart.component';
 import { MenComponent } from './pages/men/men.component';
 import { WomenComponent } from './pages/women/women.component';
+import { AccessoriesComponent } from './pages/accessories/accessories.component';
 
 
 const routes: Routes = [
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path: 'shop', component: ShopComponent },
   { path: 'sale', component: SaleComponent },
   { path: 'men', component: MenComponent },
+  { path: 'accessories', component: AccessoriesComponent },
   { path: 'women', component: WomenComponent },
   { path: 'contact', component: ContactComponent },
   { path: 'login', component: LoginComponent },
