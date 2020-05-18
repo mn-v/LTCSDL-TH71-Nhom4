@@ -1,5 +1,6 @@
 .category--text {
     font-size: 14px;
+
     &:hover {
         color: var(--darkred) !important;
     }
@@ -8,9 +9,7 @@
 // PRODUCT BLOCK
 .product--block {
     .caption__button {
-        position: absolute;
-        left    : 2rem;
-        bottom  : 2rem;
+        position   : absolute;
 
         margin : 0 auto;
         padding: 0.75rem 2.5rem;
@@ -21,7 +20,10 @@
     &:hover .caption__button {
         opacity: 1;
 
-        transform : translateY(1rem);
+        left  : 50%;
+        bottom: 0.5rem;
+
+        transform : translate(-50%, -50%);
         transition: all 0.3s ease-in-out;
     }
 }
@@ -30,7 +32,7 @@
     position: relative;
 
     img {
-        width : 100%;
+        width: 100%;
     }
 
     .product--block--overlay {

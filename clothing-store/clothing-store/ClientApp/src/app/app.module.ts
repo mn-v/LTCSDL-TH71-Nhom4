@@ -31,7 +31,7 @@ import { WomenComponent } from './pages/women/women.component';
     SignupComponent,
     CartComponent,
     MenComponent,
-    WomenComponent,
+    WomenComponent
 
   ],
   imports: [
