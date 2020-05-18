@@ -3,9 +3,10 @@
 /* Provide sufficient contrast against white background */
 @import './app/scss/animation';
 @import './app/scss/variable';
+@import './app/scss/product.scss';
 
 body {
-    font-family: 'Montserrat';
+    font-family: 'Montserrat', 'Roboto', sans-serif;
 }
 
 li{
@@ -34,6 +35,7 @@ a {
     font-size: 12px;
 }
 
+// BUTTON
 .caption__button {
     border: none;
     border-radius: 30px;
@@ -48,6 +50,7 @@ a {
     }
 }
 
+// SPACING
 .d-flex-center {
     display: flex;
     align-items: center;
