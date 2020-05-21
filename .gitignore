@@ -229,3 +229,4 @@ _Pvt_Extensions
 
 # FAKE - F# Make
 .fake/
+clothing-store/clothing-store.DAL/OnlineStoreContext.cs

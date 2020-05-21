@@ -10,19 +10,21 @@ import { CartComponent } from './pages/cart/cart.component';
 import { MenComponent } from './pages/men/men.component';
 import { WomenComponent } from './pages/women/women.component';
 import { AccessoriesComponent } from './pages/accessories/accessories.component';
+import { ProductComponent } from './pages/product/product.component';
 
 
 const routes: Routes = [
   { path: '', component: HomePageComponent },
   { path: 'shop', component: ShopComponent },
-  { path: 'sale', component: SaleComponent },
   { path: 'men', component: MenComponent },
-  { path: 'accessories', component: AccessoriesComponent },
   { path: 'women', component: WomenComponent },
+  { path: 'sale', component: SaleComponent },
+  { path: 'accessories', component: AccessoriesComponent },
   { path: 'contact', component: ContactComponent },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
-  { path: 'cart', component: CartComponent }
+  { path: 'cart', component: CartComponent },
+  { path: 'products', component: ProductComponent }
 
 ];
 
