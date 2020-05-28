@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using clothing_store.Common.DAL;
 
 
@@ -9,7 +7,6 @@ namespace clothing_store.DAL
     using clothing_store.Common.Rsp;
     using clothing_store.DAL.Models;
     using System.Linq;
-    using System.Net.WebSockets;
 
     public class ProductsRep : GenericRep<OnlineStoreContext, Products>
     {
