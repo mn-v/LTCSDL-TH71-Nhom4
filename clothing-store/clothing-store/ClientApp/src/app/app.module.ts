@@ -19,6 +19,7 @@ import { MenComponent } from './pages/men/men.component';
 import { WomenComponent } from './pages/women/women.component';
 import { AccessoriesComponent } from './pages/accessories/accessories.component';
 import { ProductComponent } from './pages/product/product.component';
+import { AdminComponent } from './pages/admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -35,8 +36,8 @@ import { ProductComponent } from './pages/product/product.component';
     MenComponent,
     WomenComponent,
     AccessoriesComponent,
-    ProductComponent
-
+    ProductComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

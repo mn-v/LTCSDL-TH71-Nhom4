@@ -153,5 +153,8 @@
     "@nrwl/schematics:component": {
       "styleext": "scss"
     }
+  },
+  "cli": {
+    "analytics": "7151470f-fdb3-44a8-b49b-8bccd4e6dc02"
   }
 }
