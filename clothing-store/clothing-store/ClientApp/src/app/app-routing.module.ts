@@ -11,6 +11,7 @@ import { MenComponent } from './pages/men/men.component';
 import { WomenComponent } from './pages/women/women.component';
 import { AccessoriesComponent } from './pages/accessories/accessories.component';
 import { ProductComponent } from './pages/product/product.component';
+import { AdminComponent } from './pages/admin/admin.component';
 
 
 const routes: Routes = [
@@ -24,7 +25,8 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'cart', component: CartComponent },
-  { path: 'products', component: ProductComponent }
+  { path: 'products', component: ProductComponent },
+  { path: 'admin', component: AdminComponent }
 
 ];
 
