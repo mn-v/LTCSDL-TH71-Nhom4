@@ -1,15 +1,15 @@
 .bg-gradient-primary {
-	background-color: #1d1d1d;
+	background      : #1d1d1d cover;
 	background-image: linear-gradient(180deg, #3b3b3b 10%, #1d1d1d 100%);
-	background-size : cover;
 }
 
-/// Side bar
-.sidebar-divider {
+.bg-gray {
+	background-color: rgb(180, 180, 180);
+}
+
+/// SIDE BAR
+hr.sidebar-divider {
 	border-top: .05em solid rgb(77, 77, 77);
-}
-
-.sidebar hr.sidebar-divider {
 	margin: 0 1rem 1rem;
 }
 
@@ -23,16 +23,8 @@
 }
 
 /// Navbar
-#logo-brand {
-	font-size: 2rem;
-}
-
 .navbar-nav:hover {
-		color: white;
-	}
-
-.bg-gray {
-	background-color: rgb(180, 180, 180);
+	color: white;
 }
 
 .collapse-inner {
@@ -41,13 +33,12 @@
 }
 
 .collapse-item {
-	padding        : 0.5rem 1rem;
-	margin         : 0 0.5rem;
-	display        : block;
-	color          : #3a3b45;
-	text-decoration: none;
-	border-radius  : 0.35rem;
-	white-space    : nowrap;
+	display: block;
+
+	color: #3a3b45;
+
+	border-radius: 0.35rem;
+	white-space  : nowrap;
 
 	&:hover {
 		background-color: #eaecf4;
@@ -56,75 +47,31 @@
 	&:active {
 		background-color: #dddfeb;
 	}
-}
 
-.collapse-item.active {
-	color      : #4e73df;
-	font-weight: 700;
-}
-
-
-
-/////
-.navbar-nav {
-	.nav-item {
-		.nav-link:hover {
-			span {
-				color: white;
-			}
-
-			i {
-				color: white;
-			}
-
-			&::after {
-				color: white;
-			}
-		}
+	&.active {
+		color      : #4e73df;
+		font-weight: 700;
 	}
 }
 
-.sidebar {
-	.nav-item {
-		.collapse {
-			.collapse-inner {
-				.collapse-item {
-					padding        : 0.5rem 1rem;
-					margin         : 0 0.5rem;
-					display        : block;
-					color          : #3a3b45;
-					text-decoration: none;
-					border-radius  : 0.35rem;
-					white-space    : nowrap;
-				}
-			}
-		}
+/////
+.nav-link:hover {
 
-		.collapsing {
-			.collapse-inner {
-				.collapse-item {
-					padding        : 0.5rem 1rem;
-					margin         : 0 0.5rem;
-					display        : block;
-					color          : #3a3b45;
-					text-decoration: none;
-					border-radius  : 0.35rem;
-					white-space    : nowrap;
-				}
-			}
-		}
+	span,
+	i {
+		color: white;
 	}
 }
 
 /// Wrapper
-#wrapper #content-wrapper {
+#content-wrapper {
 	background-color: #f8f9fc;
 	width           : 100%;
 	overflow-x      : hidden;
-}
 
-#wrapper #content-wrapper #content {
-	flex: 1 0 auto;
+	#content {
+		flex: 1 0 auto;
+	}
 }
 
 /// Content
@@ -132,7 +79,6 @@
 	font-weight: bold;
 	color      : rgb(82, 82, 82);
 }
-
 
 @media (min-width: 768px) {
 	.sidebar {
