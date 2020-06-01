@@ -1,10 +1,10 @@
 <section id="signup">
-    <div class="container my-5">
+    <div class="container my-4">
         <div class="row d-flex align-items-center">
             <div class="col-md-6 px-3">
-                <h2 class="font-weight-bold mb-5">Đăng ký</h2>
+                <h2 class="font-weight-bold mb-4">Đăng ký</h2>
                 <form>
-                    <div class="form-group ">
+                    <div class="form-group">
                         <label for="example-text-input">Tên đăng nhập</label>
                         <div>
                             <input class="form-control" type="text" id="example-text-input" placeholder="diosvo">
@@ -34,14 +34,15 @@
                           <input class="form-control" id="example-password-input" placeholder="0927719321" maxlength="10">
                         </div>
                       </div>
-                   
-                    <div class="d-flex justify-content-end">
-                        <button type="button" class="btn ml-3 mt-3 py-2 px-4 text-light text-uppercase"
-                            style="background-color: var(--darkred);">Đăng ký</button>
-                    </div>
-                    <div class="col-md-10 mt-3 font-15">
-                        Bạn đã có tài khoản? Hãy <span routerLink="/login" style="cursor: pointer;"><u>Đăng
+                    <div class="row">
+                        <div class="col-md-8 py-2 font-15">
+                            Bạn đã có tài khoản? Hãy <span routerLink="/login" style="cursor: pointer;"><u>Đăng
                                 nhập</u></span> ở đây
+                        </div>
+                        <div class="col-md-4">
+                            <button type="button" class="btn ml-4 py-2 px-4 text-light text-uppercase"
+                            style="background-color: var(--darkred);">Đăng ký</button>
+                        </div>
                     </div>
                 </form>
             </div>
