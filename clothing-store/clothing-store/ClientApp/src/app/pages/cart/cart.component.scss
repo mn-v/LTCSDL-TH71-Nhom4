@@ -22,3 +22,18 @@
         cursor: pointer;
         color : var(--darkred);
     }
+
+    @media only screen and (max-width: 768px) {
+        .product--header {
+            font-size: 10px;
+        }
+
+        .product--body,
+        #delivery {
+            font-size: 12px;
+        }
+
+        .product--name {
+            font-size: 14px;
+        }
+    }
