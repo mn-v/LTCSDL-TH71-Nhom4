@@ -1,4 +1,4 @@
-<!-- <div class="py-2 text-secondary font-15" style="background: #dddddd;">
+<div id="top-header" class="py-2 text-secondary font-15" style="background: #dddddd;">
     <div class="container">
         <div class="row">
             <div class="col-4 font-13">
@@ -13,9 +13,9 @@
             </div>
         </div>
     </div>
-</div> -->
+</div>
 
-<!-- Navigation  -->
+<!-- Navigation: 1208  -->
 <header>
     <div class="container">
         <nav class="row d-flex justify-content-center align-items-center">
@@ -47,16 +47,68 @@
                 </div>
                 <div id="icon" class="cart--icon">
                     <i class="fas fa-shopping-bag px-3" routerLink="/cart"></i>
-                    <!-- <div class="cart--show p-4">
+                    <div class="cart--show p-4">
                         <p class="font-13 m-0 p-0">Hiện tại chưa có sản phẩm nào được chọn :D</p>
                         <a href="#" class="font-12"><i class="fas fa-long-arrow-alt-left font-12 mr-2"></i><u>Tiếp tục
                                 mua hàng</u></a>
-                    </div> -->
-                    <div class="cart--show p-4">
-
                     </div>
                 </div>
             </div>
         </nav>
     </div>
 </header>
+
+<!--Navigation: 992 -->
+<div id="toggle-menu" class="container">
+    <nav class="navbar navbar-light purple lighten-4 mb-4">
+        <div id="logo-brand" class="font-weight-bold p-0">
+            <a routerLink="/">KIDI<span style="color: var(--darkred);">.</span></a>
+        </div>
+
+        <!-- Collapse button -->
+        <button class="navbar-toggler toggler-example purple darken-3" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent41" aria-controls="navbarSupportedContent41" aria-expanded="false"
+            aria-label="Toggle navigation"><span class="white-text"><i class="fas fa-bars fa-1x"></i></span></button>
+
+        <!-- Collapsible Content -->
+        <div class="collapse navbar-collapse" id="navbarSupportedContent41">
+            <!-- Links -->
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" routerLink="/">Trang chủ<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/men">Nam</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/women">Nữ</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/sale" style="color: red!important;">Sale</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/accessories">Phụ kiện</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Blog</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/contact">Liên hệ</a>
+                </li>
+                <div class="px-5 my-2" style="border-bottom: 0.5px solid #dddddd;"></div>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/login">Đăng nhập</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/signup">Đăng ký</a>
+                </li>
+                <div class="px-5 my-2" style="border-bottom: 0.5px solid #dddddd;"></div>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/cart">Giỏ hàng</a>
+                </li>
+            </ul>
+
+        </div>
+        <!-- End Collapsible Content -->
+    </nav>
+</div>
