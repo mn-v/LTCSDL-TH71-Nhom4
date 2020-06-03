@@ -1,9 +1,14 @@
+// h5 {
+//     margin-bottom: 2.5rem;
+// }
+
 i {
     margin-right: 8px;
 }
 
-p, a {
-    color: grey!important;
+p,
+a {
+    color    : grey !important;
     font-size: 13px;
 }
 
@@ -13,4 +18,11 @@ a:hover {
 
 #author {
     background-color: var(--footer);
+}
+
+@media only screen and (max-width: 768px) {
+    .footer--block {
+        padding: 0.5rem 2rem;
+        margin-bottom: 0.75rem;
+    }
 }

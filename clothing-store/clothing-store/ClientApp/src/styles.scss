@@ -56,3 +56,8 @@ a {
     align-items: center;
     justify-content: center;
 }
+
+// BOOTSTRAP DEFAULT
+.btn.focus, .btn:focus {
+    box-shadow: none!important;
+}
