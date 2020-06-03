@@ -2,26 +2,25 @@
     <div class="container">
         <div class="row">
             <!-- LEFT SIDE  -->
-            <div class="col-md-3 pt-4">
+            <div class="col-md-3 pt-3">
                 <div class="searching">
                     <div class="input-group mr-sm-2">
                         <input type="text" class="form-control mr-sm-2 font-12" placeholder="Nhập tên sản phẩm...">
                         <button type="submit" class="btn btn-dark font-12">Tìm kiếm</button>
                     </div>
                 </div>
-                <hr class="my-4">
+                <hr class="my-3">
                 <div class="accordion" id="accordionExample">
                     <div class="card">
-                        <div class="card-header p-0" id="headingOne">
+                        <div class="card-header p-0" id="headingTwo">
                             <h2 class="mb-0">
-                                <button class="btn font-weight-bold" type="button" data-toggle="collapse"
-                                    data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                <button class="btn collapsed" type="button" data-toggle="collapse"
+                                    data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                                     Phân loại hàng
                                 </button>
                             </h2>
                         </div>
-
-                        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
+                        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
                             data-parent="#accordionExample">
                             <ul class="m-0 px-3">
                                 <li class="my-2"><a class="category--text">Tất cả</a></li>
@@ -33,15 +32,14 @@
                         </div>
                     </div>
                 </div>
-
             </div>
 
             <!-- RIGHT SIDE  -->
-            <div class="col-md-9 py-4">
+            <div class="col-md-9 py-3">
                 <div class="row">
                     <div class="text-secondary font-12 px-3 py-2 mx-3 mb-3"
                         style="background-color: var(--whitesmoke); width: 100%;">Trang chủ/ Sản phẩm nam</div>
-                    <div class="col-lg-4 mb-4" *ngIf="products.totalRecord">
+                    <div class="col-md-4 mb-4" *ngIf="products.totalRecord">
                         <div class="product--block" *ngFor="let p of products.data">
                             <div class="product--block--img">
                                 <img src="./assets/images/men/tee/2.png">
