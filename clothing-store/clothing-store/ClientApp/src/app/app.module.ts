@@ -20,6 +20,7 @@ import { WomenComponent } from './pages/women/women.component';
 import { AccessoriesComponent } from './pages/accessories/accessories.component';
 import { ProductComponent } from './pages/product/product.component';
 import { AdminComponent } from './pages/admin/admin.component';
+import { AdminProductComponent } from './pages/admin-product/admin-product.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { AdminComponent } from './pages/admin/admin.component';
     WomenComponent,
     AccessoriesComponent,
     ProductComponent,
-    AdminComponent
+    AdminComponent,
+    AdminProductComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
