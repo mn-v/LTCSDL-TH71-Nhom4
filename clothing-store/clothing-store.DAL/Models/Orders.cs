@@ -12,13 +12,12 @@ namespace clothing_store.DAL.Models
         }
 
         public int OrderId { get; set; }
-        public int? UserId { get; set; }
-        public DateTime? OrderDate { get; set; }
+        public int UserId { get; set; }
+        public DateTime OrderDate { get; set; }
         public string ShipName { get; set; }
         public string ShipAddress { get; set; }
-        public string ShipEmail { get; set; }
         public string ShipPhoneNumber { get; set; }
-        public string Status { get; set; }
+        public bool? Status { get; set; }
 
         public virtual Users User { get; set; }
         public virtual ICollection<OrderDetails> OrderDetails { get; set; }

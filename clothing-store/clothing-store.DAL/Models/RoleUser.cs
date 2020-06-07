@@ -5,11 +5,14 @@ namespace clothing_store.DAL.Models
 {
     public partial class RoleUser
     {
-        public int RoleId { get; set; }
-        public int UserId { get; set; }
-        public string Status { get; set; }
+        public RoleUser()
+        {
+            Users = new HashSet<Users>();
+        }
 
-        public virtual Role User { get; set; }
-        public virtual Users UserNavigation { get; set; }
+        public int RoleId { get; set; }
+        public string RoleName { get; set; }
+
+        public virtual ICollection<Users> Users { get; set; }
     }
 }

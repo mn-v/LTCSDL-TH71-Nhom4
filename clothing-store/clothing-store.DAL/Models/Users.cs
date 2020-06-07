@@ -8,9 +8,7 @@ namespace clothing_store.DAL.Models
         public Users()
         {
             Carts = new HashSet<Carts>();
-            Contact = new HashSet<Contact>();
             Orders = new HashSet<Orders>();
-            RoleUser = new HashSet<RoleUser>();
             Transactions = new HashSet<Transactions>();
         }
 
@@ -21,11 +19,12 @@ namespace clothing_store.DAL.Models
         public string Email { get; set; }
         public string Dob { get; set; }
         public string FullName { get; set; }
+        public string Address { get; set; }
+        public int RoleId { get; set; }
 
+        public virtual RoleUser Role { get; set; }
         public virtual ICollection<Carts> Carts { get; set; }
-        public virtual ICollection<Contact> Contact { get; set; }
         public virtual ICollection<Orders> Orders { get; set; }
-        public virtual ICollection<RoleUser> RoleUser { get; set; }
         public virtual ICollection<Transactions> Transactions { get; set; }
     }
 }
