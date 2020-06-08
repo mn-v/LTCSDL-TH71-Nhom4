@@ -10,69 +10,68 @@ namespace clothing_store.DAL
 
     public class ProductsRep : GenericRep<OnlineStoreContext, Products>
     {
-        #region -- Override --
-        public override Products Read(int id)
-        {
-            var res = All.FirstOrDefault(p => p.ProductId == id);
-            return res;
-        }
+    //    #region -- Override --
+    //    public override Products Read(int id)
+    //    {
+    //        var res = All.FirstOrDefault(p => p.ProductId == id);
+    //        return res;
+    //    }
 
-        public int Remove(int id)
-        {
-            var m = base.All.First(p => p.ProductId == id);
-            m = base.Delete(m);
-            return m.ProductId;
-        }
-        #endregion
+    //    public int Remove(int id)
+    //    {
+    //        var m = base.All.First(p => p.ProductId == id);
+    //        m = base.Delete(m);
+    //        return m.ProductId;
+    //    }
+    //    #endregion
+    //    #region -- Methods --
 
-        #region -- Methods --
+    //    public SingleRsp CreateProduct(Products pro)
+    //    {
+    //        var res = new SingleRsp();
+    //        using (var context = new OnlineStoreContext())
+    //        {
+    //            using (var tran = context.Database.BeginTransaction())
+    //            {
+    //                try
+    //                {
+    //                    var t = context.Products.Add(pro);
+    //                    context.SaveChanges();
+    //                    tran.Commit();
+    //                }
+    //                catch (Exception ex)
+    //                {
+    //                    tran.Rollback();
+    //                    res.SetError(ex.StackTrace);
+    //                }
+    //            }
+    //        }
+    //        return res;
+    //    }
 
-        public SingleRsp CreateProduct(Products pro)
-        {
-            var res = new SingleRsp();
-            using (var context = new OnlineStoreContext())
-            {
-                using (var tran = context.Database.BeginTransaction())
-                {
-                    try
-                    {
-                        var t = context.Products.Add(pro);
-                        context.SaveChanges();
-                        tran.Commit();
-                    }
-                    catch (Exception ex)
-                    {
-                        tran.Rollback();
-                        res.SetError(ex.StackTrace);
-                    }
-                }
-            }
-            return res;
-        }
+    //    public SingleRsp UpdateProduct(Products pro)
+    //    {
+    //        var res = new SingleRsp();
+    //        using (var context = new OnlineStoreContext())
+    //        {
+    //            using (var tran = context.Database.BeginTransaction())
+    //            {
+    //                try
+    //                {
+    //                    var t = context.Products.Update(pro);
+    //                    context.SaveChanges();
+    //                    tran.Commit();
+    //                }
+    //                catch (Exception ex)
+    //                {
+    //                    tran.Rollback();
+    //                    res.SetError(ex.StackTrace);
+    //                }
+    //            }
+    //        }
+    //        return res;
+    //    }
 
-        public SingleRsp UpdateProduct(Products pro)
-        {
-            var res = new SingleRsp();
-            using (var context = new OnlineStoreContext())
-            {
-                using (var tran = context.Database.BeginTransaction())
-                {
-                    try
-                    {
-                        var t = context.Products.Update(pro);
-                        context.SaveChanges();
-                        tran.Commit();
-                    }
-                    catch (Exception ex)
-                    {
-                        tran.Rollback();
-                        res.SetError(ex.StackTrace);
-                    }
-                }
-            }
-            return res;
-        }
-
-        #endregion
+    //    #endregion
     }
 }
