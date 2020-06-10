@@ -5,6 +5,7 @@ using clothing_store.Common.DAL;
 
 namespace clothing_store.DAL
 {
+    using clothing_store.Common.Rsp;
     using clothing_store.DAL.Models;
     using System.Linq;
 
@@ -18,12 +19,62 @@ namespace clothing_store.DAL
             return res; // thay vi ghi base.All thi ghi All no cung hieu
         }
         
-        public int Remove(int id)
+        //public int Remove(int id)
+        //{
+        //    var m = base.All.First(i => i.CategoryId == id);
+        //    m = base.Delete(m);
+        //    return m.CategoryId;
+        //}
+        #endregion
+
+        #region -- methods --
+
+        public SingleRsp CreateCategory(Categories categories)
         {
-            var m = base.All.First(i => i.CategoryId == id);
-            m = base.Delete(m);
-            return m.CategoryId;
+            var res = new SingleRsp();
+            using (var context = new OnlineStoreContext())
+            {
+                using (var tran = context.Database.BeginTransaction())
+                {
+                    try
+                    {
+                        var t = context.Categories.Add(categories);
+                        context.SaveChanges();
+                        tran.Commit();
+                    }
+                    catch (Exception ex)
+                    {
+                        tran.Rollback();
+                        res.SetError(ex.StackTrace);
+                    }
+                }
+            }
+            return res;
         }
+
+        public SingleRsp UpdateCategory(Categories categories)
+        {
+            var res = new SingleRsp();
+            using (var context = new OnlineStoreContext())
+            {
+                using (var tran = context.Database.BeginTransaction())
+                {
+                    try
+                    {
+                        var t = context.Categories.Update(categories);
+                        context.SaveChanges();
+                        tran.Commit();
+                    }
+                    catch (Exception ex)
+                    {
+                        tran.Rollback();
+                        res.SetError(ex.StackTrace);
+                    }
+                }
+            }
+            return res;
+        }
+
         #endregion
     }
 }

@@ -33,7 +33,7 @@ namespace clothing_store.DAL.Models
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlServer("Data Source=DESKTOP-1ADUA1C;Initial Catalog=OnlineStore;Persist Security Info=True;User ID=sa;Password=123456;Pooling=False;MultipleActiveResultSets=False;Encrypt=False;TrustServerCertificate=True;");
+                optionsBuilder.UseSqlServer("Data Source=.;Initial Catalog=OnlineStore;Persist Security Info=True;User ID=sa;Password=123;Pooling=False;MultipleActiveResultSets=False;Encrypt=False;TrustServerCertificate=True;");
             }
         }
 
@@ -45,15 +45,14 @@ namespace clothing_store.DAL.Models
                     .HasName("PK_Cart");
 
                 entity.Property(e => e.CartId)
-                    .HasColumnName("CartID")
-                    .ValueGeneratedNever();
+                    .HasColumnName("CartID");
 
                 entity.Property(e => e.ProductId).HasColumnName("ProductID");
 
                 entity.Property(e => e.Size)
                     .IsRequired()
                     .HasMaxLength(10)
-                    .IsFixedLength();
+                    .IsUnicode(false);
 
                 entity.Property(e => e.UnitPrice).HasColumnType("money");
 
@@ -77,22 +76,48 @@ namespace clothing_store.DAL.Models
                 entity.HasKey(e => e.CategoryId);
 
                 entity.Property(e => e.CategoryId)
-                    .HasColumnName("CategoryID")
-                    .ValueGeneratedNever();
+                    .HasColumnName("CategoryID");
 
                 entity.Property(e => e.CategoryName)
                     .IsRequired()
-                    .HasMaxLength(50)
-                    .IsFixedLength();
+                    .HasMaxLength(255);
 
-                entity.Property(e => e.Description).HasMaxLength(225);
+                entity.Property(e => e.Description)
+                    .HasMaxLength(225);
 
-                entity.Property(e => e.Status).HasMaxLength(225);
+                entity.Property(e => e.Title)
+                    .HasMaxLength(100);
 
-                entity.Property(e => e.Title).HasMaxLength(100);
+                entity.Property(e => e.Gender)
+                    .IsRequired();
             });
 
-            
+            modelBuilder.Entity<Contact>(entity =>
+            {
+                entity.HasKey(e => e.ContactId);
+
+                entity.Property(e => e.ContactId)
+                    .HasColumnName("ContactID");
+
+                entity.Property(e => e.Name)
+                    .IsRequired()
+                    .HasMaxLength(255);
+
+                entity.Property(e => e.Email)
+                    .IsRequired()
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.PhoneNumber)
+                    .IsRequired()
+                    .HasMaxLength(10)
+                    .IsUnicode(false)
+                    .IsFixedLength();
+
+                entity.Property(e => e.Message)
+                    .IsRequired()
+                    .HasMaxLength(255);
+            });
 
             modelBuilder.Entity<OrderDetails>(entity =>
             {
@@ -105,7 +130,7 @@ namespace clothing_store.DAL.Models
                 entity.Property(e => e.Size)
                     .IsRequired()
                     .HasMaxLength(10)
-                    .IsFixedLength();
+                    .IsUnicode(false);
 
                 entity.Property(e => e.UnitPrice).HasColumnType("money");
 
@@ -127,25 +152,22 @@ namespace clothing_store.DAL.Models
                 entity.HasKey(e => e.OrderId);
 
                 entity.Property(e => e.OrderId)
-                    .HasColumnName("OrderID")
-                    .ValueGeneratedNever();
+                    .HasColumnName("OrderID");
 
                 entity.Property(e => e.OrderDate).HasColumnType("date");
 
                 entity.Property(e => e.ShipAddress)
                     .IsRequired()
-                    .HasMaxLength(100)
-                    .IsFixedLength();
+                    .HasMaxLength(100);
 
                 entity.Property(e => e.ShipName)
                     .IsRequired()
-                    .HasMaxLength(100)
-                    .IsFixedLength();
+                    .HasMaxLength(100);
 
                 entity.Property(e => e.ShipPhoneNumber)
                     .IsRequired()
                     .HasMaxLength(10)
-                    .IsFixedLength();
+                    .IsUnicode(false);
 
                 entity.Property(e => e.UserId).HasColumnName("UserID");
 
@@ -182,16 +204,17 @@ namespace clothing_store.DAL.Models
                 entity.HasKey(e => e.ProductId);
 
                 entity.Property(e => e.ProductId)
-                    .HasColumnName("ProductID")
-                    .ValueGeneratedNever();
+                    .HasColumnName("ProductID");
 
-                entity.Property(e => e.CategoryId).HasColumnName("CategoryID");
+                entity.Property(e => e.CategoryId)
+                    .HasColumnName("CategoryID");
 
-                entity.Property(e => e.DateCreate).HasColumnType("date");
+                entity.Property(e => e.DateCreate)
+                    .HasColumnType("date")
+                    .HasDefaultValueSql("getdate()");
 
                 entity.Property(e => e.Description)
-                    .HasMaxLength(225)
-                    .IsFixedLength();
+                    .HasMaxLength(225);
 
                 entity.Property(e => e.ImageSource)
                     .HasMaxLength(225)
@@ -201,10 +224,10 @@ namespace clothing_store.DAL.Models
 
                 entity.Property(e => e.ProductName)
                     .IsRequired()
-                    .HasMaxLength(50)
-                    .IsFixedLength();
+                    .HasMaxLength(255);
 
-                entity.Property(e => e.PromotionId).HasColumnName("PromotionID");
+                entity.Property(e => e.PromotionId)
+                    .HasColumnName("PromotionID");
 
                 entity.HasOne(d => d.Category)
                     .WithMany(p => p.Products)
@@ -221,8 +244,7 @@ namespace clothing_store.DAL.Models
             modelBuilder.Entity<Promotion>(entity =>
             {
                 entity.Property(e => e.PromotionId)
-                    .HasColumnName("PromotionID")
-                    .ValueGeneratedNever();
+                    .HasColumnName("PromotionID");
 
                 entity.Property(e => e.PromotionName).HasMaxLength(255);
             });
@@ -232,8 +254,7 @@ namespace clothing_store.DAL.Models
                 entity.HasKey(e => e.RoleId);
 
                 entity.Property(e => e.RoleId)
-                    .HasColumnName("RoleID")
-                    .ValueGeneratedNever();
+                    .HasColumnName("RoleID");
 
                 entity.Property(e => e.RoleName)
                     .IsRequired()
@@ -243,13 +264,12 @@ namespace clothing_store.DAL.Models
             modelBuilder.Entity<Size>(entity =>
             {
                 entity.Property(e => e.SizeId)
-                    .HasColumnName("SizeID")
-                    .ValueGeneratedNever();
+                    .HasColumnName("SizeID");
 
                 entity.Property(e => e.SizeName)
                     .IsRequired()
                     .HasMaxLength(10)
-                    .IsFixedLength();
+                    .IsUnicode(false);
             });
 
             modelBuilder.Entity<Transactions>(entity =>
@@ -259,8 +279,7 @@ namespace clothing_store.DAL.Models
 
                 entity.Property(e => e.TransactionId)
                     .HasColumnName("TransactionID")
-                    .HasMaxLength(10)
-                    .IsFixedLength();
+                    .HasMaxLength(10);
 
                 entity.Property(e => e.Fee).HasColumnType("money");
 
@@ -268,8 +287,7 @@ namespace clothing_store.DAL.Models
 
                 entity.Property(e => e.Result)
                     .IsRequired()
-                    .HasMaxLength(50)
-                    .IsFixedLength();
+                    .HasMaxLength(50);
 
                 entity.Property(e => e.TransactionDate).HasColumnType("date");
 
@@ -293,36 +311,33 @@ namespace clothing_store.DAL.Models
                 entity.HasKey(e => e.UserId);
 
                 entity.Property(e => e.UserId)
-                    .HasColumnName("UserID")
-                    .ValueGeneratedNever();
+                    .HasColumnName("UserID");
 
                 entity.Property(e => e.Address)
-                    .HasMaxLength(10)
-                    .IsFixedLength();
+                    .HasMaxLength(255);
 
                 entity.Property(e => e.Dob)
                     .IsRequired()
                     .HasColumnName("DOB")
-                    .HasMaxLength(50)
-                    .IsFixedLength();
-
+                    .HasMaxLength(50);
+                    
                 entity.Property(e => e.Email)
                     .IsRequired()
-                    .HasMaxLength(25)
-                    .IsFixedLength();
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.FullName)
-                    .HasMaxLength(100)
-                    .IsFixedLength();
+                    .HasMaxLength(100);
 
                 entity.Property(e => e.Password)
                     .IsRequired()
                     .HasMaxLength(50)
-                    .IsFixedLength();
+                    .IsUnicode(false);
 
                 entity.Property(e => e.PhoneNumber)
                     .IsRequired()
-                    .HasMaxLength(24)
+                    .HasMaxLength(10)
+                    .IsUnicode(false)
                     .IsFixedLength();
 
                 entity.Property(e => e.RoleId).HasColumnName("RoleID");
@@ -330,7 +345,7 @@ namespace clothing_store.DAL.Models
                 entity.Property(e => e.UserName)
                     .IsRequired()
                     .HasMaxLength(50)
-                    .IsFixedLength();
+                    .IsUnicode(false);
 
                 entity.HasOne(d => d.Role)
                     .WithMany(p => p.Users)

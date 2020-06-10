@@ -38,45 +38,33 @@ namespace clothing_store.Controllers
             return Ok(res);
         }
 
-        //[HttpPost("get-product-by-id")]
-        //public IActionResult getProductById([FromBody] SimpleReq rep)
-        //{
-        //    var res = new SingleRsp();
-        //    res.Data = _svc.getProductById(rep.Id);
-            
-        //    return Ok(res);
-        //}
+        // đưa ra swagger
+        [HttpPost("search-product")]
+        public IActionResult SearchProduct([FromBody] SearchReq req)
+        {
+            var res = new SingleRsp();
+            var pro = _svc.SearchProduct(req.Keyword, req.Page, req.Size);
+            res.Data = pro;
+            return Ok(res);
+        }
 
-        //// đưa ra swagger
-        //[HttpPost("search-product")]
-        //public IActionResult SearchProduct([FromBody] SearchProductsReq req)
-        //{
-        //    var res = new SingleRsp();
-        //    var pro = _svc.SearchProduct(req.Keyword, req.Page, req.Size);
-        //    res.Data = pro;
-        //    return Ok(res);
-        //}
+        //thêm
+        [HttpPost("create-product")]
+        public IActionResult CreateProduct([FromBody] ProductsReq req)
+        {
+            var res = _svc.CreateProduct(req);
 
-        ////thêm
-        //[HttpPost("create-product")]
-        //public IActionResult CreateProduct([FromBody] ProductsReq req)
-        //{
-        //    var res = _svc.CreateProduct(req);
-          
-        //    return Ok(res);
-        //}
+            return Ok(res);
+        }
 
-        ////sửa
-        //[HttpPost("update-product")]
-        //public IActionResult UpdateProduct([FromBody] ProductsReq req)
-        //{
-        //    var res = _svc.UpdateProduct(req);
+        //sửa
+        [HttpPost("update-product")]
+        public IActionResult UpdateProduct([FromBody] ProductsReq req)
+        {
+            var res = _svc.UpdateProduct(req);
 
-        //    return Ok(res);
-        //}
-
-        
-       
+            return Ok(res);
+        }
 
         private readonly ProductsSvc _svc;
     }
