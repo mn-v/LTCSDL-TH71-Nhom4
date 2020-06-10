@@ -21,6 +21,14 @@ namespace clothing_store.Controllers
             _svc = new CategoriesSvc();
         }
 
+        //[HttpPost("remove-by-id")]
+        //public IActionResult remoeById([FromBody]SimpleReq req)
+        //{
+        //    var res = new int();
+        //    res = _svc.Remove(req.Id);
+        //    return Ok(res); //phuong thuc tot(200): da dat dc
+        //}
+
         [HttpPost("get-by-id")]
         public IActionResult getCategoryById([FromBody]SimpleReq req)
         {
@@ -35,6 +43,33 @@ namespace clothing_store.Controllers
             var res = new SingleRsp();
             res.Data = _svc.All;
             return Ok(res); //phuong thuc tot(200): da dat dc
+        }
+
+        //thêm
+        [HttpPost("create-category")]
+        public IActionResult CreateCategory([FromBody] CategoriesReq req)
+        {
+            var res = _svc.CreateCategory(req);
+
+            return Ok(res);
+        }
+
+        //sửa
+        [HttpPost("update-category")]
+        public IActionResult UpdateCategory([FromBody] CategoriesReq req)
+        {
+            var res = _svc.UpdateCategory(req);
+
+            return Ok(res);
+        }
+
+        [HttpPost("search-category")]
+        public IActionResult SearchCategory([FromBody] SearchReq req)
+        {
+            var res = new SingleRsp();
+            var pro = _svc.SearchCategory(req.Keyword, req.Page, req.Size);
+            res.Data = pro;
+            return Ok(res);
         }
 
         private readonly CategoriesSvc _svc;
