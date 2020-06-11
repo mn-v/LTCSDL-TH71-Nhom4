@@ -101,6 +101,17 @@ namespace clothing_store.BLL
         }
 
 
+        //Product-Sale
+        public object GetSP_ProductSale()
+        {
+            return _rep.GetSP_ProductSale();
+        }
+
+        //Product-Accessories
+        public object GetSP_ProductAccessories()
+        {
+            return _rep.GetSP_ProductAccessories();
+        }
 
         //public ProductsSvc()
         //{
