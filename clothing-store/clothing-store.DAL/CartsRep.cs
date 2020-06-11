@@ -33,7 +33,7 @@ namespace clothing_store.DAL
             var res = new SingleRsp();
             if (Context.Carts.Where(x => x.ProductId == carts.ProductId).ToList().Count != 0 && (Context.Carts.Where(x => x.Size == carts.Size).ToList().Count != 0))
                {
-                   carts.Size += Context.Carts.Where(x => x.Size == carts.Size).ToList().First().Size;
+                   carts.Size += Context.Carts.Where(x => x.Size == carts.Size).ToList().FirstOrDefault().Size;
                    res = UpdateCart(carts);
                }
             else
@@ -88,7 +88,7 @@ namespace clothing_store.DAL
             var res = new SingleRsp();
             var list = Context.Carts
                .Where(x => x.ProductId == ProductId).ToList();
-            Carts carts = list.First();
+            Carts carts = list.FirstOrDefault();
             using (var context = new OnlineStoreContext())
             {
                 using (var tran = context.Database.BeginTransaction())
