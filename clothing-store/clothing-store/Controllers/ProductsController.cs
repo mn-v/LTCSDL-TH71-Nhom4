@@ -66,6 +66,43 @@ namespace clothing_store.Controllers
             return Ok(res);
         }
 
+        [HttpPost("delete-product")]
+        public IActionResult DeleteProduct(int id)
+        {
+            var res = _svc.DeleteProduct(id);
+
+            return Ok(res);
+        }
+
+        [HttpPost("get-all-product-by-gender-linq")]
+        public IActionResult GetAllProductByGender_Linq([FromBody]CategoriesReq req)
+        {
+            var res = new SingleRsp();
+            var hist = _svc.GetAllProductByGender_Linq(req.Gender);
+            res.Data = hist;
+            return Ok(res);
+        }
+
+        [HttpPost("get-product-by-categoryId-linq")]
+        public IActionResult GetProductByCategoryId_Linq([FromBody]CategoriesReq req)
+        {
+            var res = new SingleRsp();
+            var hist = _svc.GetProductByCategoryId_Linq(req.CategoryId);
+            res.Data = hist;
+            return Ok(res);
+        }
+
+        [HttpPost("get-product-by-promotion-linq")]
+        public IActionResult GetProductByPromotion_Linq([FromBody]CategoriesReq req)
+        {
+            var res = new SingleRsp();
+            var hist = _svc.GetProductByPromotion_Linq(req.Gender);
+            res.Data = hist;
+            return Ok(res);
+        }
+
+        
+
         private readonly ProductsSvc _svc;
     }
 }

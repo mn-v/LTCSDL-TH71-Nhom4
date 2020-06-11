@@ -44,6 +44,7 @@ namespace clothing_store.BLL
 
         #region -- Methods --
 
+
         public object SearchProduct(String keyword, int page, int size)
         {
             var pro = All.Where(x => x.ProductName.Contains(keyword));
@@ -100,15 +101,26 @@ namespace clothing_store.BLL
             return res;
         }
 
-
-
-        //public ProductsSvc()
-        //{
-
-        //}
-
-
         #endregion
 
+        public object GetAllProductByGender_Linq(bool gender)
+        {
+            return _rep.GetAllProductByGender_Linq(gender);
+        }
+
+        public object GetProductByCategoryId_Linq(int categoryId)
+        {
+            return _rep.GetProductByCategoryId_Linq(categoryId);
+        }
+
+        public object GetProductByPromotion_Linq(bool gender)
+        {
+            return _rep.GetProductByPromotion_Linq(gender);
+        }
+
+        public int DeleteProduct(int id)
+        {
+            return _rep.DeleteProduct(id);
+        }
     }
 }

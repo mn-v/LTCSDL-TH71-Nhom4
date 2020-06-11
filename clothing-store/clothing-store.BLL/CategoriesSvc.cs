@@ -26,15 +26,15 @@ namespace clothing_store.BLL
             return res;
         }
 
-        //public override int Remove(int id)
-        //{
-        //    var res = new SingleRsp();
+        public override int Remove(int id)
+        {
+            var res = new SingleRsp();
 
-        //    var m = _rep.Remove(id);
-        //    res.Data = m;
+            var m = _rep.Remove(id);
+            res.Data = m;
 
-        //    return 0;
-        //}
+            return 0;
+        }
 
         public override SingleRsp Update(Categories m)
         {
@@ -81,6 +81,11 @@ namespace clothing_store.BLL
 
             res = _rep.UpdateCategory(categories);
             return res;
+        }
+
+        public int DeleteCategory(int id)
+        {
+            return _rep.DeleteCategory(id);
         }
 
         public object SearchCategory(String keyword, int page, int size)
