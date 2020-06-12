@@ -121,6 +121,16 @@ namespace clothing_store.Controllers
             return Ok(res);
         }
 
+        //Search-Product-Accessories
+        [HttpPost("search-product-accessories-linq")]
+        public IActionResult SearchCategory(String keyword, int page, int size)
+        {
+            var res = new SingleRsp();
+            var hist = _svc.SearchCategory(keyword, page, size);
+            res.Data = hist;
+            return Ok(res);
+        }
+
         private readonly ProductsSvc _svc;
     }
 }

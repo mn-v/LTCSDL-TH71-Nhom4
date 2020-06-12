@@ -211,6 +211,61 @@ namespace clothing_store.DAL
             return res;
         }
 
+        //search product accessories
+        public object SearchCategory(String keyword, int page, int size)
+        {
+
+
+
+            var emp = Context.Products
+                .Join(Context.Categories, a => a.CategoryId, b => b.CategoryId, (a, b) => new
+                {
+                    a.ProductId,
+                    a.ProductName,
+                    a.Price,
+                    a.Description,
+                    a.ImageSource,
+                    a.PromotionId,
+                    b.CategoryName
+                })
+                .Join(Context.Promotion, a => a.PromotionId, b => b.PromotionId, (a, b) => new
+                {
+                    a.ProductId,
+                    a.ProductName,
+                    a.Price,
+                    a.Description,
+                    a.ImageSource,
+                    b.DiscountPercent,
+                    a.CategoryName
+                }).Where(x => x.ProductName.Contains(keyword)).Where(x => x.CategoryName.Contains("Phụ kiện")).ToList();
+            var pro = emp.GroupBy(x => x.ProductId)
+                .Select(x => new
+                {
+                    ProductID = x.First().ProductId,
+                    ProductName = x.First().ProductName,
+                    Price = x.First().Price,
+                    Description = x.First().Description,
+                    ImageSource = x.First().ImageSource,
+                    DiscountPercent = x.First().DiscountPercent
+
+                }).ToList();
+
+            var offset = (page - 1) * size;
+            var total = pro.Count();
+            int totalPages = (total % size) == 0 ? (int)(total / size) : (int)((total / size) + 1);
+            var data = pro.OrderBy(x => x.ProductName).Skip(offset).Take(size).ToList();
+
+            var res = new
+            {
+                Data = data,
+                TotalRecord = total,
+                TotalPages = totalPages,
+                Page = page,
+                Size = size
+            };
+            return res;
+        }
+
         #endregion
     }
 }

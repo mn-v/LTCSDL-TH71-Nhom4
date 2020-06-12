@@ -129,9 +129,18 @@ namespace clothing_store.BLL
             return _rep.GetProductByPromotion_Linq(gender);
         }
 
+        //search product accessories
+        public object SearchCategory(String keyword, int page, int size)
+        {
+            return _rep.SearchCategory(keyword, page, size);
+        }
+
         public int DeleteProduct(int id)
         {
             return _rep.DeleteProduct(id);
         }
+
+        //
+        
     }
 }
