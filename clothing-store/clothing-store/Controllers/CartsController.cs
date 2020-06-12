@@ -48,9 +48,9 @@ namespace clothing_store.Controllers
 
         //sửa
         [HttpPost("update-cart")]
-        public IActionResult UpdateCart([FromBody] CartsReq req)
+        public IActionResult UpdateCart(int CartId, string Size, short Quantity)
         {
-            var res = _svc.UpdateCart(req);
+            var res = _svc.UpdateCart(CartId, Size, Quantity);
 
             return Ok(res);
         }

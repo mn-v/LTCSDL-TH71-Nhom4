@@ -70,17 +70,10 @@ namespace clothing_store.BLL
             return res;
         }
 
-        public SingleRsp UpdateCart(CartsReq cart)
+        public SingleRsp UpdateCart(int CartId, string Size, short Quantity)
         {
             var res = new SingleRsp();
-            Carts carts = new Carts();
-            carts.CartId = cart.CartId;
-            carts.Size = cart.Size;
-            carts.UnitPrice = cart.UnitPrice;
-            carts.Quantity = cart.Quantity;
-            carts.UserId = carts.UserId;   //khong dc sua user va product -- Không phải sửa mà khi cart lấy dữ liệu lúc user nhập vào sẽ vẫn giữ nguyên userId và productId
-            carts.ProductId = cart.ProductId;
-            res = _rep.UpdateCart(carts.CartId, carts.Size, carts.Quantity);
+            res = _rep.UpdateCart(CartId, Size, Quantity);
             return res;
 
             
