@@ -3,6 +3,10 @@
 	background-image: linear-gradient(180deg, #3b3b3b 10%, #1d1d1d 100%);
 }
 
+.font-standard {
+    font-family: Nunito,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+}
+
 .bg-gray {
 	background-color: rgb(180, 180, 180);
 }
@@ -38,7 +42,8 @@ hr.sidebar-divider {
 	color: #3a3b45;
 
 	border-radius: 0.35rem;
-	white-space  : nowrap;
+    white-space  : nowrap;
+    cursor: pointer;
 
 	&:hover {
 		background-color: #eaecf4;
@@ -64,7 +69,7 @@ hr.sidebar-divider {
             i {
                 color: white;
             }
-            &::after {
+            &::after{
                 color: white;
             }
         }
