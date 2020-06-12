@@ -7,9 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "clothing-store.Web", "cloth
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "clothing-store.DAL", "clothing-store.DAL\clothing-store.DAL.csproj", "{ADBE26DA-61F1-42B5-8D45-0EBE365C0527}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "clothing-store.BLL", "clothing-store.BLL\clothing-store.BLL.csproj", "{5FFE5E0E-DFFB-47E4-AE7C-D4DFE74B520C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "clothing-store.BLL", "clothing-store.BLL\clothing-store.BLL.csproj", "{5FFE5E0E-DFFB-47E4-AE7C-D4DFE74B520C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "clothing-store.Common", "clothing-store.Common\clothing-store.Common.csproj", "{D5EBD537-F1EE-4598-A0B6-862166E81F39}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "clothing-store.Common", "clothing-store.Common\clothing-store.Common.csproj", "{D5EBD537-F1EE-4598-A0B6-862166E81F39}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

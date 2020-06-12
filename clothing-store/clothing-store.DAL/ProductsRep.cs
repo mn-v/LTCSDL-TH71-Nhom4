@@ -145,6 +145,69 @@ namespace clothing_store.DAL
             return res;
         }
 
+        //Product-Sale
+        public object GetSP_ProductSale()
+        {
+            var emp = Context.Products
+                .Join(Context.Promotion, a => a.PromotionId, b => b.PromotionId, (a, b) => new
+                {
+                    a.ProductId,
+                    a.ProductName,
+                    a.Price,
+                    a.Description,
+                    b.DiscountPercent,
+                    a.ImageSource
+                }).ToList();
+            var res = emp.GroupBy(x => x.ProductId)
+                .Select(x => new
+                {
+                    ProductID = x.First().ProductId,
+                    ProductName = x.First().ProductName,
+                    Price = x.First().Price,
+                    Description = x.First().Description,
+                    DiscountPercent = x.First().DiscountPercent,
+                    ImageSource = x.First().ImageSource
+
+                }).ToList();
+            return res;
+        }
+
+        //Product-Accessories
+        public object GetSP_ProductAccessories()
+        {
+            var emp = Context.Products
+                .Join(Context.Categories, a => a.CategoryId, b => b.CategoryId, (a, b) => new
+                {
+                    a.ProductId,
+                    a.ProductName,
+                    a.Price,
+                    a.Description,
+                    a.ImageSource,
+                    a.PromotionId
+                })
+                .Join(Context.Promotion, a => a.PromotionId, b => b.PromotionId, (a, b) => new
+                {
+                    a.ProductId,
+                    a.ProductName,
+                    a.Price,
+                    a.Description,
+                    a.ImageSource,
+                    b.DiscountPercent
+                }).Where(x => x.ProductName.Contains("Phụ kiện")).ToList();
+            var res = emp.GroupBy(x => x.ProductId)
+                .Select(x => new
+                {
+                    ProductID = x.First().ProductId,
+                    ProductName = x.First().ProductName,
+                    Price = x.First().Price,
+                    Description = x.First().Description,
+                    ImageSource = x.First().ImageSource,
+                    DiscountPercent = x.First().DiscountPercent
+
+                }).ToList();
+            return res;
+        }
+
         #endregion
     }
 }

@@ -107,6 +107,17 @@ namespace clothing_store.BLL
         {
             return _rep.GetAllProductByGender_Linq(gender);
         }
+        //Product-Sale
+        public object GetSP_ProductSale()
+        {
+            return _rep.GetSP_ProductSale();
+        }
+
+        //Product-Accessories
+        public object GetSP_ProductAccessories()
+        {
+            return _rep.GetSP_ProductAccessories();
+        }
 
         public object GetProductByCategoryId_Linq(int categoryId)
         {
