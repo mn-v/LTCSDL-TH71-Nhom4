@@ -24,6 +24,8 @@ namespace clothing_store.DAL
             return m.CartId;
         }
 
+
+
         #endregion
         #region -- methods --
 
@@ -32,12 +34,12 @@ namespace clothing_store.DAL
         {
             var res = new SingleRsp();
             if (Context.Carts.Where(x => x.ProductId == carts.ProductId).ToList().Count != 0 && (Context.Carts.Where(x => x.Size == carts.Size).ToList().Count != 0))
-               {
-                   carts.Size += Context.Carts.Where(x => x.Size == carts.Size).ToList().FirstOrDefault().Size;
-                   res = UpdateCart(carts);
-               }
+            {
+                carts.Quantity += Context.Carts.Where(x => x.Size == carts.Size).ToList().FirstOrDefault().Quantity;
+                res = UpdateCart(carts.CartId, carts.Size, carts.Quantity);
+            }
             else
-                    using (var context = new OnlineStoreContext())
+                using (var context = new OnlineStoreContext())
                 {
                     using (var tran = context.Database.BeginTransaction())
                     {
@@ -57,8 +59,8 @@ namespace clothing_store.DAL
             return res;
         }
 
-        //Update
-        public SingleRsp UpdateCart(Carts carts)
+        //Update -- chỉ sửa size và số lượng
+        public SingleRsp UpdateCart(int CartId, string Size, short Quantity)
         {
             var res = new SingleRsp();
             
@@ -68,6 +70,9 @@ namespace clothing_store.DAL
                 {
                     try
                     {
+                        Carts carts = Context.Carts.Where(x => x.CartId == CartId).ToList().FirstOrDefault();
+                        carts.Size = Size;
+                        carts.Quantity = Quantity;
                         var t = context.Carts.Update(carts);
                         context.SaveChanges();
                         tran.Commit();

@@ -145,7 +145,7 @@ namespace clothing_store.DAL
             return res;
         }
 
-        //Product-Sale
+        //Product-Sale promotionId > 0 (đã test)
         public object GetSP_ProductSale()
         {
             var emp = Context.Products
@@ -154,10 +154,11 @@ namespace clothing_store.DAL
                     a.ProductId,
                     a.ProductName,
                     a.Price,
+                    a.PromotionId,
                     a.Description,
                     b.DiscountPercent,
                     a.ImageSource
-                }).ToList();
+                }).Where(x => x.PromotionId > 0).ToList();
             var res = emp.GroupBy(x => x.ProductId)
                 .Select(x => new
                 {
@@ -172,7 +173,7 @@ namespace clothing_store.DAL
             return res;
         }
 
-        //Product-Accessories
+        //Product-Accessories CategoryName chứa "Phụ kiện" (đã test)
         public object GetSP_ProductAccessories()
         {
             var emp = Context.Products
@@ -183,7 +184,8 @@ namespace clothing_store.DAL
                     a.Price,
                     a.Description,
                     a.ImageSource,
-                    a.PromotionId
+                    a.PromotionId,
+                    b.CategoryName
                 })
                 .Join(Context.Promotion, a => a.PromotionId, b => b.PromotionId, (a, b) => new
                 {
@@ -192,8 +194,9 @@ namespace clothing_store.DAL
                     a.Price,
                     a.Description,
                     a.ImageSource,
-                    b.DiscountPercent
-                }).Where(x => x.ProductName.Contains("Phụ kiện")).ToList();
+                    b.DiscountPercent,
+                    a.CategoryName
+                }).Where(x => x.CategoryName.Contains("Phụ kiện")).ToList();
             var res = emp.GroupBy(x => x.ProductId)
                 .Select(x => new
                 {

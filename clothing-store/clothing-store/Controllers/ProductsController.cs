@@ -102,7 +102,7 @@ namespace clothing_store.Controllers
         }
 
         //Product-Sale
-        [HttpPost("get-product-sale")]
+        [HttpPost("get-product-sale-linq")]
         public IActionResult GetSP_ProductSale([FromBody]ProductsReq req)
         {
             var res = new SingleRsp();
@@ -112,7 +112,7 @@ namespace clothing_store.Controllers
         }
 
         //Product-Accessories
-        [HttpPost("get-product-accessories")]
+        [HttpPost("get-product-accessories-linq")]
         public IActionResult GetSP_ProductAccessories([FromBody]ProductsReq req)
         {
             var res = new SingleRsp();

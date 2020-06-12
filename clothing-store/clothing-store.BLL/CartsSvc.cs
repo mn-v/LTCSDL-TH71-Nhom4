@@ -59,6 +59,7 @@ namespace clothing_store.BLL
         {
             var res = new SingleRsp();
             Carts carts = new Carts();
+            carts.CartId = cart.CartId;
             carts.Size = cart.Size;
             carts.UnitPrice = cart.UnitPrice;
             carts.Quantity = cart.Quantity;
@@ -77,11 +78,12 @@ namespace clothing_store.BLL
             carts.Size = cart.Size;
             carts.UnitPrice = cart.UnitPrice;
             carts.Quantity = cart.Quantity;
-            carts.ProductId = carts.ProductId;
-            carts.UserId = carts.UserId;   //khong dc sua user va product 
-
-            res = _rep.UpdateCart(carts);
+            carts.UserId = carts.UserId;   //khong dc sua user va product -- Không phải sửa mà khi cart lấy dữ liệu lúc user nhập vào sẽ vẫn giữ nguyên userId và productId
+            carts.ProductId = cart.ProductId;
+            res = _rep.UpdateCart(carts.CartId, carts.Size, carts.Quantity);
             return res;
+
+            
         }
 
         public SingleRsp DeleteCart(int cartId)
