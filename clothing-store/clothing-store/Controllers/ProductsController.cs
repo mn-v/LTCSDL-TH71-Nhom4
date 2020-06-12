@@ -101,7 +101,25 @@ namespace clothing_store.Controllers
             return Ok(res);
         }
 
-        
+        //Product-Sale
+        [HttpPost("get-product-sale")]
+        public IActionResult GetSP_ProductSale([FromBody]ProductsReq req)
+        {
+            var res = new SingleRsp();
+            var hist = _svc.GetSP_ProductSale();
+            res.Data = hist;
+            return Ok(res);
+        }
+
+        //Product-Accessories
+        [HttpPost("get-product-accessories")]
+        public IActionResult GetSP_ProductAccessories([FromBody]ProductsReq req)
+        {
+            var res = new SingleRsp();
+            var hist = _svc.GetSP_ProductAccessories();
+            res.Data = hist;
+            return Ok(res);
+        }
 
         private readonly ProductsSvc _svc;
     }

@@ -73,20 +73,21 @@ namespace clothing_store.BLL
         {
             var res = new SingleRsp();
             Carts carts = new Carts();
+            carts.CartId = cart.CartId;
             carts.Size = cart.Size;
             carts.UnitPrice = cart.UnitPrice;
             carts.Quantity = cart.Quantity;
-            carts.ProductId = cart.ProductId;
-            carts.UserId = cart.UserId;
+            carts.ProductId = carts.ProductId;
+            carts.UserId = carts.UserId;   //khong dc sua user va product 
 
             res = _rep.UpdateCart(carts);
             return res;
         }
 
-        public SingleRsp DeleteCart(int ProductId)
+        public SingleRsp DeleteCart(int cartId)
         {
             var res = new SingleRsp();
-            res = _rep.DeleteCart(ProductId);
+            res = _rep.DeleteCart(cartId);
             return res;
         }
 

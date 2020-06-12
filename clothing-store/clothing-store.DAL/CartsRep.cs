@@ -62,7 +62,7 @@ namespace clothing_store.DAL
         {
             var res = new SingleRsp();
             
-                using (var context = new OnlineStoreContext())
+            using (var context = new OnlineStoreContext())
             {
                 using (var tran = context.Database.BeginTransaction())
                 {
@@ -83,11 +83,11 @@ namespace clothing_store.DAL
         }
 
         //Xóa
-        public SingleRsp DeleteCart(int ProductId)
+        public SingleRsp DeleteCart(int cartId)
         {
             var res = new SingleRsp();
             var list = Context.Carts
-               .Where(x => x.ProductId == ProductId).ToList();
+               .Where(x => x.CartId == cartId).ToList();
             Carts carts = list.FirstOrDefault();
             using (var context = new OnlineStoreContext())
             {
