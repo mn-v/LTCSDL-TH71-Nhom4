@@ -37,7 +37,7 @@ namespace clothing_store.Controllers
             return Ok(res);
         }
 
-        //thêm
+        //thêmSS
         [HttpPost("create-cart")]
         public IActionResult CreateCart([FromBody] CartsReq req)
         {

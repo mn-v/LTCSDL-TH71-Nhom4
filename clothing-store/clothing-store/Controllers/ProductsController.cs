@@ -130,8 +130,6 @@ namespace clothing_store.Controllers
             return Ok(res);
         }
 
-        
-
         private readonly ProductsSvc _svc;
     }
 }
