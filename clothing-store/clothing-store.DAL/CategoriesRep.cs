@@ -7,6 +7,7 @@ namespace clothing_store.DAL
 {
     using clothing_store.Common.Rsp;
     using clothing_store.DAL.Models;
+    using System.Collections;
     using System.Linq;
 
     // day la lop dai dien cho doi tuong Categories
@@ -88,7 +89,15 @@ namespace clothing_store.DAL
             return res;
         }
 
-
         #endregion
+
+        public object GetCategoryNameByGender_Linq(bool gender)
+        {
+            var res = Context.Categories
+                .Where(x => x.Gender == gender)
+                .Select(p => new { p.CategoryName }).ToList();
+            return res;
+        }
+       
     }
 }

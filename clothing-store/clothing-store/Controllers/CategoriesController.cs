@@ -70,6 +70,15 @@ namespace clothing_store.Controllers
             return Ok(res);
         }
 
+        [HttpPost("get-categoryname-by-gender-linq")]
+        public IActionResult GetCategoryNameByGender_Linq([FromBody] CategoriesReq req)
+        { 
+            var res = new SingleRsp();
+            var pro = _svc.GetCategoryNameByGender_Linq(req.Gender);
+            res.Data = pro;
+            return Ok(res);
+        }
+
         private readonly CategoriesSvc _svc;
     }
 }

@@ -46,11 +46,11 @@ namespace clothing_store.DAL
                 }).Where(x => x.Gender == gender).ToList();
             return res;
         }
-
+       
         //lay san pham theo loai san pham 
-        public object GetProductByCategoryId_Linq(int categoryId)
+        public object GetProductByCategoryName_Linq(String keyword, int page, int size, string categoryName, bool gender)
         {
-            var res = Context.Products
+            var pro = Context.Products
                 .Join(Context.Categories, a => a.CategoryId, b => b.CategoryId, (a, b) => new
                 {
                     a.ProductId,
@@ -61,8 +61,23 @@ namespace clothing_store.DAL
                     a.DateCreate,
                     a.Description,
                     a.ImageSource,
-                    a.PromotionId
-                }).Where(x => x.CategoryId == categoryId).ToList();
+                    a.PromotionId,
+                    b.CategoryName,
+                    b.Gender
+                }).Where(x => x.CategoryName == categoryName && x.Gender == gender).ToList();
+            var offset = (page - 1) * size;
+            var total = pro.Count();
+            int totalPages = (total % size) == 0 ? (int)(total / size) : (int)((total / size) + 1);
+            var data = pro.OrderBy(x => x.ProductName).Skip(offset).Take(size).ToList();
+
+            var res = new
+            {
+                Data = data,
+                TotalRecord = total,
+                TotalPages = totalPages,
+                Page = page,
+                Size = size
+            };
             return res;
         }
 
@@ -146,7 +161,7 @@ namespace clothing_store.DAL
         }
 
         //Product-Sale promotionId > 0 (đã test)
-        public object GetSP_ProductSale()
+        public object GetSP_ProductSale(String keyword, int page, int size)
         {
             var emp = Context.Products
                 .Join(Context.Promotion, a => a.PromotionId, b => b.PromotionId, (a, b) => new
@@ -157,9 +172,14 @@ namespace clothing_store.DAL
                     a.PromotionId,
                     a.Description,
                     b.DiscountPercent,
-                    a.ImageSource
+                    a.ImageSource,
+                    SalePrice = a.Price * (1 - ((decimal)b.DiscountPercent))
                 }).Where(x => x.PromotionId > 0).ToList();
-            var res = emp.GroupBy(x => x.ProductId)
+
+            var offset = (page - 1) * size;
+            var total = emp.Count();
+            int totalPages = (total % size) == 0 ? (int)(total / size) : (int)((total / size) + 1);
+            var pro = emp.GroupBy(x => x.ProductId)
                 .Select(x => new
                 {
                     ProductID = x.First().ProductId,
@@ -167,14 +187,24 @@ namespace clothing_store.DAL
                     Price = x.First().Price,
                     Description = x.First().Description,
                     DiscountPercent = x.First().DiscountPercent,
-                    ImageSource = x.First().ImageSource
-
+                    ImageSource = x.First().ImageSource,
+                    SalePrice = x.First().SalePrice
                 }).ToList();
+            var data = pro.OrderBy(x => x.ProductName).Skip(offset).Take(size).ToList();
+
+            var res = new
+            {
+                Data = data,
+                TotalRecord = total,
+                TotalPages = totalPages,
+                Page = page,
+                Size = size
+            };
             return res;
         }
 
         //Product-Accessories CategoryName chứa "Phụ kiện" (đã test)
-        public object GetSP_ProductAccessories()
+        public object GetSP_ProductAccessories(String keyword, int page, int size)
         {
             var emp = Context.Products
                 .Join(Context.Categories, a => a.CategoryId, b => b.CategoryId, (a, b) => new
@@ -197,7 +227,10 @@ namespace clothing_store.DAL
                     b.DiscountPercent,
                     a.CategoryName
                 }).Where(x => x.CategoryName.Contains("Phụ kiện")).ToList();
-            var res = emp.GroupBy(x => x.ProductId)
+            var offset = (page - 1) * size;
+            var total = emp.Count();
+            int totalPages = (total % size) == 0 ? (int)(total / size) : (int)((total / size) + 1);
+            var pro = emp.GroupBy(x => x.ProductId)
                 .Select(x => new
                 {
                     ProductID = x.First().ProductId,
@@ -208,8 +241,49 @@ namespace clothing_store.DAL
                     DiscountPercent = x.First().DiscountPercent
 
                 }).ToList();
+            var data = pro.OrderBy(x => x.ProductName).Skip(offset).Take(size).ToList();
+
+            var res = new
+            {
+                Data = data,
+                TotalRecord = total,
+                TotalPages = totalPages,
+                Page = page,
+                Size = size
+            };
             return res;
         }
+
+        public object SearchProductByGender(String keyword, int page, int size, bool gender)
+        {
+            var pro = Context.Products
+                .Join(Context.Categories, a => a.CategoryId, b => b.CategoryId, (a, b) => new
+                {
+                    a.ProductId,
+                    a.ProductName,
+                    a.Price,
+                    a.Description,
+                    a.ImageSource,
+                    a.PromotionId,
+                    b.Gender
+                }).Where(x => x.ProductName.Contains(keyword) && x.Gender == gender);
+
+            var offset = (page - 1) * size;
+            var total = pro.Count();
+            int totalPages = (total % size) == 0 ? (int)(total / size) : (int)((total / size) + 1);
+            var data = pro.OrderBy(x => x.ProductName).Skip(offset).Take(size).ToList();
+
+            var res = new
+            {
+                Data = data,
+                TotalRecord = total,
+                TotalPages = totalPages,
+                Page = page,
+                Size = size
+            };
+            return res;
+        }
+
 
         #endregion
     }

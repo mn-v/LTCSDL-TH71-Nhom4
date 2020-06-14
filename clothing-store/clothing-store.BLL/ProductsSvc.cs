@@ -108,20 +108,20 @@ namespace clothing_store.BLL
             return _rep.GetAllProductByGender_Linq(gender);
         }
         //Product-Sale
-        public object GetSP_ProductSale()
+        public object GetSP_ProductSale(String keyword, int page, int size)
         {
-            return _rep.GetSP_ProductSale();
+            return _rep.GetSP_ProductSale(keyword, page, size);
         }
 
         //Product-Accessories
-        public object GetSP_ProductAccessories()
+        public object GetSP_ProductAccessories(String keyword, int page, int size)
         {
-            return _rep.GetSP_ProductAccessories();
+            return _rep.GetSP_ProductAccessories(keyword, page, size);
         }
 
-        public object GetProductByCategoryId_Linq(int categoryId)
+        public object GetProductByCategoryName_Linq(String keyword, int page, int size, string categoryName, bool gender)
         {
-            return _rep.GetProductByCategoryId_Linq(categoryId);
+            return _rep.GetProductByCategoryName_Linq(keyword, page, size, categoryName, gender);
         }
 
         public object GetProductByPromotion_Linq(bool gender)
@@ -132,6 +132,11 @@ namespace clothing_store.BLL
         public int DeleteProduct(int id)
         {
             return _rep.DeleteProduct(id);
+        }
+
+        public object SearchProductByGender(String keyword, int page, int size, bool gender)
+        {
+            return _rep.SearchProductByGender(keyword, page, size, gender);
         }
     }
 }

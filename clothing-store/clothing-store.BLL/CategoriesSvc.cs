@@ -10,6 +10,7 @@ namespace clothing_store.BLL
     using clothing_store.Common.Req;
     using clothing_store.DAL.Models;
     using DAL;
+    using System.Collections;
     using System.Linq;
     using System.Reflection.Metadata.Ecma335;
 
@@ -106,6 +107,11 @@ namespace clothing_store.BLL
                 Size = size
             };
             return res;
+        }
+
+        public object GetCategoryNameByGender_Linq(bool gender)
+        {
+            return _rep.GetCategoryNameByGender_Linq(gender);
         }
     }
 }
