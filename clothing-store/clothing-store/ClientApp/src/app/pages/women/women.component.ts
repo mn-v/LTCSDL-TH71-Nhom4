@@ -6,45 +6,81 @@ import { HttpClient } from '@angular/common/http';
   templateUrl: './women.component.html',
 })
 export class WomenComponent implements OnInit {
+  public res:any;
+  public lstCategoryName : [];
+  public lstProduct: [];
+
   products: any = {
     data: [],
     totalRecord: 0,
     page: 0,
     size: 5,
-    totalPage: 0
+    totalPages: 0
   }
 
   constructor(
     private http: HttpClient,
-    @Inject('BASE_URL') baseUrl: string) { }
+    @Inject('BASE_URL') baseUrl: string) { 
+      
+    }
 
   ngOnInit() {
-    this.searchProduct(1);
+    this.searchProductByGender(1);
+    this.getCategoryName(true);
   }
 
-  searchProduct(cPage) {
+  getProduct(cPage, name){
+    let x = {
+      page: cPage,
+      size: 3,
+      keyword: "",
+      categoryName: name,
+      gender: true
+    } 
+    this.http.post('https://localhost:44320/' + 'api/Products/get-product-by-categoryName-linq', x).subscribe(result => {
+      this.res = result;
+      this.lstProduct = this.res.data;
+      console.log(this.res);
+    }, error => console.error(error));
+  }
+
+  getCategoryName(cGender){
+    var x ={
+      gender: cGender
+    }     
+    this.http.post('https://localhost:44320/' + 'api/Categories/get-categoryname-by-gender-linq', x)
+    .subscribe(result => {
+      this.res = result;
+      this.lstCategoryName = this.res.data;
+    }, error => console.error(error));
+  }
+  
+  searchProductByGender(cPage) {
     let x = {
       page: cPage,
       size: 5,
-      keyword: ""
+      keyword: "",
+      gender: true
     }
-    this.http.post("https://localhost:44320/api/Products/search-product", x).subscribe(result => {
+    this.http.post("https://localhost:44320/api/Products/search-product-by-gender", x).subscribe(result => {
       this.products = result;
       this.products = this.products.data;
     }, error => console.error(error));
   }
 
   searchNext() {
-    if (this.products.page < this.products.totalPage) {
+    if (this.products.page < this.products.totalPages) {
       let nextPage = this.products.page + 1;
       let x = {
         page: nextPage,
-        size: 5,
-        keyword: ""
+        size: 3,
+        keyword: "",
+        gender: true
       }
-      this.http.post("https://localhost:44320/api/Products/search-product", x).subscribe(result => {
+      this.http.post("https://localhost:44320/api/Products/search-product-by-gender", x).subscribe(result => {
         this.products = result;
         this.products = this.products.data;
+        console.log(this.products);
       }, error => console.error(error));
     }
     else {
@@ -57,12 +93,14 @@ export class WomenComponent implements OnInit {
       let previous = this.products.page - 1;
       let x = {
         page: previous,
-        size: 5,
-        keyword: ""
+        size: 3,
+        keyword: "",
+        gender: true
       }
-      this.http.post("https://localhost:44320/api/Products/search-product", x).subscribe(result => {
+      this.http.post("https://localhost:44320/api/Products/search-product-by-gender", x).subscribe(result => {
         this.products = result;
         this.products = this.products.data;
+        console.log(this.products);
       }, error => console.error(error));
     }
     else {
