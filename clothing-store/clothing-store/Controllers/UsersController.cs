@@ -40,7 +40,7 @@ namespace clothing_store.Controllers
 
         // đưa ra swagger
         [HttpPost("search-user")]
-        public IActionResult SearchProduct([FromBody] SearchReq req)
+        public IActionResult SearchUser([FromBody] SearchReq req)
         {
             var res = new SingleRsp();
             var pro = _svc.SearchUser(req.Keyword, req.Page, req.Size);
@@ -48,11 +48,19 @@ namespace clothing_store.Controllers
             return Ok(res);
         }
 
+        [HttpPost("create-user")]
+        public IActionResult CreateProduct([FromBody] UsersReq req)
+        {
+            var res = _svc.CreateUser(req);
+
+            return Ok(res);
+        }
+
         [HttpPost("check-tai-khoan")]
         public IActionResult CheckAcc([FromBody]UsersReq req)
         {
             var res = new SingleRsp();
-            res.Data = _svc.CheckAcc(req.User, req.Pass);
+            res.Data = _svc.CheckAcc(req.UserName, req.PassWord);
             return Ok(res);
         }
 

@@ -19,8 +19,8 @@ export class LoginComponent {
 
   dangnhap() {
     var x = {
-      user: this.user,
-      pass: this.pass
+      username: this.user,
+      password: this.pass
     };
 
     this.http.post('https://localhost:44320/api/Users/check-tai-khoan', x)
@@ -28,10 +28,17 @@ export class LoginComponent {
         var res: any = result;
         console.log(res);
         this.result = res.data;
-        if (res.data.find(ds => ds.roleID == 0))
+        if (res.data.find(ds => ds.roleID == 0)) {
+          alert("Dang nhap admin thanh cong!")
           window.open('https://localhost:44320/admin');
-        else if (res.data.find(ds => ds.roleID == 1))
+        }
+
+        else if (res.data.find(ds => ds.roleID == 1)) {
+          alert("Dang nhap thanh cong!")
           window.open('https://localhost:44320/');
+        }
+        else alert("Tài khoản hoặc mật khẩu không đúng!")
+
       }, error => console.error(error));
   }
 
