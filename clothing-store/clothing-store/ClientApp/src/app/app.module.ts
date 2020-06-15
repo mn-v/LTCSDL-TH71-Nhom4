@@ -20,6 +20,10 @@ import { AccessoriesComponent } from './pages/accessories/accessories.component'
 import { ProductComponent } from './pages/product/product.component';
 import { AdminComponent } from './pages/admin/admin.component';
 import { AdminUserComponent } from './pages/admin-user/admin-user.component';
+import { AdminProductsComponent } from './pages/admin-products/admin-products.component';
+import { AdminCategoryComponent } from './pages/admin-category/admin-category.component';
+import { AdminPromotionComponent } from './pages/admin-promotion/admin-promotion.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,7 +40,10 @@ import { AdminUserComponent } from './pages/admin-user/admin-user.component';
     AccessoriesComponent,
     ProductComponent,
     AdminComponent,
-    AdminUserComponent
+    AdminUserComponent,
+    AdminProductsComponent,
+    AdminCategoryComponent,
+    AdminPromotionComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
