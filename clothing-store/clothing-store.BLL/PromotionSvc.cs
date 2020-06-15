@@ -9,7 +9,7 @@ using System.Text;
 
 namespace clothing_store.BLL
 {
-    class PromotionSvc
+    public class PromotionSvc
     {
     }
 }

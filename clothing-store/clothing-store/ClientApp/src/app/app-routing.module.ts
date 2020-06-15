@@ -12,6 +12,7 @@ import { WomenComponent } from './pages/women/women.component';
 import { AccessoriesComponent } from './pages/accessories/accessories.component';
 import { ProductComponent } from './pages/product/product.component';
 import { AdminComponent } from './pages/admin/admin.component';
+import { AdminUserComponent } from './pages/admin-user/admin-user.component';
 
 
 const routes: Routes = [
@@ -27,6 +28,7 @@ const routes: Routes = [
   { path: 'cart', component: CartComponent },
   { path: 'products', component: ProductComponent },
   { path: 'admin', component: AdminComponent },
+  { path: 'admin-user', component: AdminUserComponent }
 ];
 
 @NgModule({
