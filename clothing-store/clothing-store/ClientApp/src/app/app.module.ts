@@ -7,7 +7,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { HomePageComponent } from './pages/home-page/home-page.component';
-import { ShopComponent } from './pages/shop/shop.component';
 import { SaleComponent } from './pages/sale/sale.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { FooterComponent } from './components/footer/footer.component';
@@ -26,7 +25,6 @@ import { AdminUserComponent } from './pages/admin-user/admin-user.component';
     AppComponent,
     NavbarComponent,
     HomePageComponent,
-    ShopComponent,
     SaleComponent,
     FooterComponent,
     ContactComponent,

@@ -71,6 +71,4 @@ namespace clothing_store.BLL
             return _rep.DeletePromotion(id);
         }
     }
-    
 }
-

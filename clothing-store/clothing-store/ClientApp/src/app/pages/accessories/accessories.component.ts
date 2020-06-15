@@ -71,4 +71,3 @@ export class AccessoriesComponent implements OnInit {
     }
   }
 }
-

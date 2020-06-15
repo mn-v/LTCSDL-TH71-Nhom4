@@ -63,7 +63,6 @@ export class MenComponent implements OnInit {
       keyword: "",
       gender: false
     }
-
     this.http.post("https://localhost:44320/api/Products/search-product-by-gender", x).subscribe(result => {
       this.products = result;
       this.products = this.products.data;

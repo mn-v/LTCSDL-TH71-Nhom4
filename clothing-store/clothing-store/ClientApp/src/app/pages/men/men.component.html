@@ -34,155 +34,28 @@
 
             <!-- RIGHT SIDE  -->
             <div class="col-md-9 py-3">
-                <div class="row">
-                    <div class="text-secondary font-12 px-3 py-2 mx-3 mb-3"
-                        style="background-color: var(--whitesmoke); width: 100%;">Trang chủ/ Sản phẩm nam</div>
-                    <div class="col-md-4 mb-4" *ngIf="products.totalRecord">
-                        <div class="product--block" *ngFor="let p of products.data">
+                <div class="text-secondary font-12 px-3 py-2 mr-3 ml-4 mb-3"
+                    style="background-color: var(--whitesmoke); width: 98%;">Trang chủ/ Sản phẩm nam</div>
+                <div class="row ml-3">
+                    <!-- Block product  -->
+                    <div class="mb-4 d-flex flex-wrap" *ngIf="products.totalRecord">
+                        <div class="product--block col-md-4 mb-3" *ngFor="let p of products.data">
                             <div class="product--block--img">
                                 <img src="https://{{p.imageSource}}">
                                 <div class="product--block--overlay">
-                                    <button type="button"
-                                        class="btn btn-dark caption__button text-uppercase font-13">Thêm vào
-                                        giỏ</button>
+                                    <button type="button" class="btn btn-dark detail__button text-uppercase font-12"
+                                        routerLink="/product-detail">Xem chi tiết</button>
                                 </div>
                             </div>
                             <div>
-                                <p class="product--name font-15 m-0 pt-2 pb-1" routerLink="/products">{{p.productName}}
+                                <p class="product--name font-15 m-0 pt-2 pb-1" routerLink="/product-detail">
+                                    {{p.productName}}
                                 </p>
-                                <p class="product--price font-14 m-0">{{p.price}}<span>đ</span></p>
+                                <p class="product--price font-14 m-0">
+                                    {{p.price | currency: 'VND':'symbol-narrow':'.3'}}</p>
                             </div>
                         </div>
                     </div>
-
-                    <!-- <div class="col-lg-4 mb-4">
-                        <div class="product--block">
-                            <div class="product--block--img">
-                                <img src="./assets/images/men/tee/9.png">
-                                <div class="product--block--overlay">
-                                    <button type="button"
-                                        class="btn btn-dark caption__button text-uppercase font-13">Thêm vào
-                                        giỏ</button>
-                                </div>
-                            </div>
-                            <div>
-                                <p class="product--name font-15 m-0 pt-2 pb-1">Áo thun nam trắng CH02</p>
-                                <p class="product--price font-14 m-0">500.000<span>đ</span></p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 mb-4">
-                        <div class="product--block">
-                            <div class="product--block--img">
-                                <img src="./assets/images/men/hoodie/1.jpg">
-                                <div class="product--block--overlay">
-                                    <button type="button"
-                                        class="btn btn-dark caption__button text-uppercase font-13">Thêm vào
-                                        giỏ</button>
-                                </div>
-                            </div>
-                            <div>
-                                <p class="product--name font-15 m-0 pt-2 pb-1">Hoodie Champion Vàng</p>
-                                <p class="product--price font-14 m-0">500.000<span>đ</span></p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 mb-4">
-                        <div class="product--block">
-                            <div class="product--block--img">
-                                <img src="./assets/images/men/tee/2.png">
-                                <div class="product--block--overlay">
-                                    <button type="button"
-                                        class="btn btn-dark caption__button text-uppercase font-13">Thêm vào
-                                        giỏ</button>
-                                </div>
-                            </div>
-                            <div>
-                                <p class="product--name font-15 m-0 pt-2 pb-1">Áo thun nam đỏ CH01</p>
-                                <p class="product--price font-14 m-0">500.000<span>đ</span></p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 mb-4">
-                        <div class="product--block">
-                            <div class="product--block--img">
-                                <img src="./assets/images/men/tee/9.png">
-                                <div class="product--block--overlay">
-                                    <button type="button"
-                                        class="btn btn-dark caption__button text-uppercase font-13">Thêm vào
-                                        giỏ</button>
-                                </div>
-                            </div>
-                            <div>
-                                <p class="product--name font-15 m-0 pt-2 pb-1">Áo thun nam trắng CH02</p>
-                                <p class="product--price font-14 m-0">500.000<span>đ</span></p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 mb-4">
-                        <div class="product--block">
-                            <div class="product--block--img">
-                                <img src="./assets/images/men/hoodie/1.jpg">
-                                <div class="product--block--overlay">
-                                    <button type="button"
-                                        class="btn btn-dark caption__button text-uppercase font-13">Thêm vào
-                                        giỏ</button>
-                                </div>
-                            </div>
-                            <div>
-                                <p class="product--name font-15 m-0 pt-2 pb-1">Hoodie Champion Vàng</p>
-                                <p class="product--price font-14 m-0">500.000<span>đ</span></p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 mb-4">
-                        <div class="product--block">
-                            <div class="product--block--img">
-                                <img src="./assets/images/men/tee/2.png">
-                                <div class="product--block--overlay">
-                                    <button type="button"
-                                        class="btn btn-dark caption__button text-uppercase font-13">Thêm vào
-                                        giỏ</button>
-                                </div>
-                            </div>
-                            <div>
-                                <p class="product--name font-15 m-0 pt-2 pb-1">Áo thun nam đỏ CH01</p>
-                                <p class="product--price font-14 m-0">500.000<span>đ</span></p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 mb-4">
-                        <div class="product--block">
-                            <div class="product--block--img">
-                                <img src="./assets/images/men/tee/9.png">
-                                <div class="product--block--overlay">
-                                    <button type="button"
-                                        class="btn btn-dark caption__button text-uppercase font-13">Thêm vào
-                                        giỏ</button>
-                                </div>
-                            </div>
-                            <div>
-                                <p class="product--name font-15 m-0 pt-2 pb-1">Áo thun nam trắng CH02</p>
-                                <p class="product--price font-14 m-0">500.000<span>đ</span></p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 mb-4">
-                        <div class="product--block">
-                            <div class="product--block--img">
-                                <img src="./assets/images/men/hoodie/1.jpg">
-                                <div class="product--block--overlay">
-                                    <button type="button"
-                                        class="btn btn-dark caption__button text-uppercase font-13">Thêm vào
-                                        giỏ</button>
-                                </div>
-                            </div>
-                            <div>
-                                <p class="product--name font-15 m-0 pt-2 pb-1">Hoodie Champion Vàng</p>
-                                <p class="product--price font-14 m-0">500.000<span>đ</span></p>
-                            </div>
-                        </div>
-                    </div> -->
                 </div>
             </div>
         </div>
