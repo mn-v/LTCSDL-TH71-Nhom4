@@ -5,8 +5,8 @@ import { HttpClient } from '@angular/common/http';
   selector: 'app-men',
   templateUrl: './men.component.html',
 })
-export class MenComponent implements OnInit {
 
+export class MenComponent implements OnInit {
   public res:any;
   public lstCategoryName : [];
   public lstProduct: [];

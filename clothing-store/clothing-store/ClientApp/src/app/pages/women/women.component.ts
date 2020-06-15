@@ -58,7 +58,7 @@ export class WomenComponent implements OnInit {
   searchProductByGender(cPage) {
     let x = {
       page: cPage,
-      size: 5,
+      size: 3,
       keyword: "",
       gender: true
     }
