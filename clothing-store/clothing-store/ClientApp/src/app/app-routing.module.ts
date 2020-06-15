@@ -13,6 +13,8 @@ import { AccessoriesComponent } from './pages/accessories/accessories.component'
 import { ProductComponent } from './pages/product/product.component';
 import { AdminComponent } from './pages/admin/admin.component';
 import { AdminProductsComponent } from './pages/admin-products/admin-products.component';
+import { AdminCategoryComponent } from './pages/admin-category/admin-category.component';
+import { AdminPromotionComponent } from './pages/admin-promotion/admin-promotion.component';
 
 
 const routes: Routes = [
@@ -29,6 +31,8 @@ const routes: Routes = [
   { path: 'products', component: ProductComponent },
   { path: 'admin', component: AdminComponent },
   { path: 'admin-products', component: AdminProductsComponent },
+  { path: 'admin-category', component: AdminCategoryComponent },
+  { path: 'admin-promotion', component: AdminPromotionComponent },
 ];
 
 @NgModule({
