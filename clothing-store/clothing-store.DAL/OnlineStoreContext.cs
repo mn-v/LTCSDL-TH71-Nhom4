@@ -41,13 +41,13 @@ namespace clothing_store.DAL.Models
         {
             modelBuilder.Entity<Carts>(entity =>
             {
-                entity.HasKey(e => e.CartId)
-                    .HasName("PK_Cart");
+                entity.HasKey(e => new { e.CartId, e.ProductId, e.UserId });
 
                 entity.Property(e => e.CartId)
                     .HasColumnName("CartID");
 
-                entity.Property(e => e.ProductId).HasColumnName("ProductID");
+                entity.Property(e => e.ProductId)
+                .HasColumnName("ProductID");
 
                 entity.Property(e => e.Size)
                     .IsRequired()
@@ -56,7 +56,8 @@ namespace clothing_store.DAL.Models
 
                 entity.Property(e => e.UnitPrice).HasColumnType("money");
 
-                entity.Property(e => e.UserId).HasColumnName("UserID");
+                entity.Property(e => e.UserId)
+                .HasColumnName("UserID");
 
                 entity.HasOne(d => d.Product)
                     .WithMany(p => p.Carts)
@@ -68,7 +69,7 @@ namespace clothing_store.DAL.Models
                     .WithMany(p => p.Carts)
                     .HasForeignKey(d => d.UserId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Carts_Users1");
+                    .HasConstraintName("FK_Carts_Users");
             });
 
             modelBuilder.Entity<Categories>(entity =>

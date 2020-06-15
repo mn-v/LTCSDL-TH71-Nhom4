@@ -1,36 +1,32 @@
-﻿using System;
+﻿using clothing_store.Common.DAL;
+using clothing_store.Common.Rsp;
+using clothing_store.DAL.Models;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
-using clothing_store.Common.DAL;
 
 namespace clothing_store.DAL
 {
-    using clothing_store.Common.Rsp;
-    using clothing_store.DAL.Models;
-    using System.Collections;
-    using System.Linq;
-
-    // day la lop dai dien cho doi tuong Categories
-    public class CategoriesRep : GenericRep<OnlineStoreContext, Categories>
+    public class PromotionRep : GenericRep<OnlineStoreContext, Promotion>
     {
-        #region -- Overrides --
-        public override Categories Read(int id)
+        #region -- override --
+        public override Promotion Read(int id)
         {
-            var res = All.FirstOrDefault(p => p.CategoryId == id);
-            return res; // thay vi ghi base.All thi ghi All no cung hieu
+            var res = All.FirstOrDefault(p => p.PromotionId == id);
+            return res;
         }
 
         public int Remove(int id)
         {
-            var m = base.All.First(i => i.CategoryId == id);
+            var m = base.All.FirstOrDefault(p => p.PromotionId == id);
             m = base.Delete(m);
-            return m.CategoryId;
+            return m.PromotionId;
         }
         #endregion
-
         #region -- methods --
 
-        public SingleRsp CreateCategory(Categories categories)
+        public SingleRsp CreatePromotion(Promotion promotion)
         {
             var res = new SingleRsp();
             using (var context = new OnlineStoreContext())
@@ -39,7 +35,7 @@ namespace clothing_store.DAL
                 {
                     try
                     {
-                        var t = context.Categories.Add(categories);
+                        var t = context.Promotion.Add(promotion);
                         context.SaveChanges();
                         tran.Commit();
                     }
@@ -53,7 +49,7 @@ namespace clothing_store.DAL
             return res;
         }
 
-        public SingleRsp UpdateCategory(Categories categories)
+        public SingleRsp UpdatePromotion(Promotion promotion)
         {
             var res = new SingleRsp();
             using (var context = new OnlineStoreContext())
@@ -62,7 +58,7 @@ namespace clothing_store.DAL
                 {
                     try
                     {
-                        var t = context.Categories.Update(categories);
+                        var t = context.Promotion.Update(promotion);
                         context.SaveChanges();
                         tran.Commit();
                     }
@@ -76,14 +72,14 @@ namespace clothing_store.DAL
             return res;
         }
 
-        public int DeleteCategory(int id)
+        public int DeletePromotion(int id)
         {
             var res = 0;
             var context = new OnlineStoreContext();
-            var category = base.All.FirstOrDefault(c => c.CategoryId == id);
-            if (category != null)
+            var promotion = base.All.FirstOrDefault(p => p.PromotionId == id);
+            if (promotion != null)
             {
-                context.Categories.Remove(category);
+                context.Promotion.Remove(promotion);
                 res = context.SaveChanges();
             }
             return res;
@@ -91,13 +87,5 @@ namespace clothing_store.DAL
 
         #endregion
 
-        public object GetCategoryNameByGender_Linq(bool gender)
-        {
-            var res = Context.Categories
-                .Where(x => x.Gender == gender)
-                .Select(p => new { p.CategoryName }).ToList();
-            return res;
-        }
-       
     }
 }

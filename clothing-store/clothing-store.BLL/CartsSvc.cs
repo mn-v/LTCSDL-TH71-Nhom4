@@ -59,6 +59,7 @@ namespace clothing_store.BLL
         {
             var res = new SingleRsp();
             Carts carts = new Carts();
+            carts.CartId = cart.CartId;
             carts.Size = cart.Size;
             carts.UnitPrice = cart.UnitPrice;
             carts.Quantity = cart.Quantity;
@@ -69,24 +70,19 @@ namespace clothing_store.BLL
             return res;
         }
 
-        public SingleRsp UpdateCart(CartsReq cart)
+        public SingleRsp UpdateCart(int CartId, string Size, short Quantity)
         {
             var res = new SingleRsp();
-            Carts carts = new Carts();
-            carts.Size = cart.Size;
-            carts.UnitPrice = cart.UnitPrice;
-            carts.Quantity = cart.Quantity;
-            carts.ProductId = cart.ProductId;
-            carts.UserId = cart.UserId;
-
-            res = _rep.UpdateCart(carts);
+            res = _rep.UpdateCart(CartId, Size, Quantity);
             return res;
+
+            
         }
 
-        public SingleRsp DeleteCart(int ProductId)
+        public SingleRsp DeleteCart(int cartId)
         {
             var res = new SingleRsp();
-            res = _rep.DeleteCart(ProductId);
+            res = _rep.DeleteCart(cartId);
             return res;
         }
 

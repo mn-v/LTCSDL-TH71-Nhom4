@@ -10,6 +10,7 @@ namespace clothing_store.BLL
     using clothing_store.Common.Req;
     using clothing_store.DAL.Models;
     using DAL;
+    using System.Collections;
     using System.Linq;
     using System.Reflection.Metadata.Ecma335;
 
@@ -26,15 +27,15 @@ namespace clothing_store.BLL
             return res;
         }
 
-        //public override int Remove(int id)
-        //{
-        //    var res = new SingleRsp();
+        public override int Remove(int id)
+        {
+            var res = new SingleRsp();
 
-        //    var m = _rep.Remove(id);
-        //    res.Data = m;
+            var m = _rep.Remove(id);
+            res.Data = m;
 
-        //    return 0;
-        //}
+            return 0;
+        }
 
         public override SingleRsp Update(Categories m)
         {
@@ -83,6 +84,11 @@ namespace clothing_store.BLL
             return res;
         }
 
+        public int DeleteCategory(int id)
+        {
+            return _rep.DeleteCategory(id);
+        }
+
         public object SearchCategory(String keyword, int page, int size)
         {
             var pro = All.Where(x => x.CategoryName.Contains(keyword));
@@ -101,6 +107,11 @@ namespace clothing_store.BLL
                 Size = size
             };
             return res;
+        }
+
+        public object GetCategoryNameByGender_Linq(bool gender)
+        {
+            return _rep.GetCategoryNameByGender_Linq(gender);
         }
     }
 }

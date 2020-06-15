@@ -12,7 +12,7 @@ export class SaleComponent implements OnInit {
     totalRecord: 0,
     page: 0,
     size: 5,
-    totalPage: 0
+    totalPages: 0
   }
 
   constructor(
@@ -26,24 +26,24 @@ export class SaleComponent implements OnInit {
   searchProduct(cPage) {
     let x = {
       page: cPage,
-      size: 5,
+      size: 3,
       keyword: ""
     }
-    this.http.post("https://localhost:44320/api/Products/search-product", x).subscribe(result => {
+    this.http.post("https://localhost:44320/api/Products/get-product-sale-linq", x).subscribe(result => {
       this.products = result;
       this.products = this.products.data;
     }, error => console.error(error));
   }
 
   searchNext() {
-    if (this.products.page < this.products.totalPage) {
+    if (this.products.page < this.products.totalPages) {
       let nextPage = this.products.page + 1;
       let x = {
         page: nextPage,
-        size: 5,
+        size: 3,
         keyword: ""
       }
-      this.http.post("https://localhost:44320/api/Products/search-product", x).subscribe(result => {
+      this.http.post("https://localhost:44320/api/Products/get-product-sale-linq", x).subscribe(result => {
         this.products = result;
         this.products = this.products.data;
       }, error => console.error(error));
@@ -58,10 +58,10 @@ export class SaleComponent implements OnInit {
       let previous = this.products.page - 1;
       let x = {
         page: previous,
-        size: 5,
+        size: 3,
         keyword: ""
       }
-      this.http.post("https://localhost:44320/api/Products/search-product", x).subscribe(result => {
+      this.http.post("https://localhost:44320/api/Products/get-product-sale-linq", x).subscribe(result => {
         this.products = result;
         this.products = this.products.data;
       }, error => console.error(error));

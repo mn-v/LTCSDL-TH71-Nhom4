@@ -29,7 +29,15 @@ namespace clothing_store.Controllers
             return Ok(res);
         }
 
-        //thêm
+        [HttpPost("get-by-all")]
+        public IActionResult getAllCarts([FromBody] SimpleReq rep)
+        {
+            var res = new SingleRsp();
+            res.Data = _svc.All;
+            return Ok(res);
+        }
+
+        //thêmSS
         [HttpPost("create-cart")]
         public IActionResult CreateCart([FromBody] CartsReq req)
         {
@@ -40,9 +48,9 @@ namespace clothing_store.Controllers
 
         //sửa
         [HttpPost("update-cart")]
-        public IActionResult UpdateCart([FromBody] CartsReq req)
+        public IActionResult UpdateCart(int CartId, string Size, short Quantity)
         {
-            var res = _svc.UpdateCart(req);
+            var res = _svc.UpdateCart(CartId, Size, Quantity);
 
             return Ok(res);
         }
@@ -51,7 +59,7 @@ namespace clothing_store.Controllers
         [HttpPost("delete-cart")]
         public IActionResult DeleteCart([FromBody] CartsReq req)
         {
-            var res = _svc.DeleteCart(req.ProductId);
+            var res = _svc.DeleteCart(req.CartId);
 
             return Ok(res);
         }

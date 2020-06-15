@@ -11,6 +11,10 @@ export class MenComponent implements OnInit {
   public lstCategoryName : [];
   public lstProduct: [];
 
+  public res:any;
+  public lstCategoryName : [];
+  public lstProduct: [];
+
   products: any = {
     data: [],
     totalRecord: 0,
