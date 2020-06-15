@@ -15,21 +15,24 @@
                 <div>
                     <p class="product--name font-15 m-0 pt-2 pb-1" routerLink="/products">{{p.productName}}</p>
                     <p class="product--price font-14 m-0">
-                        <span class="text-secondary"><del>{{p.price | currency: 'VND':'symbol-narrow':'.3'}}</del></span>
+                        <span
+                            class="text-secondary"><del>{{p.price | currency: 'VND':'symbol-narrow':'.3'}}</del></span>
                         <span class="ml-2">{{p.salePrice | currency: 'VND':'symbol-narrow':'.3'}}</span>
                     </p>
                 </div>
             </div>
         </div>
-
+    </div>
     <!-- Pagination  -->
-    <ul class="pagination d-flex justify-content-end align-items-center">
-        <li class="page-item">
-            <a href="javascript:void(0)" (click)="searchPrevious()"><i class="fas fa-caret-left"></i></a>
-        </li>
-        <li class="page-item mx-2">{{products.page}}</li>
-        <li class="page-item">
-            <a href="javascript:void(0)" (click)="searchNext()"><i class="fas fa-caret-right"></i></a>
-        </li>
-    </ul>
+    <div>
+        <ul class="pagination d-flex justify-content-end align-items-center">
+            <li class="page-item">
+                <a href="javascript:void(0)" (click)="searchPrevious()"><i class="fas fa-caret-left"></i></a>
+            </li>
+            <li class="page-item mx-2">{{products.page}}</li>
+            <li class="page-item">
+                <a href="javascript:void(0)" (click)="searchNext()"><i class="fas fa-caret-right"></i></a>
+            </li>
+        </ul>
+    </div>
 </div>

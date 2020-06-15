@@ -17,7 +17,7 @@ export class LoginComponent {
 
   }
 
-  dangnhap() {
+  login() {
     var x = {
       user: this.user,
       pass: this.pass
@@ -34,7 +34,4 @@ export class LoginComponent {
           window.open('https://localhost:44320/');
       }, error => console.error(error));
   }
-
-
-
 }

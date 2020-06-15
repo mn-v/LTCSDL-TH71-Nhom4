@@ -2,9 +2,7 @@
 using clothing_store.Common.Rsp;
 using clothing_store.DAL.Models;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace clothing_store.DAL
 {
