@@ -14,7 +14,7 @@
                     <div class="card">
                         <div class="card-header p-0" id="headingTwo">
                             <h2 class="mb-0">
-                                <button class="btn collapsed" type="button" data-toggle="collapse"
+                                <button (click)="getCategoryName(false)" class="btn collapsed" type="button" data-toggle="collapse"
                                     data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                                     Phân loại hàng
                                 </button>
@@ -24,7 +24,7 @@
                             data-parent="#accordionExample">
                             <ul class="m-0 px-3">
                                 <li *ngFor="let category of lstCategoryName" class="my-2">
-                                    <a class="category--text" (click)="getProduct(category.categoryName)">{{ category.categoryName }}</a>
+                                    <a class="category--text" (click)="getProduct(1,category.categoryName)">{{ category.categoryName }}</a>
                                 </li>
                             </ul>
                         </div>

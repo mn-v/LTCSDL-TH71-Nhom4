@@ -27,7 +27,6 @@ export class MenComponent implements OnInit {
 
   ngOnInit() {
     this.searchProductByGender(1);
-    this.getCategoryName(false);
   }
 
   getProduct(cPage, name){
@@ -39,9 +38,9 @@ export class MenComponent implements OnInit {
       gender: false
     } 
     this.http.post('https://localhost:44320/' + 'api/Products/get-product-by-categoryName-linq', x).subscribe(result => {
-      this.res = result;
-      this.lstProduct = this.res.data;
-      console.log(this.lstProduct);
+      this.products = result;
+      this.products = this.products.data;
+      console.log(this.products);
     }, error => console.error(error));
   }
 
@@ -64,6 +63,7 @@ export class MenComponent implements OnInit {
       keyword: "",
       gender: false
     }
+
     this.http.post("https://localhost:44320/api/Products/search-product-by-gender", x).subscribe(result => {
       this.products = result;
       this.products = this.products.data;
