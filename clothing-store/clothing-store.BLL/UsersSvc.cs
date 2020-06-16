@@ -1,4 +1,5 @@
 ﻿using clothing_store.Common.BLL;
+using clothing_store.Common.Req;
 using clothing_store.Common.Rsp;
 using clothing_store.DAL;
 using clothing_store.DAL.Models;
@@ -21,6 +22,23 @@ namespace clothing_store.BLL
             return res;
         }
 
+        public SingleRsp CreateUser(UsersReq use)
+        {
+            var res = new SingleRsp();
+            Users users = new Users();
+            users.UserName = use.UserName;
+            users.Password = use.PassWord;
+            users.PhoneNumber = use.PhoneNumber;
+            users.Email = use.Email;
+            users.Dob = use.Dob;
+            users.FullName = use.FullName;
+            users.Address = use.Address;
+            users.RoleId = use.RoleId;
+
+            res = _rep.CreateUser(users);
+            return res;
+        }
+
         public object SearchUser(String keyword, int page, int size)
         {
             var pro = All.Where(x => x.UserName.Contains(keyword));
@@ -40,9 +58,9 @@ namespace clothing_store.BLL
             };
             return res;
         }
-        public object CheckAcc(String user, String pass)
+        public object CheckAcc_Linq(String username, String password)
         {
-            return _rep.CheckAcc(user, pass);
+            return _rep.CheckAcc_Linq(username, password);
         }
     }
 }

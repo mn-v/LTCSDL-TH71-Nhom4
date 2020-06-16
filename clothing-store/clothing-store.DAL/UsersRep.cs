@@ -1,4 +1,5 @@
 ﻿using clothing_store.Common.DAL;
+using clothing_store.Common.Rsp;
 using clothing_store.DAL.Models;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
@@ -17,48 +18,37 @@ namespace clothing_store.DAL
             var res = All.FirstOrDefault(u => u.UserId == id);
             return res;
         }
-
-        public object CheckAcc(String user, String pass)
+        public SingleRsp CreateUser(Users users)
         {
-            List<object> res = new List<object>();
-            var cnn = (SqlConnection)Context.Database.GetDbConnection();
-            if (cnn.State == ConnectionState.Closed)
+            var res = new SingleRsp();
+            using (var context = new OnlineStoreContext())
             {
-                cnn.Open();
-            }
-            try
-            {
-                SqlDataAdapter da = new SqlDataAdapter();
-                DataSet ds = new DataSet();
-
-                var cmd = cnn.CreateCommand();
-
-                cmd.CommandText = "[CheckAcc]";
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@user", user);
-                cmd.Parameters.AddWithValue("@pass", pass);
-                da.SelectCommand = cmd;
-                da.Fill(ds);
-
-                if (ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
+                using (var tran = context.Database.BeginTransaction())
                 {
-                    foreach (DataRow row in ds.Tables[0].Rows)
+                    try
                     {
-                        var x = new
-                        {
-                            RoleID = row["RoleID"],         
-                        };
-                        res.Add(x);
+                        var t = context.Users.Add(users);
+                        context.SaveChanges();
+                        tran.Commit();
+                    }
+                    catch (Exception ex)
+                    {
+                        tran.Rollback();
+                        res.SetError(ex.StackTrace);
                     }
                 }
             }
-            catch (Exception ex)
-            {
-                res = null;
-            }
-
             return res;
         }
+
+        public object CheckAcc_Linq(String username, String password)
+        {
+            var res = Context.Users
+                .Where(x => x.UserName == username && x.Password == password)
+                .Select(u => new { u.RoleId }).ToList();
+            return res;
+        }
+     
 
     }
 }
