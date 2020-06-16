@@ -1,4 +1,5 @@
 ﻿using clothing_store.Common.DAL;
+using clothing_store.Common.Rsp;
 using clothing_store.DAL.Models;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
@@ -16,8 +17,30 @@ namespace clothing_store.DAL
             var res = All.FirstOrDefault(u => u.UserId == id);
             return res;
         }
+        public SingleRsp CreateUser(Users users)
+        {
+            var res = new SingleRsp();
+            using (var context = new OnlineStoreContext())
+            {
+                using (var tran = context.Database.BeginTransaction())
+                {
+                    try
+                    {
+                        var t = context.Users.Add(users);
+                        context.SaveChanges();
+                        tran.Commit();
+                    }
+                    catch (Exception ex)
+                    {
+                        tran.Rollback();
+                        res.SetError(ex.StackTrace);
+                    }
+                }
+            }
+            return res;
+        }
 
-        public object CheckAcc(String user, String pass)
+        public object CheckAcc(String username, String password)
         {
             List<object> res = new List<object>();
             var cnn = (SqlConnection)Context.Database.GetDbConnection();
@@ -34,8 +57,8 @@ namespace clothing_store.DAL
 
                 cmd.CommandText = "[CheckAcc]";
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@user", user);
-                cmd.Parameters.AddWithValue("@pass", pass);
+                cmd.Parameters.AddWithValue("@user", username);
+                cmd.Parameters.AddWithValue("@pass", password);
                 da.SelectCommand = cmd;
                 da.Fill(ds);
 
