@@ -30,6 +30,7 @@ import { SignupComponent } from './pages/signup/signup.component';
 // COMPONENTS
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { CartItemComponent } from './pages/customer-page/cart/cart-item/cart-item.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { FooterComponent } from './components/footer/footer.component';
     AdminUserComponent,
     AdminProductsComponent,
     AdminCategoryComponent,
-    AdminPromotionComponent
+    AdminPromotionComponent,
+    CartItemComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

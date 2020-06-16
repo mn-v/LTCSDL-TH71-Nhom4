@@ -26,7 +26,7 @@ export class SaleComponent implements OnInit {
   searchProduct(cPage) {
     let x = {
       page: cPage,
-      size: 3,
+      size: 9,
       keyword: ""
     }
     this.http.post("https://localhost:44320/api/Products/get-product-sale-linq", x).subscribe(result => {
@@ -40,7 +40,7 @@ export class SaleComponent implements OnInit {
       let nextPage = this.products.page + 1;
       let x = {
         page: nextPage,
-        size: 3,
+        size: 9,
         keyword: ""
       }
       this.http.post("https://localhost:44320/api/Products/get-product-sale-linq", x).subscribe(result => {
@@ -58,7 +58,7 @@ export class SaleComponent implements OnInit {
       let previous = this.products.page - 1;
       let x = {
         page: previous,
-        size: 3,
+        size: 9,
         keyword: ""
       }
       this.http.post("https://localhost:44320/api/Products/get-product-sale-linq", x).subscribe(result => {

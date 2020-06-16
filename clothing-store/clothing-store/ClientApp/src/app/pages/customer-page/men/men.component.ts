@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-men',
   templateUrl: './men.component.html',
+
 })
 
 export class MenComponent implements OnInit {
@@ -32,7 +33,7 @@ export class MenComponent implements OnInit {
   getProduct(cPage, name){
     let x = {
       page: cPage,
-      size: 3,
+      size: 9,
       keyword: "",
       categoryName: name,
       gender: false
@@ -59,7 +60,7 @@ export class MenComponent implements OnInit {
   searchProductByGender(cPage) {
     let x = {
       page: cPage,
-      size: 3,
+      size: 12,
       keyword: "",
       gender: false
     }
@@ -74,7 +75,7 @@ export class MenComponent implements OnInit {
       let nextPage = this.products.page + 1;
       let x = {
         page: nextPage,
-        size: 3,
+        size: 12,
         keyword: "",
         gender: false
       }
@@ -93,7 +94,7 @@ export class MenComponent implements OnInit {
       let previous = this.products.page - 1;
       let x = {
         page: previous,
-        size: 5,
+        size: 12,
         keyword: "",
         gender: false
       }

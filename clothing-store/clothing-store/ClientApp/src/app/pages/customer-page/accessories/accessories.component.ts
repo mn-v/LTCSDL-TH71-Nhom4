@@ -3,7 +3,8 @@ import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-accessories',
-  templateUrl: './accessories.component.html'
+  templateUrl: './accessories.component.html',
+  styleUrls: ['./accessories.component.scss']
 })
 
 export class AccessoriesComponent implements OnInit {
