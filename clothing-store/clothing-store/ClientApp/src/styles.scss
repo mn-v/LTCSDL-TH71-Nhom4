@@ -1,9 +1,9 @@
-/* You can add global styles to this file, and also import other style files */
-
-/* Provide sufficient contrast against white background */
 @import './app/scss/animation';
 @import './app/scss/variable';
 @import './app/scss/product.scss';
+@import './app/scss/responsive.scss';
+@import './app/scss/fontsize.scss';
+
 
 body {
     font-family: 'Montserrat', 'Roboto', sans-serif;
@@ -16,23 +16,6 @@ li {
 a {
     text-decoration: none !important;
     color          : black !important;
-}
-
-// FONT SIZE
-.font-15 {
-    font-size: 15px;
-}
-
-.font-14 {
-    font-size: 14px;
-}
-
-.font-13 {
-    font-size: 13px;
-}
-
-.font-12 {
-    font-size: 12px;
 }
 
 // BUTTON
@@ -61,30 +44,4 @@ a {
 .btn.focus,
 .btn:focus {
     box-shadow: none !important;
-}
-
-.product--block {
-    padding: 0 0.5rem;
-}
-
-@media only screen and (max-width: 768px) {
-    // CONTACT PAGE
-    #map {
-        padding-left: 1.5rem;
-
-        iframe {
-            width: 100%;
-        }
-    }
-
-    // LOGIN PAGE
-    #login {
-        .txt-login  {
-            margin-bottom: 1.5rem!important;
-        }
-        .btn-login, .question--login {
-            margin-top: 1rem!important;
-        }
-    }
-    
 }

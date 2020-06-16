@@ -9,7 +9,6 @@ import { HttpClient } from '@angular/common/http';
 export class LoginComponent {
   headerFooter: boolean;
 
-
   user: string = null;
   pass: string = null;
   result: any = [];
@@ -29,16 +28,15 @@ export class LoginComponent {
         console.log(res);
         this.result = res.data;
         if (res.data.find(ds => ds.roleID == 0)) {
-          alert("Dang nhap admin thanh cong!")
+          alert("Bạn đã đăng nhập thành công với quyền của ADMIN!")
           window.open('https://localhost:44320/admin');
         }
 
         else if (res.data.find(ds => ds.roleID == 1)) {
-          alert("Dang nhap thanh cong!")
+          alert("Đăng nhập thành công")
           window.open('https://localhost:44320/');
         }
         else alert("Tài khoản hoặc mật khẩu không đúng!")
-
       }, error => console.error(error));
   }
 }

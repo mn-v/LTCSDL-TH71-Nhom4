@@ -23,21 +23,26 @@ import { LoginComponent } from './pages/login/login.component';
 import { SignupComponent } from './pages/signup/signup.component';
 
 const routes: Routes = [
+  // CUSTOMER
   { path: '', component: HomePageComponent },
   { path: 'men', component: MenComponent },
   { path: 'women', component: WomenComponent },
   { path: 'sale', component: SaleComponent },
   { path: 'accessories', component: AccessoriesComponent },
   { path: 'contact', component: ContactComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'signup', component: SignupComponent },
   { path: 'cart', component: CartComponent },
   { path: 'product-detail', component: ProductComponent },
+  
+  // ADMIN
   { path: 'admin', component: AdminComponent },
   { path: 'admin-user', component: AdminUserComponent },
   { path: 'admin-products', component: AdminProductsComponent },
   { path: 'admin-category', component: AdminCategoryComponent },
   { path: 'admin-promotion', component: AdminPromotionComponent },
+
+  // FUNCTIONS
+  { path: 'login', component: LoginComponent },
+  { path: 'signup', component: SignupComponent },
 ];
 
 @NgModule({

@@ -13,7 +13,7 @@ export class AdminComponent implements OnInit {
     data: [],
     totalRecord: 0,
     page: 0,
-    size: 5,
+    size: 9,
     totalPages: 0
   }
 
@@ -29,7 +29,7 @@ export class AdminComponent implements OnInit {
       let nextPage = this.products.page + 1;
       let x = {
         page: nextPage,
-        size: 3,
+        size: 9,
         keyword: ""
       }
       this.http.post("https://localhost:44320/api/Products/get-product-accessories-linq", x).subscribe(result => {
@@ -47,7 +47,7 @@ export class AdminComponent implements OnInit {
       let previous = this.products.page - 1;
       let x = {
         page: previous,
-        size: 3,
+        size: 9,
         keyword: ""
       }
       this.http.post("https://localhost:44320/api/Products/get-product-accessories-linq", x).subscribe(result => {
