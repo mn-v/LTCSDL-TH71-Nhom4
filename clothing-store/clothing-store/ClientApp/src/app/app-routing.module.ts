@@ -29,7 +29,7 @@ const routes: Routes = [
   { path: 'cart', component: CartComponent },
   { path: 'product-detail', component: ProductComponent },
   { path: 'admin', component: AdminComponent },
-  { path: 'admin-user', component: AdminUserComponent }
+  { path: 'admin-user', component: AdminUserComponent },
   { path: 'admin-products', component: AdminProductsComponent },
   { path: 'admin-category', component: AdminCategoryComponent },
   { path: 'admin-promotion', component: AdminPromotionComponent },

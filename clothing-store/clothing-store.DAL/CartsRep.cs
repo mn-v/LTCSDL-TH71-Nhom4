@@ -10,7 +10,7 @@ namespace clothing_store.DAL
 
     public class CartsRep : GenericRep<OnlineStoreContext, Carts>
     {
-        #region -- override --
+        #region -- Override --
         public override Carts Read(int id)
         {
             var res = All.FirstOrDefault(p => p.CartId == id);
@@ -27,7 +27,8 @@ namespace clothing_store.DAL
 
 
         #endregion
-        #region -- methods --
+
+        #region -- Methods --
 
         //Tạo - Chia làm 2 trường hợp
         public SingleRsp CreateCart(Carts carts)
