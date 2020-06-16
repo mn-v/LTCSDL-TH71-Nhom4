@@ -40,47 +40,14 @@ namespace clothing_store.DAL
             return res;
         }
 
-        public object CheckAcc(String username, String password)
+        public object CheckAcc_Linq(String username, String password)
         {
-            List<object> res = new List<object>();
-            var cnn = (SqlConnection)Context.Database.GetDbConnection();
-            if (cnn.State == ConnectionState.Closed)
-            {
-                cnn.Open();
-            }
-            try
-            {
-                SqlDataAdapter da = new SqlDataAdapter();
-                DataSet ds = new DataSet();
-
-                var cmd = cnn.CreateCommand();
-
-                cmd.CommandText = "[CheckAcc]";
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@user", username);
-                cmd.Parameters.AddWithValue("@pass", password);
-                da.SelectCommand = cmd;
-                da.Fill(ds);
-
-                if (ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
-                {
-                    foreach (DataRow row in ds.Tables[0].Rows)
-                    {
-                        var x = new
-                        {
-                            RoleID = row["RoleID"],         
-                        };
-                        res.Add(x);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                res = null;
-            }
-
+            var res = Context.Users
+                .Where(x => x.UserName == username && x.Password == password)
+                .Select(u => new { u.RoleId }).ToList();
             return res;
         }
+     
 
     }
 }

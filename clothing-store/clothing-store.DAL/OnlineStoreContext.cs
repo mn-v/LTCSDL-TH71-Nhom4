@@ -25,7 +25,7 @@ namespace clothing_store.DAL.Models
         public virtual DbSet<Size> Size { get; set; }
         public virtual DbSet<Transactions> Transactions { get; set; }
         public virtual DbSet<Users> Users { get; set; }
-        public object Contact { get; internal set; }
+        public virtual DbSet<Contact> Contact { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
