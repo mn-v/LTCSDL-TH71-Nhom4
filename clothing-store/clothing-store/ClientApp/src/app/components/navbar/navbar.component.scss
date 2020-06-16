@@ -116,6 +116,9 @@ header {
         border       : 8px solid transparent;
         border-bottom: 8px solid white;
     }
+    p:focus {
+        outline: none;
+    }
 }
 
 #toggle-menu {

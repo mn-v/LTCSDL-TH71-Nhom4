@@ -55,12 +55,20 @@ hr.sidebar-divider {
 }
 
 /////
-.nav-link:hover {
-
-	span,
-	i {
-		color: white;
-	}
+.navbar-nav {
+    .nav-item {
+        .nav-link:hover {
+            span {
+                color: white;
+            }
+            i {
+                color: white;
+            }
+            &::after {
+                color: white;
+            }
+        }
+    }
 }
 
 /// Wrapper

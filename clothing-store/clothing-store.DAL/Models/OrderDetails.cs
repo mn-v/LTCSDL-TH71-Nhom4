@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace clothing_store.DAL.Models
+﻿namespace clothing_store.DAL.Models
 {
     public partial class OrderDetails
     {

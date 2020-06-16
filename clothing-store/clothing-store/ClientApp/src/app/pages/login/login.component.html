@@ -23,13 +23,13 @@
                             <input type="password" name="pass" [(ngModel)]="pass" class="form-control" placeholder="Mật khẩu" required>
                         </div>
                     </div>
-                    <div class="row mt-5">
+                    <div class="row question--login mt-5">
                         <div class="col-md-8 mt-2 font-15">
                             Bạn chưa có tài khoản? Hãy <span routerLink="/signup" style="cursor: pointer;"><u> Đăng ký
                                 </u></span> ở đây
                         </div>
                         <div class="col-md-4">
-                            <button type="submit" class="btn py-2 px-4 text-light text-uppercase" (click)="dangnhap()"
+                            <button type="submit" class="btn py-2 px-4 text-light text-uppercase" (click)="login()"
                                 style="background-color: var(--darkred);">Đăng nhập</button>
                         </div>
                     </div>
@@ -37,5 +37,4 @@
             </div>
         </div>
     </div>
-    
 </section>

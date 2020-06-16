@@ -1,11 +1,13 @@
 import { Component, OnInit, Inject } from '@angular/core';
+import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
-  selector: 'app-accessories',
-  templateUrl: './accessories.component.html'
+  selector: 'app-admin',
+  templateUrl: './admin.component.html',
+  styleUrls: ['./admin.component.scss']
 })
-export class AccessoriesComponent implements OnInit {
+export class AdminComponent implements OnInit {
 
   products: any = {
     data: [],
@@ -20,21 +22,8 @@ export class AccessoriesComponent implements OnInit {
     @Inject('BASE_URL') baseUrl: string) { }
 
   ngOnInit() {
-    this.searchProduct(1);
+    // this.searchProduct(1);
   }
-  searchProduct(cPage) {
-    let x = {
-      page: cPage,
-      size: 3,
-      keyword: ""
-    }
-    this.http.post("https://localhost:44320/api/Products/get-product-accessories-linq", x).subscribe(result => {
-      this.products = result;
-      this.products = this.products.data;
-      console.log(this.products);
-    }, error => console.error(error));
-  }
-
   searchNext() {
     if (this.products.page < this.products.totalPages) {
       let nextPage = this.products.page + 1;
@@ -70,4 +59,5 @@ export class AccessoriesComponent implements OnInit {
       alert("Bạn đang ở trang đầu tiên!");
     }
   }
+
 }
