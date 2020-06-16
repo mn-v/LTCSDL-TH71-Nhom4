@@ -15,5 +15,9 @@ namespace clothing_store.Common.Req
         public string Type { get; set; }
 
         public string Keyword { get; set; }
+
+        public string CategoryName { get; set; }
+
+        public bool Gender { get; set; }
     }
 }

@@ -1,24 +1,47 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
   headerFooter: boolean;
 
-  constructor(
-    private router: Router,
-  ) { }
-  
-  ngOnInit() {
-    this.router.events
-      .subscribe((event) => {
-        if (event instanceof NavigationEnd) {
-          this.headerFooter = (event.url !== '/login')
-        }
-      });
+
+  user: string = null;
+  pass: string = null;
+  result: any = [];
+  constructor(private http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
+
   }
+
+  dangnhap() {
+    var x = {
+      username: this.user,
+      password: this.pass
+    };
+
+    this.http.post('https://localhost:44320/api/Users/check-tai-khoan', x)
+      .subscribe(result => {
+        var res: any = result;
+        console.log(res);
+        this.result = res.data;
+        if (res.data.find(ds => ds.roleID == 0)) {
+          alert("Dang nhap admin thanh cong!")
+          window.open('https://localhost:44320/admin');
+        }
+
+        else if (res.data.find(ds => ds.roleID == 1)) {
+          alert("Dang nhap thanh cong!")
+          window.open('https://localhost:44320/');
+        }
+        else alert("Tài khoản hoặc mật khẩu không đúng!")
+
+      }, error => console.error(error));
+  }
+
+
 
 }

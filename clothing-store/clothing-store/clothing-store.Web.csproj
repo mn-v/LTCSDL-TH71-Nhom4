@@ -42,6 +42,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Controllers\CartsController.cs~RF19f14279.TMP" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\clothing-store.BLL\clothing-store.BLL.csproj" />
     <ProjectReference Include="..\clothing-store.Common\clothing-store.Common.csproj" />
     <ProjectReference Include="..\clothing-store.DAL\clothing-store.DAL.csproj" />

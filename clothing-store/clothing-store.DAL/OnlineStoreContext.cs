@@ -27,12 +27,17 @@ namespace clothing_store.DAL.Models
         public virtual DbSet<Size> Size { get; set; }
         public virtual DbSet<Transactions> Transactions { get; set; }
         public virtual DbSet<Users> Users { get; set; }
+        public object Contact { get; internal set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
+<<<<<<< HEAD
                 optionsBuilder.UseSqlServer("Data Source=Dell67\\MSSQLSERVER01;Initial Catalog=OnlineStore;Persist Security Info=True;User ID=sa;Password=tuan67;Pooling=False;MultipleActiveResultSets=False;Encrypt=False;TrustServerCertificate=True;");
+=======
+                optionsBuilder.UseSqlServer("Data Source=.;Initial Catalog=OnlineStore;Persist Security Info=True;User ID=sa;Password=123456;Pooling=False;MultipleActiveResultSets=False;Encrypt=False;TrustServerCertificate=True;");
+>>>>>>> 134de205c0182b123e1ac7219b7c5b3a85b69a40
             }
         }
 
@@ -40,13 +45,13 @@ namespace clothing_store.DAL.Models
         {
             modelBuilder.Entity<Carts>(entity =>
             {
-                entity.HasKey(e => e.CartId)
-                    .HasName("PK_Cart");
+                entity.HasKey(e => new { e.CartId, e.ProductId, e.UserId });
 
                 entity.Property(e => e.CartId)
                     .HasColumnName("CartID");
 
-                entity.Property(e => e.ProductId).HasColumnName("ProductID");
+                entity.Property(e => e.ProductId)
+                .HasColumnName("ProductID");
 
                 entity.Property(e => e.Size)
                     .IsRequired()
@@ -55,7 +60,8 @@ namespace clothing_store.DAL.Models
 
                 entity.Property(e => e.UnitPrice).HasColumnType("money");
 
-                entity.Property(e => e.UserId).HasColumnName("UserID");
+                entity.Property(e => e.UserId)
+                .HasColumnName("UserID");
 
                 entity.HasOne(d => d.Product)
                     .WithMany(p => p.Carts)
@@ -67,7 +73,7 @@ namespace clothing_store.DAL.Models
                     .WithMany(p => p.Carts)
                     .HasForeignKey(d => d.UserId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Carts_Users1");
+                    .HasConstraintName("FK_Carts_Users");
             });
 
             modelBuilder.Entity<Categories>(entity =>

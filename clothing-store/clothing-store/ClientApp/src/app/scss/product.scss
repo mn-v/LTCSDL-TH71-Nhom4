@@ -6,10 +6,25 @@
     }
 }
 
+// BUTTON
+.detail__button {
+    border       : none;
+    border-radius: 30px;
+
+    padding: 0.2rem 0.75rem;
+
+    letter-spacing: 0.5px;
+
+    &:hover {
+        color     : white;
+        background: var(--darkred);
+    }
+}
+
 // PRODUCT BLOCK
 .product--block {
-    .caption__button {
-        position   : absolute;
+    .detail__button {
+        position: absolute;
 
         margin : 0 auto;
         padding: 0.75rem 2.5rem;
@@ -17,11 +32,11 @@
         opacity: 0;
     }
 
-    &:hover .caption__button {
+    &:hover .detail__button {
         opacity: 1;
 
         left  : 50%;
-        bottom: 0.5rem;
+        bottom: 0;
 
         transform : translate(-50%, -50%);
         transition: all 0.3s ease-in-out;
@@ -60,5 +75,9 @@
     &:hover {
         cursor: pointer;
         color : var(--darkred);
+    }
+
+    &:focus {
+        outline: none;
     }
 }
