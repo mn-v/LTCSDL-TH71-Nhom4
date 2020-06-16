@@ -1,5 +1,4 @@
-﻿/* using System.Linq;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace clothing_store.Promotion
 {
@@ -40,7 +39,7 @@ namespace clothing_store.Promotion
             return Ok(res);
         }
 
-        //sửa
+        // Edit
         [HttpPost("update-promotion")]
         public IActionResult UpdatePromotion([FromBody] PromotionReq req)
         {
@@ -60,4 +59,3 @@ namespace clothing_store.Promotion
         private readonly PromotionSvc _svc;
     }
 }
-*/

@@ -8,7 +8,7 @@ namespace clothing_store.DAL
 {
     public class PromotionRep : GenericRep<OnlineStoreContext, Promotion>
     {
-        #region -- override --
+        #region -- Override --
         public override Promotion Read(int id)
         {
             var res = All.FirstOrDefault(p => p.PromotionId == id);
@@ -22,7 +22,8 @@ namespace clothing_store.DAL
             return m.PromotionId;
         }
         #endregion
-        #region -- methods --
+
+        #region -- Methods --
 
         public SingleRsp CreatePromotion(Promotion promotion)
         {

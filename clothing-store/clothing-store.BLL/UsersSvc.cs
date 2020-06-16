@@ -3,14 +3,13 @@ using clothing_store.Common.Rsp;
 using clothing_store.DAL;
 using clothing_store.DAL.Models;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace clothing_store.BLL
 {
     public class UsersSvc : GenericSvc<UsersRep, Users>
     {
+        #region -- Override --
         public override SingleRsp Read(int id)
         {
             var res = new SingleRsp();
@@ -20,7 +19,9 @@ namespace clothing_store.BLL
 
             return res;
         }
+        #endregion
 
+        #region -- Methods --
         public object SearchUser(String keyword, int page, int size)
         {
             var pro = All.Where(x => x.UserName.Contains(keyword));
@@ -44,5 +45,6 @@ namespace clothing_store.BLL
         {
             return _rep.CheckAcc(user, pass);
         }
+        #endregion
     }
 }

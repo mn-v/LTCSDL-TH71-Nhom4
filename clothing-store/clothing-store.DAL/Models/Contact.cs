@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace clothing_store.DAL.Models
+﻿namespace clothing_store.DAL.Models
 {
     public class Contact
     {

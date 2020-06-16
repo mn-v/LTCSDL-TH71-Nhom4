@@ -1,5 +1,5 @@
 <body>
-  <app-navbar *ngIf="router.url !== '/admin' && router.url !== '/admin-user'"></app-navbar> 
+  <app-navbar *ngIf="router.url !== '/admin' && router.url !== '/admin-user' && router.url !== '/admin-products'"></app-navbar> 
   <router-outlet></router-outlet>   
-  <app-footer *ngIf="router.url !== '/admin' && router.url !== '/login' && router.url !== '/signup' && router.url !== '/admin-user'"></app-footer> 
+  <app-footer *ngIf="router.url !== '/admin' && router.url !== '/login' && router.url !== '/signup' && router.url !== '/admin-user' && router.url !== '/admin-products'"></app-footer> 
 </body>

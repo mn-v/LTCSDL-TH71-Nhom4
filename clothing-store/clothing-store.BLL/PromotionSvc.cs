@@ -1,4 +1,10 @@
-﻿namespace clothing_store.BLL
+﻿using clothing_store.Common.BLL;
+using clothing_store.Common.Req;
+using clothing_store.Common.Rsp;
+using clothing_store.DAL;
+using clothing_store.DAL.Models;
+
+namespace clothing_store.BLL
 {
     public class PromotionSvc : GenericSvc<PromotionRep, Promotion>
     {
@@ -33,6 +39,7 @@
 
         #endregion
 
+        #region -- Methods --
         public SingleRsp CreatePromotion(PromotionReq prom)
         {
             var res = new SingleRsp();
@@ -61,5 +68,6 @@
         {
             return _rep.DeletePromotion(id);
         }
+        #endregion
     }
 }
