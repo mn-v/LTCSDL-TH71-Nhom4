@@ -23,9 +23,6 @@ namespace clothing_store.DAL
             m = base.Delete(m);
             return m.CartId;
         }
-
-
-
         #endregion
 
         #region -- Methods --
