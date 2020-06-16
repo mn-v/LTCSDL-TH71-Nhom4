@@ -28,12 +28,12 @@ export class LoginComponent {
         var res: any = result;
         console.log(res);
         this.result = res.data;
-        if (res.data.find(ds => ds.roleID == 0)) {
+        if (res.data.find(u => u.roleId == 0)) {
           alert("Dang nhap admin thanh cong!")
           window.open('https://localhost:44320/admin');
         }
 
-        else if (res.data.find(ds => ds.roleID == 1)) {
+        else if (res.data.find(u => u.roleID == 1)) {
           alert("Dang nhap thanh cong!")
           window.open('https://localhost:44320/');
         }

@@ -20,9 +20,7 @@ namespace clothing_store.BLL
 
             return res;
         }
-        #endregion
 
-        #region -- Methods --
         public SingleRsp CreateUser(UsersReq use)
         {
             var res = new SingleRsp();
@@ -32,11 +30,23 @@ namespace clothing_store.BLL
             users.PhoneNumber = use.PhoneNumber;
             users.Email = use.Email;
             users.Dob = use.Dob;
-            users.FullName = use.FullName;
-            users.Address = use.Address;
             users.RoleId = use.RoleId;
 
             res = _rep.CreateUser(users);
+            return res;
+        }
+        public int DeleteUser(int id)
+        {
+            return _rep.DeleteUser(id);
+        }
+        #endregion
+
+        #region -- Methods --
+
+        public SingleRsp UpdateUser(int UserId, string UserName, string Password, string PhoneNumber, string Dob, string Email, int RoleId)
+        {
+            var res = new SingleRsp();
+            res = _rep.UpdateUser(UserId, UserName, Password, PhoneNumber, Dob, Email, RoleId);
             return res;
         }
 
