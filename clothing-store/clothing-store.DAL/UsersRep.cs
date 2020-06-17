@@ -86,7 +86,10 @@ namespace clothing_store.DAL
         {
             var res = Context.Users
                 .Where(x => x.UserName == username && x.Password == password)
-                .Select(u => new { u.RoleId }).ToList();
+                .Select(u => new {
+                    u.UserId,
+                    u.RoleId
+                }).ToList();
             return res;
         }
      
