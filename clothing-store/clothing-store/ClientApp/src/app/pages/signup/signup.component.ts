@@ -13,11 +13,12 @@ export class SignupComponent {
     email: null,
     dob: null,
     phoneNumber: null,
-    roleId: 1
+    roleId: 2
   }
   constructor(private http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
 
   }
+
   addUser() {
     var x = this.users;
     this.http.post('https://localhost:44320/api/Users/create-user', x)
@@ -25,11 +26,11 @@ export class SignupComponent {
         var res: any = result;
         console.log(res);
         if (res.success) {
-          alert("Dang ki thanh cong!")
+          alert("Bạn đã đăng kí thành công!")
           this.users = res.data;
         }
         else {
-          alert("Dang ki khong thanh cong!");
+          alert("Đăng kí không thành công!");
         }
       }, error => console.error(error));
 
