@@ -34,7 +34,7 @@ namespace clothing_store.Controllers
 
         // đưa ra swagger
         [HttpPost("search-user")]
-        public IActionResult SearchUser([FromBody] SearchReq req)
+        public IActionResult SearchUser([FromBody] UsersReq req)
         {
             var res = new SingleRsp();
             var pro = _svc.SearchUser(req.Keyword, req.Page, req.Size);
@@ -46,6 +46,22 @@ namespace clothing_store.Controllers
         public IActionResult CreateProduct([FromBody] UsersReq req)
         {
             var res = _svc.CreateUser(req);
+
+            return Ok(res);
+        }
+
+        [HttpPost("update-user")]
+        public IActionResult UpdateUser([FromBody] UsersReq req)
+        {
+            var res = _svc.UpdateUser(req.UserId, req.UserName, req.PassWord, req.PhoneNumber, req.Dob, req.Email, req.RoleId);
+
+            return Ok(res);
+        }
+        // Delete
+        [HttpPost("delete-user")]
+        public IActionResult DeleteUser([FromBody] UsersReq req)
+        {
+            var res = _svc.DeleteUser(req.UserId);
 
             return Ok(res);
         }

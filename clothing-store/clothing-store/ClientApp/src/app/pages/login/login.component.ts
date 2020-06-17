@@ -27,16 +27,16 @@ export class LoginComponent {
         var res: any = result;
         console.log(res);
         this.result = res.data;
-        if (res.data.find(ds => ds.roleID == 0)) {
+        if (res.data.find(u => u.roleId == 0)) {
           alert("Bạn đã đăng nhập thành công với quyền của ADMIN!")
           window.open('https://localhost:44320/admin');
         }
-
-        else if (res.data.find(ds => ds.roleID == 1)) {
-          alert("Đăng nhập thành công")
+        else if (res.data.find(u => u.roleId == 1)) {
+          alert("Dang nhap thanh cong!")
           window.open('https://localhost:44320/');
         }
-        else alert("Tài khoản hoặc mật khẩu không đúng!")
+       else alert("Tài khoản hoặc mật khẩu không đúng!");
+
       }, error => console.error(error));
   }
 }

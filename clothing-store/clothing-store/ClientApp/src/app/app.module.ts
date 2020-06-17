@@ -18,7 +18,6 @@ import { ProductComponent } from './pages/customer-page/product/product.componen
 
 // ADMIN PAGES
 import { AdminComponent } from './pages/admin-page/admin/admin.component';
-import { AdminUserComponent } from './pages/admin-page/admin-user/admin-user.component';
 import { AdminProductsComponent } from './pages/admin-page/admin-products/admin-products.component';
 import { AdminCategoryComponent } from './pages/admin-page/admin-category/admin-category.component';
 import { AdminPromotionComponent } from './pages/admin-page/admin-promotion/admin-promotion.component';
@@ -48,7 +47,6 @@ import { CartItemComponent } from './pages/customer-page/cart/cart-item/cart-ite
     AccessoriesComponent,
     ProductComponent,
     AdminComponent,
-    AdminUserComponent,
     AdminProductsComponent,
     AdminCategoryComponent,
     AdminPromotionComponent,
