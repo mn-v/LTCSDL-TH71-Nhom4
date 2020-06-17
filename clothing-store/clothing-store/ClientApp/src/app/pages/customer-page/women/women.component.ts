@@ -2,11 +2,10 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
-  selector: 'app-men',
-  templateUrl: './men.component.html',
+  selector: 'app-women',
+  templateUrl: './women.component.html',
 })
-export class MenComponent implements OnInit {
-
+export class WomenComponent implements OnInit {
   public res:any;
   public lstCategoryName : [];
   public lstProduct: [];
@@ -15,13 +14,13 @@ export class MenComponent implements OnInit {
     data: [],
     totalRecord: 0,
     page: 0,
-    size: 3,
+    size: 5,
     totalPages: 0
   }
 
   constructor(
     private http: HttpClient,
-    @Inject('BASE_URL') baseUrl: string) {
+    @Inject('BASE_URL') baseUrl: string) { 
       
     }
 
@@ -35,7 +34,7 @@ export class MenComponent implements OnInit {
       size: 3,
       keyword: "",
       categoryName: name,
-      gender: false
+      gender: true
     } 
     this.http.post('https://localhost:44320/' + 'api/Products/get-product-by-categoryName-linq', x).subscribe(result => {
       this.products = result;
@@ -52,20 +51,20 @@ export class MenComponent implements OnInit {
     .subscribe(result => {
       this.res = result;
       this.lstCategoryName = this.res.data;
-      console.log(this.lstCategoryName);
     }, error => console.error(error));
   }
-
+  
   searchProductByGender(cPage) {
     let x = {
       page: cPage,
-      size: 3,
+      size: 6,
       keyword: "",
-      gender: false
+      gender: true
     }
     this.http.post("https://localhost:44320/api/Products/search-product-by-gender", x).subscribe(result => {
       this.products = result;
       this.products = this.products.data;
+      console.log(this.products);
     }, error => console.error(error));
   }
 
@@ -76,11 +75,12 @@ export class MenComponent implements OnInit {
         page: nextPage,
         size: 3,
         keyword: "",
-        gender: false
+        gender: true
       }
       this.http.post("https://localhost:44320/api/Products/search-product-by-gender", x).subscribe(result => {
         this.products = result;
         this.products = this.products.data;
+        console.log(this.products);
       }, error => console.error(error));
     }
     else {
@@ -93,13 +93,14 @@ export class MenComponent implements OnInit {
       let previous = this.products.page - 1;
       let x = {
         page: previous,
-        size: 5,
+        size: 3,
         keyword: "",
-        gender: false
+        gender: true
       }
       this.http.post("https://localhost:44320/api/Products/search-product-by-gender", x).subscribe(result => {
         this.products = result;
         this.products = this.products.data;
+        console.log(this.products);
       }, error => console.error(error));
     }
     else {

@@ -17,7 +17,7 @@ export class LoginComponent {
 
   }
 
-  dangnhap() {
+  login() {
     var x = {
       username: this.user,
       password: this.pass
@@ -28,7 +28,7 @@ export class LoginComponent {
         var res: any = result;
         console.log(res);
         this.result = res.data;
-        if (res.data.find(ds => ds.roleID == 0)) {
+        if (res.data.find(ds => ds.roleID == 2)) {
           alert("Dang nhap admin thanh cong!")
           window.open('https://localhost:44320/admin');
         }
@@ -41,7 +41,4 @@ export class LoginComponent {
 
       }, error => console.error(error));
   }
-
-
-
 }

@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace clothing_store.Controllers
 {
     using BLL;
-    using DAL.Models;
     using Common.Req;
     using Common.Rsp;
 
@@ -26,7 +20,7 @@ namespace clothing_store.Controllers
         {
             var res = new SingleRsp();
             res = _svc.Read(req.Id);
-            return Ok(res); //phuong thuc tot(200): da dat dc
+            return Ok(res); // 200: OK
         }
 
         [HttpPost("get-all")]
@@ -34,7 +28,7 @@ namespace clothing_store.Controllers
         {
             var res = new SingleRsp();
             res.Data = _svc.All;
-            return Ok(res); //phuong thuc tot(200): da dat dc
+            return Ok(res);
         }
 
         [HttpPost("create-category")]

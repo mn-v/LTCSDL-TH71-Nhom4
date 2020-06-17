@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
   selector: 'app-sale',
   templateUrl: './sale.component.html',
 })
+
 export class SaleComponent implements OnInit {
   products: any = {
     data: [],

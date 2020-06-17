@@ -1,16 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using clothing_store.Common.DAL;
+using clothing_store.Common.Rsp;
+using clothing_store.DAL.Models;
+using System.Linq;
 
 namespace clothing_store.DAL
 {
-    using clothing_store.Common.Rsp;
-    using clothing_store.DAL.Models;
-    using System.Collections;
-    using System.Linq;
-
-    // day la lop dai dien cho doi tuong Categories
+    // Đây là lớp đại diện cho đối tượng Categories
     public class CategoriesRep : GenericRep<OnlineStoreContext, Categories>
     {
         #region -- Overrides --

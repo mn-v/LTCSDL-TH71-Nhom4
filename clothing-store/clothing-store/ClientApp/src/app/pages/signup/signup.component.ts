@@ -27,6 +27,7 @@ export class SignupComponent {
         if (res.success) {
           alert("Dang ki thanh cong!")
           this.users = res.data;
+          
         }
         else {
           alert("Dang ki khong thanh cong!");
