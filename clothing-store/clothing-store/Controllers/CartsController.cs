@@ -48,9 +48,9 @@ namespace clothing_store.Controllers
 
         //sửa
         [HttpPost("update-cart")]
-        public IActionResult UpdateCart(int CartId, string Size, short Quantity)
+        public IActionResult UpdateCart([FromBody] CartsReq req)
         {
-            var res = _svc.UpdateCart(CartId, Size, Quantity);
+            var res = _svc.UpdateCart(req.UserId, req.Size, req.Quantity);
 
             return Ok(res);
         }
@@ -60,6 +60,15 @@ namespace clothing_store.Controllers
         public IActionResult DeleteCart([FromBody] CartsReq req)
         {
             var res = _svc.DeleteCart(req.CartId);
+
+            return Ok(res);
+        }
+
+        //sửa
+        [HttpPost("find-cart")]
+        public IActionResult FindCart([FromBody] CartsReq req)
+        {
+            var res = _svc.FindCart(req.UserId);
 
             return Ok(res);
         }

@@ -6,8 +6,8 @@
             <div class="col-md-3 pt-3">
                 <div class="searching">
                     <div class="input-group mr-sm-2">
-                        <input type="text" class="form-control mr-sm-2 font-12" placeholder="Nhập tên sản phẩm...">
-                        <button type="submit" class="btn btn-dark font-12">Tìm kiếm</button>
+                        <input type="text" [(ngModel)]="keywords" class="form-control mr-sm-2 font-12" placeholder="Nhập tên sản phẩm...">
+                        <button type="submit" class="btn btn-dark font-12" (click)="searchProductByProductName(1)">Tìm kiếm</button>
                     </div>
                 </div>
                 <hr class="my-3">
@@ -51,7 +51,7 @@
                                 </div>
                             </div>
                             <div>
-                                <p class="product--name font-15 m-0 pt-2 pb-1" routerLink="/products">{{p.productName}}
+                                <p class="product--name font-15 m-0 pt-2 pb-1" [routerLink]="['/products', {id:p.productId}]">{{p.productName}}
                                 </p>
                                 <p class="product--price font-14 m-0">{{p.price}}<span>đ</span></p>
                             </div>

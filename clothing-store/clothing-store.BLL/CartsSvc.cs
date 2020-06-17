@@ -70,21 +70,25 @@ namespace clothing_store.BLL
             return res;
         }
 
-        public SingleRsp UpdateCart(int CartId, string Size, short Quantity)
+        public SingleRsp UpdateCart(int UserId, string Size, short Quantity)
         {
             var res = new SingleRsp();
-            res = _rep.UpdateCart(CartId, Size, Quantity);
+            res = _rep.UpdateCart(UserId, Size, Quantity);
             return res;
 
             
         }
 
-        public SingleRsp DeleteCart(int cartId)
+        public SingleRsp DeleteCart(int UserId)
         {
             var res = new SingleRsp();
-            res = _rep.DeleteCart(cartId);
+            res = _rep.DeleteCart(UserId);
             return res;
         }
 
+        public object FindCart(int UserId)
+        {
+            return _rep.FindCart(UserId);
+        }
     }
 }

@@ -138,5 +138,7 @@ namespace clothing_store.BLL
         {
             return _rep.SearchProductByGender(keyword, page, size, gender);
         }
+
+        
     }
 }

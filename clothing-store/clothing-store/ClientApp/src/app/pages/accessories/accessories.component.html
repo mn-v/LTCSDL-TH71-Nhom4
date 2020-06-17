@@ -8,12 +8,12 @@
                     <img src="https://{{p.imageSource}}">
                     <div class="product--block--overlay">
                         <button type="button"
-                            class="btn btn-dark caption__button text-uppercase font-13">Thêm vào
+                            class="btn btn-dark caption__button text-uppercase font-13" [routerLink]="['/products', {id:p.productId}]">Thêm vào
                             giỏ</button>
                     </div>
                 </div>
                 <div>
-                    <p class="product--name font-15 m-0 pt-2 pb-1" routerLink="/products">{{p.productName}}
+                    <p class="product--name font-15 m-0 pt-2 pb-1" [routerLink]="['/products', {id:p.productID}]">{{p.productName}}
                     </p>
                     <p class="product--price font-14 m-0">{{p.price}}<span>đ</span></p>
                 </div>

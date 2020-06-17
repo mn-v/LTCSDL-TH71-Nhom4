@@ -6,7 +6,6 @@ namespace clothing_store.Common.Req
 {
     public class CartsReq
     {
-        public int CartId { get; set; }
         public string Size { get; set; }
         public decimal UnitPrice { get; set; }
         public short Quantity { get; set; }
