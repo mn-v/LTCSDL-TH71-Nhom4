@@ -32,12 +32,11 @@ export class LoginComponent {
           alert("Dang nhap admin thanh cong!")
           window.open('https://localhost:44320/admin');
         }
-
-        else if (res.data.find(u => u.roleID == 1)) {
+        else if (res.data.find(u => u.roleId == 1)) {
           alert("Dang nhap thanh cong!")
           window.open('https://localhost:44320/');
         }
-        else alert("Tài khoản hoặc mật khẩu không đúng!")
+       else alert("Tài khoản hoặc mật khẩu không đúng!");
 
       }, error => console.error(error));
   }

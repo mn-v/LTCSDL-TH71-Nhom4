@@ -74,7 +74,6 @@ export class AdminComponent implements OnInit {
       Email: this.user.email.trim(),
       RoleId: parseInt(this.user.roleId)
     };
-    console.log(x);
     this.http.post('https://localhost:44320/api/Users/update-user', x)
       .subscribe(result => {
         var res: any = result;
