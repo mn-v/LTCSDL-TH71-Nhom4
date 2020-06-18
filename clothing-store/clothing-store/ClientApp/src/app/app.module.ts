@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -22,15 +22,15 @@ import { AdminProductsComponent } from './pages/admin-page/admin-products/admin-
 import { AdminCategoryComponent } from './pages/admin-page/admin-category/admin-category.component';
 import { AdminPromotionComponent } from './pages/admin-page/admin-promotion/admin-promotion.component';
 
-// FUNCTIONS
-import { LoginComponent } from './pages/login/login.component';
-import { SignupComponent } from './pages/signup/signup.component';
-
 // COMPONENTS
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { CartItemComponent } from './pages/customer-page/cart/cart-item/cart-item.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
+
+// FUNCTIONS
+import { LoginComponent } from './pages/login/login.component';
+import { SignupComponent } from './pages/signup/signup.component';
 
 @NgModule({
   declarations: [

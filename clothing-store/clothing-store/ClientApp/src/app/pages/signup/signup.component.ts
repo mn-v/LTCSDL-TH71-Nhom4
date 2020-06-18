@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
@@ -15,6 +15,7 @@ export class SignupComponent {
     phoneNumber: null,
     roleId: 2
   }
+
   constructor(private http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
 
   }
@@ -33,6 +34,5 @@ export class SignupComponent {
           alert("Đăng kí không thành công!");
         }
       }, error => console.error(error));
-
   }
 }

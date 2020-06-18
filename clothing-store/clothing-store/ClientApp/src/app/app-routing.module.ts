@@ -17,9 +17,8 @@ import { AdminProductsComponent } from './pages/admin-page/admin-products/admin-
 import { AdminCategoryComponent } from './pages/admin-page/admin-category/admin-category.component';
 import { AdminPromotionComponent } from './pages/admin-page/admin-promotion/admin-promotion.component';
 
-// FUNCTIONS
-import { LoginComponent } from './pages/login/login.component';
 import { SignupComponent } from './pages/signup/signup.component';
+import { LoginComponent } from './pages/login/login.component';
 
 const routes: Routes = [
   // CUSTOMER

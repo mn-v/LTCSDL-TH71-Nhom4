@@ -18,7 +18,7 @@ export class MenComponent implements OnInit {
     data: [],
     totalRecord: 0,
     page: 0,
-    size: 3,
+    size: 12,
     totalPages: 0
   }
 
@@ -32,7 +32,7 @@ export class MenComponent implements OnInit {
   getProduct(cPage, name) {
     let x = {
       page: cPage,
-      size: 9,
+      size: 12,
       keyword: "",
       categoryName: name,
       gender: false
@@ -59,10 +59,11 @@ export class MenComponent implements OnInit {
       }, error => console.error(error));
   }
 
+  // Search sản phẩm theo tên
   searchProductByProductName(cPage) {
     let x = {
       page: cPage,
-      size: 3,
+      size: 12,
       keyword: this.keywords,
       gender: false
     }
@@ -96,7 +97,7 @@ export class MenComponent implements OnInit {
         let nextPage = this.products.page + 1;
         let x = {
           page: nextPage,
-          size: 3,
+          size: 12,
           keyword: "",
           categoryName: this.categoryName,
           gender: false
@@ -116,7 +117,7 @@ export class MenComponent implements OnInit {
         let nextPage = this.products.page + 1;
         let x = {
           page: nextPage,
-          size: 3,
+          size: 12,
           keyword: "",
           gender: false
         }
@@ -139,7 +140,7 @@ export class MenComponent implements OnInit {
         let previous = this.products.page - 1;
         let x = {
           page: previous,
-          size: 3,
+          size: 12,
           keyword: "",
           categoryName: this.categoryName,
           gender: false
@@ -159,7 +160,7 @@ export class MenComponent implements OnInit {
         let previous = this.products.page - 1;
         let x = {
           page: previous,
-          size: 3,
+          size: 12,
           keyword: "",
           gender: false
         }

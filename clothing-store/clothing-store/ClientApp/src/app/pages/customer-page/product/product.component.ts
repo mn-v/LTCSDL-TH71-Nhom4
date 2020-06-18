@@ -1,8 +1,8 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
-import { WomenComponent } from '../women/women.component';
 import { CookieService } from 'ngx-cookie-service';
+
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
@@ -12,7 +12,6 @@ export class ProductComponent implements OnInit {
   product: any = {
     data: []
   }
-  
   size:any;
   quanity:any;
   
@@ -21,13 +20,7 @@ export class ProductComponent implements OnInit {
 
   }
 
-  ngOnInit() {
-    this.activateRoute.paramMap.subscribe(params => {
-      let productId = params.get('id')
-      this.detail(productId);
-    })
-  }
-
+  // Show Product detail by ProductID
   detail(id) {
     this.http.post("https://localhost:44320/api/Products/get-by-id/" + id, id).subscribe(result => {
       this.product = result;
@@ -48,6 +41,13 @@ export class ProductComponent implements OnInit {
       ProductID:this.product.productId,
       UserID:1
     }
+  }
+
+  ngOnInit() {
+    this.activateRoute.paramMap.subscribe(params => {
+      let productId = params.get('id')
+      this.detail(productId);
+    })
   }
 
 }
