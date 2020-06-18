@@ -12,6 +12,7 @@ export class MenComponent implements OnInit {
   public lstProduct: [];
   flag: string = "1";
   categoryName = "";
+  public keywords: any;
 
   products: any = {
     data: [],
@@ -25,10 +26,6 @@ export class MenComponent implements OnInit {
     private http: HttpClient,
     @Inject('BASE_URL') baseUrl: string) {
 
-  }
-
-  ngOnInit() {
-    this.searchProductByGender(1);
   }
 
   // Lấy danh sách sản phẩm theo tên của loại sản phẩm chọn ở phân loại
@@ -62,7 +59,20 @@ export class MenComponent implements OnInit {
       }, error => console.error(error));
   }
 
-  // Danh sách tất cả mặt hàng của Nam, hiện lên khi load trang Men
+  searchProductByProductName(cPage) {
+    let x = {
+      page: cPage,
+      size: 3,
+      keyword: this.keywords,
+      gender: false
+    }
+    this.http.post("https://localhost:44320/api/Products/search-product-by-gender", x).subscribe(result => {
+      this.products = result;
+      this.products = this.products.data;
+    }, error => console.error(error));
+  }
+
+  // Danh sách tất cả các mặt hàng của nam, hiện lên khi load trang Men
   searchProductByGender(cPage) {
     let x = {
       page: cPage,
@@ -163,5 +173,9 @@ export class MenComponent implements OnInit {
         alert("Bạn đang ở trang đầu tiên!");
       }
     }
+  }
+
+  ngOnInit() {
+    this.searchProductByGender(1);
   }
 }

@@ -9,7 +9,8 @@ export class WomenComponent implements OnInit {
   public res: any;
   public lstCategoryName: [];
   public lstProduct: [];
-  flag: string = "1";
+  public keywords:any;
+  flag:string ="1";
   categoryName = "";
 
   products: any = {
@@ -60,7 +61,20 @@ export class WomenComponent implements OnInit {
       }, error => console.error(error));
   }
 
-  // Danh sách tất cả mặt hàng của Nam, hiện lên khi load trang Women
+    searchProductByProductName(cPage) {
+      let x = {
+        page: cPage,
+        size: 3,
+        keyword: this.keywords,
+        gender: true
+      }
+      this.http.post("https://localhost:44320/api/Products/search-product-by-gender", x).subscribe(result => {
+        this.products = result;
+        this.products = this.products.data;
+      }, error => console.error(error));
+    }
+
+  // Danh sách tất cả mặt hàng của nữ, hiện lên khi load trang Women
   searchProductByGender(cPage) {
     let x = {
       page: cPage,

@@ -39,10 +39,9 @@ namespace clothing_store.DAL.Models
         {
             modelBuilder.Entity<Carts>(entity =>
             {
-                entity.HasKey(e => new { e.CartId, e.ProductId, e.UserId });
+                entity.HasKey(e => new {e.Size,  e.ProductId, e.UserId });
 
-                entity.Property(e => e.CartId)
-                    .HasColumnName("CartID");
+               
 
                 entity.Property(e => e.ProductId)
                 .HasColumnName("ProductID");
