@@ -25,29 +25,29 @@
                 <i class="fas fa-fw fa-user"></i>
                 <span>Danh sách</span>
             </a>
-            <div id="collapseTwo" class="collapse">
+            <div id="collapseTwo" class="collapse font-14">
                 <div class="py-2 collapse-inner bg-gray">
         <li>
             <a class="collapse-item text-decoration-none py-2 px-3 my-0 mx-2 " routerLink="/admin">
-                <i class="far fa-user"></i>
+                <i class="far fa-user mr-1"></i>
                 Người dùng
             </a>
         </li>
         <li>
             <a class="collapse-item text-decoration-none py-2 px-3 my-0 mx-2 " routerLink="/admin-products">
-                <i class="fas fa-tshirt"></i>
+                <i class="fas fa-tshirt mr-1"></i>
                 Sản phẩm
             </a>
         </li>
         <li>
             <a class="collapse-item text-decoration-none py-2 px-3 my-0 mx-2 " routerLink="/admin-category">
-                <i class="fa fa-list-ul"></i>
+                <i class="fa fa-list-ul mr-1"></i>
                 Loại sản phẩm
             </a>
         </li>
         <li>
             <a class="collapse-item text-decoration-none py-2 px-3 my-0 mx-2 " routerLink="/admin-promotion">
-                <i class="fas fa-bullhorn"></i>
+                <i class="fas fa-bullhorn mr-1"></i>
                 Khuyến mãi
             </a>
         </li>
@@ -60,7 +60,7 @@
         <span>Pages</span>
     </a>
     <div id="collapseThree" class="collapse">
-        <div class="py-2 collapse-inner bg-gray">
+        <div class="py-2 collapse-inner bg-gray font-14">
 <li><a class="collapse-item text-decoration-none py-2 px-3 my-0 mx-2" routerLink="/">Đăng nhập</a></li>
 <li><a class="collapse-item text-decoration-none py-2 px-3 my-0 mx-2" routerLink="/">Đăng ký</a></li>
 <li><a class="collapse-item text-decoration-none py-2 px-3 my-0 mx-2" routerLink="/">Quên mật khẩu</a></li>
@@ -116,14 +116,14 @@
             <!-- Begin Page Content -->
             <div class="container">
                 <!-- Page Heading -->
-                <h1 class="h3 my-3 text-gray font-4-all">Danh sách tài khoản</h1>
-                <div class="row d-flex align-items-baseline">
+                <h1 class="h3 my-3 text-gray font-4-all">Quản lý tài khoản người dùng</h1>
+                <div class="row d-flex align-items-baseline pl-3 pr-4">
                     <div class="col-5">
-                        <div class="content-top d-flex">
+                        <div class="content-top d-flex font-14">
                             <a href="#">
-                                Trang chủ/
+                                Trang chủ >
                             </a>
-                            <div class="ml-1">Danh sách/ Tài khoản</div>
+                            <div class="ml-1">Danh sách > Tài khoản</div>
                         </div>
                     </div>
                     <div class="col-7 input-group">
@@ -164,7 +164,7 @@
                                         <td>{{u.dob}}</td>
                                         <td>{{u.phoneNumber}}</td>
                                         <td class="text-center">{{u.roleId}}</td>
-                                        <td>
+                                        <td class="text-center">
                                             <div class="btn-group" role="group">
                                                 <button type="button" class="btn btn-primary" data-toggle="modal"
                                                     data-target="#exampleModal" (click)="openModal(i)">
@@ -192,7 +192,7 @@
                             <div class="dataTables_paginate paging_simple_numbers" id="dataTable_paginate">
                                 <ul class="pagination m-0 d-flex justify-content-end">
                                     <li class="paginate_button page-item previous ">
-                                        <a href="javascript:nè
+                                        <a href="javascript:
                                         void(0);" aria-controls="dataTable" data-dt-idx="0" (click)="searchPrevious()"
                                             tabindex="0" class="page-link">Trước </a>
                                     </li>
