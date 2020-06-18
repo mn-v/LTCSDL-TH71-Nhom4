@@ -91,18 +91,20 @@ namespace clothing_store.DAL
             var res = new SingleRsp();
             var list = Context.Carts
                .Where(x => x.UserId == userId).ToList();
-            for (int i = 0; i < list.Count; i++)
-            {
-                Carts carts = list.FirstOrDefault();
+            
+                
                 using (var context = new OnlineStoreContext())
                 {
                     using (var tran = context.Database.BeginTransaction())
                     {
                         try
                         {
-                            var t = context.Carts.Remove(carts);
-                            context.SaveChanges();
-                            tran.Commit();
+                            foreach (Carts cart in list)
+                            {
+                                var t = context.Carts.Remove(cart);
+                                context.SaveChanges();
+                                tran.Commit();
+                            }
                         }
                         catch (Exception ex)
                         {
@@ -111,7 +113,7 @@ namespace clothing_store.DAL
                         }
                     }
                 }
-            }
+           
             return res;
         }
 
