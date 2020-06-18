@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
   selector: 'app-accessories',
   templateUrl: './accessories.component.html'
 })
+
 export class AccessoriesComponent implements OnInit {
 
   products: any = {
@@ -71,4 +72,3 @@ export class AccessoriesComponent implements OnInit {
     }
   }
 }
-

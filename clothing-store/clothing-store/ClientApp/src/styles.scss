@@ -9,7 +9,7 @@ body {
     font-family: 'Montserrat', 'Roboto', sans-serif;
 }
 
-li{
+li {
     list-style-type: none;
 }
 
@@ -37,10 +37,10 @@ a {
 
 // BUTTON
 .caption__button {
-    border: none;
+    border       : none;
     border-radius: 30px;
-    
-    padding      : 0.75rem 3rem;
+
+    padding: 0.75rem 3rem;
 
     letter-spacing: 1px;
 
@@ -52,22 +52,39 @@ a {
 
 // SPACING
 .d-flex-center {
-    display: flex;
-    align-items: center;
+    display        : flex;
+    align-items    : center;
     justify-content: center;
 }
 
 // BOOTSTRAP DEFAULT
-.btn.focus, .btn:focus {
-    box-shadow: none!important;
+.btn.focus,
+.btn:focus {
+    box-shadow: none !important;
+}
+
+.product--block {
+    padding: 0 0.5rem;
 }
 
 @media only screen and (max-width: 768px) {
-    #map
-    {
-        padding-left: 2rem;
+    // CONTACT PAGE
+    #map {
+        padding-left: 1.5rem;
+
         iframe {
             width: 100%;
-        }   
-    } 
+        }
+    }
+
+    // LOGIN PAGE
+    #login {
+        .txt-login  {
+            margin-bottom: 1.5rem!important;
+        }
+        .btn-login, .question--login {
+            margin-top: 1rem!important;
+        }
+    }
+    
 }

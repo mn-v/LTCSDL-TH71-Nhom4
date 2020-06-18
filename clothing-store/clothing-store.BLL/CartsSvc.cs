@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-using clothing_store.Common.Rsp;
+﻿using clothing_store.Common.Rsp;
 using clothing_store.Common.BLL;
 
 namespace clothing_store.BLL
@@ -10,8 +6,6 @@ namespace clothing_store.BLL
     using clothing_store.Common.Req;
     using clothing_store.DAL.Models;
     using DAL;
-    using System.Linq;
-    using System.Reflection.Metadata.Ecma335;
 
     public class CartsSvc : GenericSvc<CartsRep, Carts>
     {
@@ -55,6 +49,7 @@ namespace clothing_store.BLL
         }
         #endregion
 
+        #region -- Methods --
         public SingleRsp CreateCart(CartsReq cart)
         {
             var res = new SingleRsp();
@@ -75,8 +70,6 @@ namespace clothing_store.BLL
             var res = new SingleRsp();
             res = _rep.UpdateCart(UserId, Size, Quantity);
             return res;
-
-            
         }
 
         public SingleRsp DeleteCart(int UserId)

@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace clothing_store.Controllers
 {
     using BLL;
-    using DAL.Models;
     using Common.Req;
     using Common.Rsp;
 
@@ -37,7 +31,7 @@ namespace clothing_store.Controllers
             return Ok(res);
         }
 
-        //thêmSS
+        // Create new
         [HttpPost("create-cart")]
         public IActionResult CreateCart([FromBody] CartsReq req)
         {
@@ -46,7 +40,7 @@ namespace clothing_store.Controllers
             return Ok(res);
         }
 
-        //sửa
+        // Edit
         [HttpPost("update-cart")]
         public IActionResult UpdateCart([FromBody] CartsReq req)
         {
@@ -55,7 +49,7 @@ namespace clothing_store.Controllers
             return Ok(res);
         }
 
-        //xóa
+        // Delete
         [HttpPost("delete-cart")]
         public IActionResult DeleteCart([FromBody] CartsReq req)
         {

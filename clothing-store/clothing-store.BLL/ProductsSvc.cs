@@ -43,8 +43,6 @@ namespace clothing_store.BLL
         #endregion
 
         #region -- Methods --
-
-
         public object SearchProduct(String keyword, int page, int size)
         {
             var pro = All.Where(x => x.ProductName.Contains(keyword));

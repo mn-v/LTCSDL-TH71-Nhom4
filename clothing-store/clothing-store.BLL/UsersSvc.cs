@@ -1,16 +1,16 @@
 ﻿using clothing_store.Common.BLL;
+using clothing_store.Common.Req;
 using clothing_store.Common.Rsp;
 using clothing_store.DAL;
 using clothing_store.DAL.Models;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace clothing_store.BLL
 {
     public class UsersSvc : GenericSvc<UsersRep, Users>
     {
+        #region -- Override --
         public override SingleRsp Read(int id)
         {
             var res = new SingleRsp();
@@ -18,6 +18,35 @@ namespace clothing_store.BLL
             var m = _rep.Read(id);
             res.Data = m;
 
+            return res;
+        }
+
+        public SingleRsp CreateUser(UsersReq use)
+        {
+            var res = new SingleRsp();
+            Users users = new Users();
+            users.UserName = use.UserName;
+            users.Password = use.PassWord;
+            users.PhoneNumber = use.PhoneNumber;
+            users.Email = use.Email;
+            users.Dob = use.Dob;
+            users.RoleId = use.RoleId;
+
+            res = _rep.CreateUser(users);
+            return res;
+        }
+        public int DeleteUser(int id)
+        {
+            return _rep.DeleteUser(id);
+        }
+        #endregion
+
+        #region -- Methods --
+
+        public SingleRsp UpdateUser(int UserId, string UserName, string Password, string PhoneNumber, string Dob, string Email, int RoleId)
+        {
+            var res = new SingleRsp();
+            res = _rep.UpdateUser(UserId, UserName, Password, PhoneNumber, Dob, Email, RoleId);
             return res;
         }
 
@@ -40,9 +69,10 @@ namespace clothing_store.BLL
             };
             return res;
         }
-        public object CheckAcc(String user, String pass)
+        public object CheckAcc_Linq(String username, String password)
         {
-            return _rep.CheckAcc(user, pass);
+            return _rep.CheckAcc_Linq(username, password);
         }
+        #endregion
     }
 }

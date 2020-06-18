@@ -1,4 +1,5 @@
 ﻿using clothing_store.Common.DAL;
+using clothing_store.Common.Rsp;
 using clothing_store.DAL.Models;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
@@ -6,7 +7,6 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using System.Text;
 
 namespace clothing_store.DAL
 {
@@ -17,48 +17,82 @@ namespace clothing_store.DAL
             var res = All.FirstOrDefault(u => u.UserId == id);
             return res;
         }
-
-        public object CheckAcc(String user, String pass)
+        public SingleRsp CreateUser(Users users)
         {
-            List<object> res = new List<object>();
-            var cnn = (SqlConnection)Context.Database.GetDbConnection();
-            if (cnn.State == ConnectionState.Closed)
+            var res = new SingleRsp();
+            using (var context = new OnlineStoreContext())
             {
-                cnn.Open();
-            }
-            try
-            {
-                SqlDataAdapter da = new SqlDataAdapter();
-                DataSet ds = new DataSet();
-
-                var cmd = cnn.CreateCommand();
-
-                cmd.CommandText = "[CheckAcc]";
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@user", user);
-                cmd.Parameters.AddWithValue("@pass", pass);
-                da.SelectCommand = cmd;
-                da.Fill(ds);
-
-                if (ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
+                using (var tran = context.Database.BeginTransaction())
                 {
-                    foreach (DataRow row in ds.Tables[0].Rows)
+                    try
                     {
-                        var x = new
-                        {
-                            RoleID = row["RoleID"],         
-                        };
-                        res.Add(x);
+                        var t = context.Users.Add(users);
+                        context.SaveChanges();
+                        tran.Commit();
+                    }
+                    catch (Exception ex)
+                    {
+                        tran.Rollback();
+                        res.SetError(ex.StackTrace);
                     }
                 }
             }
-            catch (Exception ex)
-            {
-                res = null;
-            }
-
             return res;
         }
+
+        public int DeleteUser(int id)
+        {
+            var res = 0;
+            var context = new OnlineStoreContext();
+            var use = base.All.FirstOrDefault(u => u.UserId == id);
+            if (use != null)
+            {
+                context.Users.Remove(use);
+                res = context.SaveChanges();
+            }
+            return res;
+        }
+
+        public SingleRsp UpdateUser(int UserId, string UserName, string Password, string PhoneNumber, string Dob, string Email, int RoleId)
+        {
+            var res = new SingleRsp();
+            using (var context = new OnlineStoreContext())
+            {
+                using (var tran = context.Database.BeginTransaction())
+                {
+                    try
+                    {
+                        Users use = Context.Users.Where(x => x.UserId == UserId).ToList().FirstOrDefault();
+                        use.UserName = UserName;
+                        use.Password = Password;
+                        use.PhoneNumber = PhoneNumber;
+                        use.Dob = Dob;
+                        use.Email = Email;
+                        use.RoleId = RoleId;
+                        var t = context.Users.Update(use);
+                        context.SaveChanges();
+                        tran.Commit();
+                    }
+                    catch (Exception ex)
+                    {
+                        tran.Rollback();
+                        res.SetError(ex.StackTrace);
+                    }
+                }
+            }
+            return res;
+        }
+        public object CheckAcc_Linq(String username, String password)
+        {
+            var res = Context.Users
+                .Where(x => x.UserName == username && x.Password == password)
+                .Select(u => new {
+                    u.UserId,
+                    u.RoleId
+                }).ToList();
+            return res;
+        }
+     
 
     }
 }

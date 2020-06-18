@@ -1,6 +1,4 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace clothing_store.DAL.Models
 {
@@ -27,7 +25,7 @@ namespace clothing_store.DAL.Models
         public virtual DbSet<Size> Size { get; set; }
         public virtual DbSet<Transactions> Transactions { get; set; }
         public virtual DbSet<Users> Users { get; set; }
-        public object Contact { get; internal set; }
+        public virtual DbSet<Contact> Contact { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -313,9 +311,6 @@ namespace clothing_store.DAL.Models
                 entity.Property(e => e.UserId)
                     .HasColumnName("UserID");
 
-                entity.Property(e => e.Address)
-                    .HasMaxLength(255);
-
                 entity.Property(e => e.Dob)
                     .IsRequired()
                     .HasColumnName("DOB")
@@ -326,8 +321,7 @@ namespace clothing_store.DAL.Models
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
-                entity.Property(e => e.FullName)
-                    .HasMaxLength(100);
+          
 
                 entity.Property(e => e.Password)
                     .IsRequired()
@@ -337,8 +331,8 @@ namespace clothing_store.DAL.Models
                 entity.Property(e => e.PhoneNumber)
                     .IsRequired()
                     .HasMaxLength(10)
-                    .IsUnicode(false)
-                    .IsFixedLength();
+                    .IsUnicode(false);
+              
 
                 entity.Property(e => e.RoleId).HasColumnName("RoleID");
 

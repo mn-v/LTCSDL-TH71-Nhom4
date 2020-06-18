@@ -1,16 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace clothing_store.Controllers
 {
     using BLL;
-    using DAL.Models;
     using Common.Req;
-    using System.Collections;
     using Common.Rsp;
 
     [Route("api/[controller]")]
@@ -48,7 +41,7 @@ namespace clothing_store.Controllers
             return Ok(res);
         }
 
-        //thêm
+        // Create new
         [HttpPost("create-product")]
         public IActionResult CreateProduct([FromBody] ProductsReq req)
         {
@@ -57,7 +50,7 @@ namespace clothing_store.Controllers
             return Ok(res);
         }
 
-        //sửa
+        // Edit
         [HttpPost("update-product")]
         public IActionResult UpdateProduct([FromBody] ProductsReq req)
         {
@@ -110,7 +103,7 @@ namespace clothing_store.Controllers
             return Ok(res);
         }
 
-        //Product-Sale
+        // Product-Sale
         [HttpPost("get-product-sale-linq")]
         public IActionResult GetSP_ProductSale([FromBody]ProductsReq req)
         {
@@ -120,7 +113,7 @@ namespace clothing_store.Controllers
             return Ok(res);
         }
 
-        //Product-Accessories
+        // Product-Accessories
         [HttpPost("get-product-accessories-linq")]
         public IActionResult GetSP_ProductAccessories([FromBody]ProductsReq req)
         {
