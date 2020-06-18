@@ -53,7 +53,7 @@ namespace clothing_store.Controllers
         [HttpPost("delete-cart")]
         public IActionResult DeleteCart([FromBody] CartsReq req)
         {
-            var res = _svc.DeleteCart(req.CartId);
+            var res = _svc.DeleteCart(req.UserId);
 
             return Ok(res);
         }

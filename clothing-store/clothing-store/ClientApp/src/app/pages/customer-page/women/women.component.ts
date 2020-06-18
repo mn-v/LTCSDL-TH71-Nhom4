@@ -9,6 +9,7 @@ export class WomenComponent implements OnInit {
   public res: any;
   public lstCategoryName: [];
   public lstProduct: [];
+  public keywords:any;
   flag:string ="1";
   categoryName = "";
 
@@ -59,6 +60,19 @@ export class WomenComponent implements OnInit {
         this.lstCategoryName = this.res.data;
       }, error => console.error(error));
   }
+
+    searchProductByProductName(cPage) {
+      let x = {
+        page: cPage,
+        size: 3,
+        keyword: this.keywords,
+        gender: true
+      }
+      this.http.post("https://localhost:44320/api/Products/search-product-by-gender", x).subscribe(result => {
+        this.products = result;
+        this.products = this.products.data;
+      }, error => console.error(error));
+    }
 
   //danh sach tat ca mat hang cua nu, hien len khi load sang trang women
   searchProductByGender(cPage) {

@@ -2,7 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 import { WomenComponent } from '../women/women.component';
-
+import { CookieService } from 'ngx-cookie-service';
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
@@ -17,7 +17,7 @@ export class ProductComponent implements OnInit {
   quanity:any;
   
   constructor(private activateRoute: ActivatedRoute, private http: HttpClient,
-    @Inject('BASE_URL') baseUrl: string) { 
+    @Inject('BASE_URL') baseUrl: string, private cookieService: CookieService) { 
 
   }
 
@@ -40,6 +40,7 @@ export class ProductComponent implements OnInit {
       let productId = params.get('id')
       this.detail(productId);
     })
+    var UserId = parseInt(this.cookieService.get("userId"));
     let x =  {
       Size:this.size,
       UnitPrice:this.product.price,
