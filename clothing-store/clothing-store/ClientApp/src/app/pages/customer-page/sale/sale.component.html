@@ -1,5 +1,6 @@
 <div class="container">
-    <div class="text-secondary font-12 px-3 py-2 my-3" style="background-color: var(--whitesmoke); width: 100%;">
+    <div class="row py-3">
+    <div class="text-secondary font-12 px-3 py-2 mx-3 mb-3" style="background-color: var(--whitesmoke); width: 100%;">
         Trang chủ/ Sản phẩm sale</div>
 
     <div class="d-flex flex-wrap mb-3" *ngIf="products.totalRecord">
@@ -20,9 +21,10 @@
             </div>
         </div>
     </div>
+    </div>
 
     <!-- Pagination  -->
-    <div>
+    <div class="d-flex justify-content-end">
         <ul class="pagination d-flex justify-content-end align-items-center">
             <li class="page-item">
                 <a href="javascript:void(0)" (click)="searchPrevious()"><i class="fas fa-long-arrow-alt-left"></i></a>

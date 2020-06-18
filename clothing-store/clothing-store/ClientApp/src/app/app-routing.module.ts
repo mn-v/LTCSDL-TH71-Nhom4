@@ -9,6 +9,7 @@ import { SaleComponent } from './pages/customer-page/sale/sale.component';
 import { AccessoriesComponent } from './pages/customer-page/accessories/accessories.component';
 import { ContactComponent } from './pages/customer-page/contact/contact.component';
 import { CartComponent } from './pages/customer-page/cart/cart.component';
+import { CheckoutComponent } from './pages/customer-page/checkout/checkout.component';
 import { ProductComponent } from './pages/customer-page/product/product.component';
 
 // ADMIN PAGES
@@ -29,6 +30,7 @@ const routes: Routes = [
   { path: 'accessories', component: AccessoriesComponent },
   { path: 'contact', component: ContactComponent },
   { path: 'cart', component: CartComponent },
+  { path: 'check-out', component: CheckoutComponent },
   { path: 'product-detail', component: ProductComponent },
   
   // ADMIN

@@ -15,6 +15,7 @@ import { AccessoriesComponent } from './pages/customer-page/accessories/accessor
 import { ContactComponent } from './pages/customer-page/contact/contact.component';
 import { CartComponent } from './pages/customer-page/cart/cart.component';
 import { ProductComponent } from './pages/customer-page/product/product.component';
+import { CheckoutComponent } from './pages/customer-page/checkout/checkout.component';
 
 // ADMIN PAGES
 import { AdminComponent } from './pages/admin-page/admin/admin.component';
@@ -25,7 +26,6 @@ import { AdminPromotionComponent } from './pages/admin-page/admin-promotion/admi
 // COMPONENTS
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { CartItemComponent } from './pages/customer-page/cart/cart-item/cart-item.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 
 // FUNCTIONS
@@ -51,8 +51,8 @@ import { SignupComponent } from './pages/signup/signup.component';
     AdminProductsComponent,
     AdminCategoryComponent,
     AdminPromotionComponent,
-    CartItemComponent,
-    SidebarComponent
+    SidebarComponent,
+    CheckoutComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

@@ -1,6 +1,7 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -42,7 +43,7 @@ export class LoginComponent {
           this.cookieService.set("userId", userId);
         }
 
-        // Lấy userId
+        // Lấy UserId
         else
           alert("Tài khoản hoặc mật khẩu không đúng!");
       }, error => console.error(error));
