@@ -85,6 +85,35 @@ namespace clothing_store.DAL
             return res;
         }
 
+        public object SearchCategory(String keyword, int page, int size)
+        {
+            var category = Context.Categories.Select(p => new
+            {
+                p.CategoryId,
+                p.CategoryName,
+                p.Title,
+                p.Description,
+                p.Gender,
+                GioiTinh = p.Gender == true ? "Nữ" : "Nam"
+                //int totalPage = (total % size) == 0 ? (int)(total / size) : (int)((total / size) + 1);
+            }).Where(x => x.CategoryName.Contains(keyword));
+
+            var offset = (page - 1) * size;
+            var total = category.Count();
+            int totalPages = (total % size) == 0 ? (int)(total / size) : (int)((total / size) + 1);
+            var data = category.OrderBy(x => x.CategoryName).Skip(offset).Take(size).ToList();
+
+            var res = new
+            {
+                Data = data,
+                TotalRecord = total,
+                TotalPages = totalPages,
+                Page = page,
+                Size = size
+            };
+            return res;
+        }
+
         #endregion
 
         public object GetCategoryNameByGender_Linq(bool gender)

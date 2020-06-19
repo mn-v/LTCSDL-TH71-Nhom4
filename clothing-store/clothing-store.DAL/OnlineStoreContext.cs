@@ -15,7 +15,6 @@ namespace clothing_store.DAL.Models
 
         public virtual DbSet<Carts> Carts { get; set; }
         public virtual DbSet<Categories> Categories { get; set; }
-        
         public virtual DbSet<OrderDetails> OrderDetails { get; set; }
         public virtual DbSet<Orders> Orders { get; set; }
         public virtual DbSet<ProductSize> ProductSize { get; set; }

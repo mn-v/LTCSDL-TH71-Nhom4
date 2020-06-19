@@ -25,6 +25,18 @@ namespace clothing_store.DAL
 
         #region -- Methods --
 
+        public object GetAll()
+        {
+            var res = Context.Promotion.Select(p => new
+            {
+                p.PromotionId,
+                p.PromotionName,
+                p.DiscountPercent,
+                SalePercent = String.Format("{0:0}%", p.DiscountPercent * 100),
+                Discount = p.DiscountPercent * 100
+            });
+            return res;
+        }
         public SingleRsp CreatePromotion(Promotion promotion)
         {
             var res = new SingleRsp();
@@ -71,15 +83,55 @@ namespace clothing_store.DAL
             return res;
         }
 
-        public int DeletePromotion(int id)
+        public object SearchPromotion(String keyword, int page, int size)
         {
-            var res = 0;
-            var context = new OnlineStoreContext();
-            var promotion = base.All.FirstOrDefault(p => p.PromotionId == id);
-            if (promotion != null)
+            var pro = Context.Promotion.Select(p => new
             {
-                context.Promotion.Remove(promotion);
-                res = context.SaveChanges();
+                p.PromotionId,
+                p.PromotionName,
+                p.DiscountPercent,
+                SalePercent = String.Format("{0:0}%", p.DiscountPercent * 100),
+                Discount = p.DiscountPercent * 100
+            }).Where(x => x.PromotionName.Contains(keyword));
+
+            var offset = (page - 1) * size;
+            var total = pro.Count();
+            int totalPages = (total % size) == 0 ? (int)(total / size) : (int)((total / size) + 1);
+            var data = pro.OrderBy(x => x.PromotionName).Skip(offset).Take(size).ToList();
+
+            var res = new
+            {
+                Data = data,
+                TotalRecord = total,
+                TotalPages = totalPages,
+                Page = page,
+                Size = size
+            };
+            return res;
+        }
+
+        public SingleRsp DeletePromotion(int id)
+        {
+            var res = new SingleRsp();
+            var list = Context.Promotion
+               .Where(x => x.PromotionId == id).ToList();
+            Promotion promotion = list.FirstOrDefault();
+            using (var context = new OnlineStoreContext())
+            {
+                using (var tran = context.Database.BeginTransaction())
+                {
+                    try
+                    {
+                        var t = context.Promotion.Remove(promotion);
+                        context.SaveChanges();
+                        tran.Commit();
+                    }
+                    catch (Exception ex)
+                    {
+                        tran.Rollback();
+                        res.SetError(ex.StackTrace);
+                    }
+                }
             }
             return res;
         }
