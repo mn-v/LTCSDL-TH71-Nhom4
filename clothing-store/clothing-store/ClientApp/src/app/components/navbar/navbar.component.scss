@@ -1,4 +1,5 @@
-header, #toggle-menu {
+header,
+#toggle-menu {
     position: sticky;
     top     : 0;
     z-index : 1000;
@@ -51,19 +52,30 @@ header, #toggle-menu {
     }
 
     i:focus {
-        outline: none!important;
+        outline: none !important;
     }
-    
+
 }
 
 .cart--icon {
     position: relative;
 
     .cart--show {
-        // display: none;
+        display: none;
 
         width     : 20rem;
         max-height: 25rem;
+
+        .product--name__hover {
+            &:hover {
+                cursor: pointer;
+                color : var(--darkred);
+            }
+
+            &:focus {
+                outline: none;
+            }
+        }
     }
 }
 
@@ -77,6 +89,14 @@ header, #toggle-menu {
         p:hover {
             background-color: var(--whitesmoke);
             color           : var(--darkred);
+        }
+
+        p:focus {
+            outline: none;
+        }
+
+        .user--func__hover:hover {
+            cursor: pointer;
         }
     }
 }
@@ -103,26 +123,14 @@ header, #toggle-menu {
 }
 
 // Triangle
-.cart--show {
+.cart--show,
+.user--func--show {
     &::after {
         top  : -1.5rem;
-        right: 3.9rem;
+        right: 4rem;
 
         border       : 12px solid transparent;
         border-bottom: 12px solid white;
-    }
-}
-
-.user--func--show {
-    &::after {
-        top  : -1rem;
-        right: 4.2rem;
-
-        border       : 8px solid transparent;
-        border-bottom: 8px solid white;
-    }
-    p:focus {
-        outline: none;
     }
 }
 

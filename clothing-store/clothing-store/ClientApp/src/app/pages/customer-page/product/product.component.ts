@@ -10,11 +10,11 @@ import { CookieService } from 'ngx-cookie-service';
 })
 export class ProductComponent implements OnInit {
   product: any = {
-    data: []
+    data: [],
   }
   size:any;
   quanity:any;
-  
+    
   constructor(private activateRoute: ActivatedRoute, private http: HttpClient,
     @Inject('BASE_URL') baseUrl: string, private cookieService: CookieService) { 
 
