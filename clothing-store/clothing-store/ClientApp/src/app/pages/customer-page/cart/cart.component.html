@@ -9,12 +9,12 @@
 
         <div class="product--header--container mb-2">
             <div class="row product--header font-15 p-3 m-0" style="background-color: var(--whitesmoke);">
-                <div style="width:30%;">Sản phẩm</div>
+                <div style="width:25%;">Sản phẩm</div>
                 <div class="product--header__color">Size</div>
                 <div class="product--header__color">Đơn giá</div>
                 <div class="product--header__color">Giá sale</div>
                 <div class="product--header__color">Số lượng</div>
-                <div class="product--header__color">Số tiền</div>
+                <div class="product--header__color">Thành tiền</div>
                 <div class="product--header__color">Thao tác</div>
             </div>
         </div>
@@ -23,10 +23,10 @@
 
         <div class="product--body--container p-3" >
             <div class="product--body row font-15 m-0" *ngFor="let p of cart">
-                <div style="width:30%;">
+                <div style="width:25%;">
                     <div class="product--img--container d-flex">
-                        <img class="product--img" src="./assets/images/men/tee/1.jpg" style="width: 30%;">
-                        <h6 class="product--name pl-4">{{p.productName}}</h6>
+                        <img class="product--img" src="./assets/images/men/tee/1.jpg" style="width: 40%;">
+                        <h6 class="product--name pl-4 font-14">{{p.productName}}</h6>
                     </div>
                 </div>
                 <div class="product--body--details">{{p.size}}</div>
@@ -37,8 +37,6 @@
                 <div class="product--body--details product__trash"><i class="far fa-trash-alt"></i></div>
             </div>
         </div>
-
-
 
         <div id="delivery" class="row p-3 font-14 m-0"><i class="fas fa-truck-moving mr-2"></i>Miễn phí vận chuyển cho
             đơn
