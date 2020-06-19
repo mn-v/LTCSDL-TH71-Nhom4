@@ -93,7 +93,20 @@ namespace clothing_store.DAL
             return res;
         }
 
-        
+        public object GetUserId_Linq(String username, String password)
+        {
+            var user = Context.Users
+                .Where(x => x.UserName == username && x.Password == password)
+                .Select(u => new {
+                    u.UserId
+                }).ToList();
+            var res = user.First();
+            return res;
+        }
+
+
+
+
 
 
     }

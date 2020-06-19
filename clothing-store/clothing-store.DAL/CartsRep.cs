@@ -125,6 +125,40 @@ namespace clothing_store.DAL
             return list;
         }
 
+        public object GetCart_Linq(int UserId)
+        {
+            var res = Context.Carts
+                .Join(Context.Products, a => a.ProductId, b => b.ProductId, (a, b) => new
+                {
+                    a.ProductId,
+                    a.Size,
+                    a.Quantity,
+                    b.Price,
+                    b.PromotionId,
+                    b.DateCreate,
+                    b.ImageSource,
+                    a.UserId,
+                    b.ProductName
+                })
+                .Join(Context.Promotion, a => a.PromotionId, b => b.PromotionId, (a, b) => new
+                {
+                    a.ProductId,
+                    a.Size,
+                    a.Quantity,
+                    a.Price,
+                    a.PromotionId,
+                    a.DateCreate,
+                    a.ImageSource,
+                    a.UserId,
+                    b.DiscountPercent,
+                    PriceSale = (decimal)(1 - b.DiscountPercent) * a.Price,
+                    a.ProductName,
+                    Total = (decimal)(1 - b.DiscountPercent) * a.Price * a.Quantity
+
+                }).Where(x => x.UserId == UserId).ToList();
+            
+            return res;
+        }
         #endregion
     }
 }
