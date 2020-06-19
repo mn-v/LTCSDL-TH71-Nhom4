@@ -31,10 +31,13 @@ namespace clothing_store.DAL
         public SingleRsp CreateCart(Carts carts)
         {
             var res = new SingleRsp();
-            if (Context.Carts.Where(x => x.UserId == carts.UserId).ToList().Count != 0 && Context.Carts.Where(x => x.ProductId == carts.ProductId).ToList().Count != 0 && (Context.Carts.Where(x => x.Size == carts.Size).ToList().Count != 0))
+            var pro = Context.Carts.Where(x => x.UserId == carts.UserId)
+                .Where(x => x.ProductId == carts.ProductId)
+                .Where(x => x.Size == carts.Size).ToList();
+            if (pro.Count != 0)
             {
-                carts.Quantity += Context.Carts.Where(x => x.Size == carts.Size).ToList().FirstOrDefault().Quantity;
-                res = UpdateCart(carts.UserId, carts.Size, carts.Quantity);
+                carts.Quantity += pro.FirstOrDefault().Quantity;
+                res = UpdateCart(carts.UserId, carts.ProductId, carts.Size, carts.Quantity);
             }
             else
                 using (var context = new OnlineStoreContext())
@@ -58,7 +61,7 @@ namespace clothing_store.DAL
         }
 
         //Update -- chỉ sửa size và số lượng
-        public SingleRsp UpdateCart(int UserId, string Size, short Quantity)
+        public SingleRsp UpdateCart(int UserId, int ProductId, string Size, short Quantity)
         {
             var res = new SingleRsp();
             
@@ -68,8 +71,9 @@ namespace clothing_store.DAL
                 {
                     try
                     {
-                        Carts carts = Context.Carts.Where(x => x.UserId == UserId).ToList().FirstOrDefault();
-                        carts.Size = Size;
+                        Carts carts = Context.Carts.Where(x => x.UserId == UserId)
+                            .Where(x => x.ProductId == ProductId)
+                            .Where(x => x.Size == Size).FirstOrDefault();
                         carts.Quantity = Quantity;
                         var t = context.Carts.Update(carts);
                         context.SaveChanges();
@@ -90,26 +94,28 @@ namespace clothing_store.DAL
         {
             var res = new SingleRsp();
             var list = Context.Carts
-               .Where(x => x.UserId == userId).ToList();
-            
-                
+               .Where(x => x.UserId == userId)
+               .ToList();
+
                 using (var context = new OnlineStoreContext())
                 {
                     using (var tran = context.Database.BeginTransaction())
                     {
-                        try
+                        foreach (Carts cart in list)
                         {
-                            foreach (Carts cart in list)
+                            try
                             {
+
                                 var t = context.Carts.Remove(cart);
                                 context.SaveChanges();
                                 tran.Commit();
+
                             }
-                        }
-                        catch (Exception ex)
-                        {
-                            tran.Rollback();
-                            res.SetError(ex.StackTrace);
+                            catch (Exception ex)
+                            {
+                                tran.Rollback();
+                                res.SetError(ex.StackTrace);
+                            }
                         }
                     }
                 }
@@ -123,6 +129,34 @@ namespace clothing_store.DAL
             var list = Context.Carts
                .Where(x => x.UserId == userId).ToList();
             return list;
+        }
+
+        //Xóa sản phẩm trong Cart
+        public SingleRsp DeleteProductCart(Carts cart)
+        {
+            var res = new SingleRsp();
+            
+
+
+            using (var context = new OnlineStoreContext())
+            {
+                using (var tran = context.Database.BeginTransaction())
+                {
+                    try
+                    {
+                        var t = context.Carts.Remove(cart);
+                        context.SaveChanges();
+                        tran.Commit();
+                    }
+                    catch (Exception ex)
+                    {
+                        tran.Rollback();
+                        res.SetError(ex.StackTrace);
+                    }
+                }
+            }
+            res.Data = "Delete-OK";
+            return res;
         }
 
         public object GetCart_Linq(int UserId)

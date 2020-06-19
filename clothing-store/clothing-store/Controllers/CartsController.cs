@@ -3,6 +3,7 @@
 namespace clothing_store.Controllers
 {
     using BLL;
+    using clothing_store.DAL.Models;
     using Common.Req;
     using Common.Rsp;
 
@@ -44,7 +45,7 @@ namespace clothing_store.Controllers
         [HttpPost("update-cart")]
         public IActionResult UpdateCart([FromBody] CartsReq req)
         {
-            var res = _svc.UpdateCart(req.UserId, req.Size, req.Quantity);
+            var res = _svc.UpdateCart(req.UserId, req.ProductId, req.Size, req.Quantity);
 
             return Ok(res);
         }
@@ -55,6 +56,15 @@ namespace clothing_store.Controllers
         {
             var res = _svc.DeleteCart(req.UserId);
 
+            return Ok(res);
+
+        }
+            // Delete
+        [HttpPost("delete-product-cart")]
+        public IActionResult DeleteProductCart(Carts c)
+        {
+            var res = _svc.DeleteProductCart(c);
+            
             return Ok(res);
         }
 
