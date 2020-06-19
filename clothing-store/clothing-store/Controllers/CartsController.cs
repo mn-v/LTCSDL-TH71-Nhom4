@@ -67,6 +67,16 @@ namespace clothing_store.Controllers
             return Ok(res);
         }
 
+            //get cart
+        [HttpGet("get-cart/{id}")]
+        public IActionResult GetCart_Linq(int id)
+        {
+            var res = new SingleRsp();
+            var pro = _svc.GetCart_Linq(id);
+            res.Data = pro;
+            return Ok(res);
+        }
+
         private readonly CartsSvc _svc;
     }
 }

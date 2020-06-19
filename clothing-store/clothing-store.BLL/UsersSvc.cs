@@ -73,6 +73,10 @@ namespace clothing_store.BLL
         {
             return _rep.CheckAcc_Linq(username, password);
         }
+        public object GetUserId_Linq(String username, String password)
+        {
+            return _rep.GetUserId_Linq(username, password);
+        }
         #endregion
     }
 }

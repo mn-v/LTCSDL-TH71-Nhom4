@@ -9,6 +9,10 @@ import { CookieService } from 'ngx-cookie-service';
 
 export class LoginComponent {
   headerFooter: boolean;
+
+  usertk: any = {
+    data: []
+  };
   user: string = null;
   pass: string = null;
   result: any = [];
@@ -39,13 +43,19 @@ export class LoginComponent {
         else if (res.data.find(u => u.roleId == 2)) {
           alert("Đăng nhập thành công!");
           window.open('https://localhost:44320/');
-          userId = (this.result[0].userId).toString();
+          
+          //Lấy userId
+          this.http.post("https://localhost:44320/api/Users/get-userId" , x).subscribe(result => {
+          this.usertk = result;
+          this.usertk = this.usertk.data;
+          }, error => console.error(error));
+          //
+
+          userId = (this.usertk.userId).toString();
           this.cookieService.set("userId", userId);
         }
-
-        // Lấy UserId
-        else
-          alert("Tài khoản hoặc mật khẩu không đúng!");
+       else alert("Tài khoản hoặc mật khẩu không đúng!");
+        
       }, error => console.error(error));
   }
 }

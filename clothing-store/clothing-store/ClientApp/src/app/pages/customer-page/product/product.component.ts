@@ -10,44 +10,76 @@ import { CookieService } from 'ngx-cookie-service';
 })
 export class ProductComponent implements OnInit {
   product: any = {
-    data: [],
-  }
+    data: []
+  };
+
+  cart: any = {
+    data: []
+  };
+  
+  userId:any;
   size:any;
   quanity:any;
-    
+  sizeTK:any;
+  
   constructor(private activateRoute: ActivatedRoute, private http: HttpClient,
     @Inject('BASE_URL') baseUrl: string, private cookieService: CookieService) { 
 
-  }
-
-  // Show Product detail by ProductID
-  detail(id) {
-    this.http.post("https://localhost:44320/api/Products/get-by-id/" + id, id).subscribe(result => {
-      this.product = result;
-      this.product = this.product.data;
-    }, error => console.error(error));
-  }
-
-  AddProductCart() {
-    this.activateRoute.paramMap.subscribe(params => {
-      let productId = params.get('id')
-      this.detail(productId);
-    })
-    var UserId = parseInt(this.cookieService.get("userId"));
-    let x =  {
-      Size:this.size,
-      UnitPrice:this.product.price,
-      Quantity:this.quanity,
-      ProductID:this.product.productId,
-      UserID:1
-    }
   }
 
   ngOnInit() {
     this.activateRoute.paramMap.subscribe(params => {
       let productId = params.get('id')
       this.detail(productId);
+      this.userId = parseInt(this.cookieService.get("userId"));
+      
     })
   }
 
+  detail(id) {
+    this.http.post("https://localhost:44320/api/Products/get-by-id/" + id, id).subscribe(result => {
+      this.product = result;
+      this.product = this.product.data;
+    }, error => console.error(error));
+    
+  }
+
+  AddProductCart() {
+      this.activateRoute.paramMap.subscribe(params => {
+        let productId = params.get('id')
+        this.detail(productId);
+      })
+      
+      
+      if  (this.quanity == 0) {
+        this.quanity = 1;
+      }
+
+
+      if (this.size == 2) {
+        this.sizeTK = "S";
+      } 
+      else
+        if (this.size == 1) {
+          this.sizeTK = "M";
+        } 
+        else
+          if (this.size == 3) {
+            this.sizeTK = "L";
+          }
+          else
+            this.sizeTK = "M";
+      let x =  {
+        Size:this.sizeTK,
+        UnitPrice:this.product.price,
+        Quantity:this.quanity,
+        ProductID:this.product.productId,
+        UserID: this.userId
+      }
+
+      this.http.post("https://localhost:44320/api/Carts/create-cart" , x).subscribe(result => {
+        this.cart = result;
+        this.cart = this.cart.data;
+      }, error => console.error(error));
+    }
 }

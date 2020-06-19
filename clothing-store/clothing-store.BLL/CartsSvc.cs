@@ -82,6 +82,11 @@ namespace clothing_store.BLL
         {
             return _rep.FindCart(UserId);
         }
+
+        public object GetCart_Linq(int userId)
+        {
+            return _rep.GetCart_Linq(userId);
+        }
         #endregion
     }
 }
