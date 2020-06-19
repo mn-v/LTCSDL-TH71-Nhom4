@@ -21,7 +21,7 @@ export class LoginComponent {
       username: this.user,
       password: this.pass
     };
-    this.http.post('https://localhost:44320/api/Users/check-tai-khoann', x)
+    this.http.post('https://localhost:44320/api/Users/check-tai-khoan', x)
       .subscribe(result => {
         var res: any = result;
         var userId;
