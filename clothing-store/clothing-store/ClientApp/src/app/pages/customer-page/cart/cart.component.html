@@ -34,7 +34,7 @@
                 <div class="product--header__color">{{p.priceSale | currency: 'VND':'symbol-narrow':'.3'}}</div>
                 <div class="product--body--details">{{p.quantity}}</div>
                 <div class="product--body--details" style="color: var(--darkred);">{{p.total | currency: 'VND':'symbol-narrow':'.3'}}</div>
-                <div class="product--body--details product__trash"><i class="far fa-trash-alt"></i></div>
+                <div class="product--body--details product__trash" (click) = "DeleteProductCart({{p.userId}}, {{p.productId}}, {{p.size}})"><i class="far fa-trash-alt"></i></div>
             </div>
         </div>
 

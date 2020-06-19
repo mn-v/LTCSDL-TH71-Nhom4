@@ -24,11 +24,26 @@ export class CartComponent implements OnInit {
   }
 
   getCart(id){
-    console.log(id);
     this.http.get("https://localhost:44320/api/Carts/get-cart/"+ id, id).subscribe(result => {
       this.cart = result;
       this.cart = this.cart.data;
       console.log(this.cart);
+      }, error => console.error(error));
+  }
+
+  DeleteProductCart(userId, productId, size){
+    let x = {
+      Size : size,
+      UnitPrice : 1,
+      Quantity : 1,
+      ProductId: productId,
+      UserId : userId
+
+    }
+    this.http.post("https://localhost:44320/api/Carts/delete-product-cart", x).subscribe(result => {
+      
+      console.log(this.cart);
+      this.getCart(userId);
       }, error => console.error(error));
   }
 
