@@ -1,15 +1,13 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import * as bcrypt from 'bcryptjs';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
 })
 export class LoginComponent {
-  headerFooter: boolean;
-
-
   user: string = null;
   pass: string = null;
   result: any = [];
@@ -22,22 +20,33 @@ export class LoginComponent {
       username: this.user,
       password: this.pass
     };
-
-    this.http.post('https://localhost:44320/api/Users/check-tai-khoan', x)
+    this.http.post('https://localhost:44320/api/Users/check-tai-khoann', x)
       .subscribe(result => {
         var res: any = result;
-        console.log(res);
+        var userId;
         this.result = res.data;
-        if (res.data.find(u => u.roleId == 0)) {
-          alert("Dang nhap admin thanh cong!")
-          window.open('https://localhost:44320/admin');
+        if (res.success && res.data.length > 0) {
+          bcrypt.compare(x.password, this.result[0].password, (err, res) => {
+            if (res == true) {
+              if (this.result[0].roleId == 0) {
+                alert("Bạn đang được chuyển hướng với quyền truy cập của ADMIN!");
+                window.open('https://localhost:44320/admin');
+              }
+              else {
+                alert("Đăng nhập thành công!");
+                window.open('https://localhost:44320/');
+                userId = (this.result[0].userId).toString();
+                //    this.cookieService.set("userId", userId);
+              }
+            }
+            else {
+              alert("Mật khẩu không đúng!");
+              console.log('Error: ', err)
+            }
+          });
+        } else {
+          alert("Tài khoản không đúng!!!");
         }
-        else if (res.data.find(u => u.roleId == 1)) {
-          alert("Dang nhap thanh cong!")
-          window.open('https://localhost:44320/');
-        }
-       else alert("Tài khoản hoặc mật khẩu không đúng!");
-
-      }, error => console.error(error));
+      }, error => error => console.error(error));
   }
 }

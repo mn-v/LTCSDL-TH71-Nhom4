@@ -66,11 +66,11 @@ namespace clothing_store.Controllers
             return Ok(res);
         }
 
-        [HttpPost("check-tai-khoan")]
+        [HttpPost("check-tai-khoann")]
         public IActionResult CheckAcc_Linq([FromBody]UsersReq req)
         {
             var res = new SingleRsp();
-            res.Data = _svc.CheckAcc_Linq(req.UserName, req.PassWord);
+            res.Data = _svc.CheckAcc_Linq(req.UserName);
             return Ok(res);
         }
 

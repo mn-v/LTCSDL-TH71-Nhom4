@@ -42,7 +42,6 @@ export class AdminComponent implements OnInit {
     this.http.post('https://localhost:44320/api/Users/search-user', x)
       .subscribe(result => {
         var res: any = result;
-        console.log(res);
         if (res.success) {
           this.users = res.data;
         }

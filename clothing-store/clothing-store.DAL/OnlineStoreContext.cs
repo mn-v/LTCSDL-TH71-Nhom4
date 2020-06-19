@@ -310,7 +310,13 @@ namespace clothing_store.DAL.Models
                 entity.HasKey(e => e.UserId);
 
                 entity.Property(e => e.UserId)
-                    .HasColumnName("UserID");
+                    .HasColumnName("UserId");
+
+                entity.Property(e => e.UserName)
+                    .HasColumnName("UserName");
+     
+
+
 
                 entity.Property(e => e.Dob)
                     .IsRequired()
