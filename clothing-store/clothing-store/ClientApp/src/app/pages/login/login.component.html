@@ -2,21 +2,17 @@
     <div class="container my-5">
         <div class="row d-flex align-items-center">
             <div class="col-md-6 px-3 align-items-center justify-content-center">
-                <img class="login--img" src="./assets/images/login.png" alt="login" style="width: 100%; height: 100%;">
+                <img src="./assets/images/login.png" alt="login" style="width: 100%; height: 100%;">
             </div>
             <div class="col-md-6 px-4">
-                <h2 class="txt-login font-weight-bold mb-5"> Đăng nhập</h2>
-                <form [formGroup]="loginForm" ngNativeValidate (ngSubmit)="onSubmit()">
+                <h2 class="font-weight-bold mb-5"> Đăng nhập</h2>
+                <form ngNativeValidate>
                     <div class="form-group">
                         <div class="input-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="far fa-user"></i></span>
                             </div>
-                            <input type="text" name="user" [(ngModel)]="user" class="form-control"
-                                placeholder="Tên đăng nhập" formControlName="user" required />
-                        </div>
-                        <div *ngIf="submitted && formData.user.errors" class="font-11 pt-1" style="color:red;">
-                            <div *ngIf="submitted && formData.user.errors.required ">Tên đăng nhập không được bỏ trống!</div>
+                            <input type="text" name="user" [(ngModel)]="user"  class="form-control" placeholder="Tên đăng nhập" required />
                         </div>
                     </div>
                     <div class="form-group">
@@ -24,14 +20,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-key"></i></span>
                             </div>
-                            <input type="password" name="pass" [(ngModel)]="pass" class="form-control"
-                                placeholder="Mật khẩu"  formControlName="password" minlength="6" required>
-                        </div>
-                        <div *ngIf="submitted && formData.password.errors" class="font-11 pt-1" style="color:red;">
-                            <div *ngIf="submitted && formData.password.errors.required">Password không được bỏ trống!</div>
-                            <div *ngIf="formData.password.errors?.minlenght">
-                                Password cần có tối thiểu 6 kí tự.
-                              </div>
+                            <input type="password" name="pass" [(ngModel)]="pass" class="form-control" placeholder="Mật khẩu" required>
                         </div>
                     </div>
                     <div class="row question--login mt-5">
@@ -39,8 +28,8 @@
                             Bạn chưa có tài khoản? Hãy <span routerLink="/signup" style="cursor: pointer;"><u> Đăng ký
                                 </u></span> ở đây
                         </div>
-                        <div class="col-md-4 d-flex justify-content-end">
-                            <button type="submit" class="btn-login btn py-2 px-4 text-light text-uppercase" (click)="login()"
+                        <div class="col-md-4">
+                            <button type="submit" class="btn py-2 px-4 text-light text-uppercase" (click)="login()"
                                 style="background-color: var(--darkred);">Đăng nhập</button>
                         </div>
                     </div>

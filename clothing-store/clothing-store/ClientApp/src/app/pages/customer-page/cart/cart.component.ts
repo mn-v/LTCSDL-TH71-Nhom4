@@ -14,6 +14,7 @@ export class CartComponent implements OnInit {
   };
   totalMoney:number= 0;
   SumPro:any;
+
   constructor(private activateRoute: ActivatedRoute, private http: HttpClient,
     @Inject('BASE_URL') baseUrl: string, private cookieService: CookieService) {
 
@@ -22,7 +23,6 @@ export class CartComponent implements OnInit {
   ngOnInit() {
     this.userId = parseInt(this.cookieService.get("userId"));
     this.getCart(this.userId);
-    
   }
 
   getCart(id) {
@@ -33,6 +33,7 @@ export class CartComponent implements OnInit {
       this.cart.forEach(element => {
         this.totalMoney += element.total;
       });
+      console.log(this.userId);
       console.log(this.cart);
     }, error => console.error(error));
   }
@@ -47,7 +48,6 @@ export class CartComponent implements OnInit {
         if (res.success) {
           alert("Bạn đã xóa một sản phẩm ra khỏi giỏ!")
           this.getCart(this.userId);
-          
         }
         console.log(x);
       }, error => {
@@ -64,7 +64,6 @@ export class CartComponent implements OnInit {
       var x = element;
       this.http.post("https://localhost:44320/api/Carts/delete-product-cart", x).subscribe(result => {
         var res: any = result;
-        
         console.log(x);
       }, error => {
         console.error(error);
@@ -73,8 +72,5 @@ export class CartComponent implements OnInit {
       );
     });
     alert("Bạn đã đặt hàng thành công!")
-   
-      
   }
-
 }
