@@ -132,13 +132,10 @@ namespace clothing_store.DAL
         }
 
         //Xóa sản phẩm trong Cart
-        public SingleRsp DeleteProductCart(int userId, int productId, string size)
+        public SingleRsp DeleteProductCart(Carts cart)
         {
             var res = new SingleRsp();
-            var cart = Context.Carts
-               .Where(x => x.UserId == userId)
-               .Where(x => x.ProductId == productId)
-               .Where(x => x.Size == size).First();
+            
 
 
             using (var context = new OnlineStoreContext())
@@ -158,6 +155,7 @@ namespace clothing_store.DAL
                     }
                 }
             }
+            res.Data = "Delete-OK";
             return res;
         }
 

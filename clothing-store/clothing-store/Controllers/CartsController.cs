@@ -3,6 +3,7 @@
 namespace clothing_store.Controllers
 {
     using BLL;
+    using clothing_store.DAL.Models;
     using Common.Req;
     using Common.Rsp;
 
@@ -60,10 +61,10 @@ namespace clothing_store.Controllers
         }
             // Delete
         [HttpPost("delete-product-cart")]
-        public IActionResult DeleteProductCart([FromBody] CartsReq req)
+        public IActionResult DeleteProductCart(Carts c)
         {
-            var res = _svc.DeleteProductCart(req.UserId, req.ProductId, req.Size);
-
+            var res = _svc.DeleteProductCart(c);
+            
             return Ok(res);
         }
 

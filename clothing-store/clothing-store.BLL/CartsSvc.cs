@@ -78,10 +78,10 @@ namespace clothing_store.BLL
             return res;
         }
 
-        public SingleRsp DeleteProductCart(int userId, int productId, string size)
+        public SingleRsp DeleteProductCart(Carts carts)
         {
             var res = new SingleRsp();
-            res = _rep.DeleteProductCart(userId, productId, size);
+            res = _rep.DeleteProductCart(carts);
             return res;
         }
 
