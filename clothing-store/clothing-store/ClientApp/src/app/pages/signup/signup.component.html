@@ -3,35 +3,35 @@
         <div class="row d-flex align-items-center">
             <div class="col-md-6 px-3">
                 <h2 class="font-weight-bold mb-4">Đăng ký</h2>
-                <form>
+                <form ngNativeValidate >
                     <div class="form-group">
                         <label for="example-text-input">Tên đăng nhập</label>
                         <div>
-                            <input class="form-control" type="text" id="example-text-input" placeholder="diosvo">
+                            <input class="form-control" name="userName" [(ngModel)]="users.userName" type="text" id="example-text-input" required>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="example-password-input">Mật khẩu</label>
                         <div>
-                          <input class="form-control" type="password" value="123456789" id="example-password-input">
+                          <input class="form-control" type="password" name="passWord" [(ngModel)]="users.passWord" id="example-password-input" required>
                         </div>
                       </div>
                       <div class="form-group">
-                        <label for="example-password-input">Email</label>
+                        <label>Email</label>
                         <div>
-                          <input class="form-control" id="example-password-input" placeholder="vtmn1212@gmail.com">
+                          <input class="form-control" name="passWord" [(ngModel)]="users.Email" id="example-password-input" required>
                         </div>
                       </div>
                     <div class="form-group">
                         <label for="example-date-input">DOB</label>
                         <div>
-                            <input class="form-control" type="date" value="2011-08-19" id="example-date-input">
+                            <input class="form-control" name="Dob"  [(ngModel)]="users.Dob" type="date" required id="example-date-input">
                         </div>
                     </div>
                     <div class="form-group">
                         <label>Số điện thoại</label>
                         <div>    
-                          <input class="form-control" id="example-password-input" placeholder="0927719321" maxlength="10">
+                          <input class="form-control" name="phoneNumber"  [(ngModel)]="users.phoneNumber" id="example-password-input" required maxlength="10">
                         </div>
                       </div>
                     <div class="row">
@@ -39,15 +39,15 @@
                             Bạn đã có tài khoản? Hãy <span routerLink="/login" style="cursor: pointer;"><u>Đăng
                                 nhập</u></span> ở đây
                         </div>
-                        <div class="col-md-4">
-                            <button type="button" class="btn ml-4 py-2 px-4 text-light text-uppercase"
+                        <div class="col-md-4 d-flex justify-content-end">
+                            <button type="submit" (click)="addUser()" class="btn py-2 px-4 text-light text-uppercase"
                             style="background-color: var(--darkred);">Đăng ký</button>
                         </div>
                     </div>
                 </form>
             </div>
             <div class="col-md-6 px-3 align-items-center justify-content-center">
-                <img src="./assets/images/signup.png" alt="signup" style="width: 100%; ">
+                <img class="signup--img" src="./assets/images/signup.png" alt="signup" style="width: 100%; ">
             </div>
         </div>
     </div>

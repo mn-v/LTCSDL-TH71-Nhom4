@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace clothing_store.Controllers
 {
     using BLL;
-    using DAL.Models;
     using Common.Req;
     using Common.Rsp;
 
@@ -19,22 +13,14 @@ namespace clothing_store.Controllers
         public CategoriesController()
         {
             _svc = new CategoriesSvc();
-        }
-
-        //[HttpPost("remove-by-id")]
-        //public IActionResult remoeById([FromBody]SimpleReq req)
-        //{
-        //    var res = new int();
-        //    res = _svc.Remove(req.Id);
-        //    return Ok(res); //phuong thuc tot(200): da dat dc
-        //}
+        }        
 
         [HttpPost("get-by-id")]
         public IActionResult getCategoryById([FromBody]SimpleReq req)
         {
             var res = new SingleRsp();
             res = _svc.Read(req.Id);
-            return Ok(res); //phuong thuc tot(200): da dat dc
+            return Ok(res); // 200: OK
         }
 
         [HttpPost("get-all")]
@@ -42,10 +28,9 @@ namespace clothing_store.Controllers
         {
             var res = new SingleRsp();
             res.Data = _svc.All;
-            return Ok(res); //phuong thuc tot(200): da dat dc
+            return Ok(res);
         }
 
-        //thêm
         [HttpPost("create-category")]
         public IActionResult CreateCategory([FromBody] CategoriesReq req)
         {
@@ -54,11 +39,18 @@ namespace clothing_store.Controllers
             return Ok(res);
         }
 
-        //sửa
         [HttpPost("update-category")]
         public IActionResult UpdateCategory([FromBody] CategoriesReq req)
         {
             var res = _svc.UpdateCategory(req);
+
+            return Ok(res);
+        }
+
+        [HttpPost("delete-category")]
+        public IActionResult DeleteCategory(int id)
+        {
+            var res = _svc.DeleteCategory(id);
 
             return Ok(res);
         }
@@ -68,6 +60,15 @@ namespace clothing_store.Controllers
         {
             var res = new SingleRsp();
             var pro = _svc.SearchCategory(req.Keyword, req.Page, req.Size);
+            res.Data = pro;
+            return Ok(res);
+        }
+
+        [HttpPost("get-categoryname-by-gender-linq")]
+        public IActionResult GetCategoryNameByGender_Linq([FromBody] CategoriesReq req)
+        { 
+            var res = new SingleRsp();
+            var pro = _svc.GetCategoryNameByGender_Linq(req.Gender);
             res.Data = pro;
             return Ok(res);
         }

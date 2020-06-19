@@ -1,15 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using clothing_store.Common.DAL;
+using clothing_store.Common.Rsp;
+using clothing_store.DAL.Models;
+using System.Linq;
 
 namespace clothing_store.DAL
 {
-    using clothing_store.Common.Rsp;
-    using clothing_store.DAL.Models;
-    using System.Linq;
-
-    // day la lop dai dien cho doi tuong Categories
+    // Đây là lớp đại diện cho đối tượng Categories
     public class CategoriesRep : GenericRep<OnlineStoreContext, Categories>
     {
         #region -- Overrides --
@@ -18,13 +15,13 @@ namespace clothing_store.DAL
             var res = All.FirstOrDefault(p => p.CategoryId == id);
             return res; // thay vi ghi base.All thi ghi All no cung hieu
         }
-        
-        //public int Remove(int id)
-        //{
-        //    var m = base.All.First(i => i.CategoryId == id);
-        //    m = base.Delete(m);
-        //    return m.CategoryId;
-        //}
+
+        public int Remove(int id)
+        {
+            var m = base.All.First(i => i.CategoryId == id);
+            m = base.Delete(m);
+            return m.CategoryId;
+        }
         #endregion
 
         #region -- methods --
@@ -75,6 +72,28 @@ namespace clothing_store.DAL
             return res;
         }
 
+        public int DeleteCategory(int id)
+        {
+            var res = 0;
+            var context = new OnlineStoreContext();
+            var category = base.All.FirstOrDefault(c => c.CategoryId == id);
+            if (category != null)
+            {
+                context.Categories.Remove(category);
+                res = context.SaveChanges();
+            }
+            return res;
+        }
+
         #endregion
+
+        public object GetCategoryNameByGender_Linq(bool gender)
+        {
+            var res = Context.Categories
+                .Where(x => x.Gender == gender)
+                .Select(p => new { p.CategoryName }).ToList();
+            return res;
+        }
+       
     }
 }

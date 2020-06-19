@@ -5,7 +5,7 @@ namespace clothing_store.DAL.Models
 {
     public partial class Carts
     {
-        public int CartId { get; set; }
+       
         public string Size { get; set; }
         public decimal UnitPrice { get; set; }
         public short Quantity { get; set; }

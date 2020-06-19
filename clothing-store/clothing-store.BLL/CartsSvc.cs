@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-using clothing_store.Common.Rsp;
+﻿using clothing_store.Common.Rsp;
 using clothing_store.Common.BLL;
 
 namespace clothing_store.BLL
@@ -10,8 +6,6 @@ namespace clothing_store.BLL
     using clothing_store.Common.Req;
     using clothing_store.DAL.Models;
     using DAL;
-    using System.Linq;
-    using System.Reflection.Metadata.Ecma335;
 
     public class CartsSvc : GenericSvc<CartsRep, Carts>
     {
@@ -40,7 +34,7 @@ namespace clothing_store.BLL
         {
             var res = new SingleRsp();
 
-            var m1 = m.CartId > 0 ? _rep.Read(m.CartId) : _rep.Read(m.CartId);
+            var m1 = m.UserId > 0 ? _rep.Read(m.UserId) : _rep.Read(m.UserId);
             if (m1 == null)
             {
                 res.SetError("EZ103", "No data.");
@@ -55,6 +49,7 @@ namespace clothing_store.BLL
         }
         #endregion
 
+        #region -- Methods --
         public SingleRsp CreateCart(CartsReq cart)
         {
             var res = new SingleRsp();
@@ -69,26 +64,24 @@ namespace clothing_store.BLL
             return res;
         }
 
-        public SingleRsp UpdateCart(CartsReq cart)
+        public SingleRsp UpdateCart(int UserId, string Size, short Quantity)
         {
             var res = new SingleRsp();
-            Carts carts = new Carts();
-            carts.Size = cart.Size;
-            carts.UnitPrice = cart.UnitPrice;
-            carts.Quantity = cart.Quantity;
-            carts.ProductId = cart.ProductId;
-            carts.UserId = cart.UserId;
-
-            res = _rep.UpdateCart(carts);
+            res = _rep.UpdateCart(UserId, Size, Quantity);
             return res;
         }
 
-        public SingleRsp DeleteCart(int ProductId)
+        public SingleRsp DeleteCart(int UserId)
         {
             var res = new SingleRsp();
-            res = _rep.DeleteCart(ProductId);
+            res = _rep.DeleteCart(UserId);
             return res;
         }
 
+        public object FindCart(int UserId)
+        {
+            return _rep.FindCart(UserId);
+        }
+        #endregion
     }
 }

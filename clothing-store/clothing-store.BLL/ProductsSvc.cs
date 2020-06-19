@@ -43,7 +43,6 @@ namespace clothing_store.BLL
         #endregion
 
         #region -- Methods --
-
         public object SearchProduct(String keyword, int page, int size)
         {
             var pro = All.Where(x => x.ProductName.Contains(keyword));
@@ -100,26 +99,44 @@ namespace clothing_store.BLL
             return res;
         }
 
+        #endregion
 
-        //Product-Sale
-        public object GetSP_ProductSale()
+        public object GetAllProductByGender_Linq(bool gender)
         {
-            return _rep.GetSP_ProductSale();
+            return _rep.GetAllProductByGender_Linq(gender);
+        }
+        //Product-Sale
+        public object GetSP_ProductSale(String keyword, int page, int size)
+        {
+            return _rep.GetSP_ProductSale(keyword, page, size);
         }
 
         //Product-Accessories
-        public object GetSP_ProductAccessories()
+        public object GetSP_ProductAccessories(String keyword, int page, int size)
         {
-            return _rep.GetSP_ProductAccessories();
+            return _rep.GetSP_ProductAccessories(keyword, page, size);
         }
 
-        //public ProductsSvc()
-        //{
+        public object GetProductByCategoryName_Linq(String keyword, int page, int size, string categoryName, bool gender)
+        {
+            return _rep.GetProductByCategoryName_Linq(keyword, page, size, categoryName, gender);
+        }
 
-        //}
+        public object GetProductByPromotion_Linq(bool gender)
+        {
+            return _rep.GetProductByPromotion_Linq(gender);
+        }
 
+        public int DeleteProduct(int id)
+        {
+            return _rep.DeleteProduct(id);
+        }
 
-        #endregion
+        public object SearchProductByGender(String keyword, int page, int size, bool gender)
+        {
+            return _rep.SearchProductByGender(keyword, page, size, gender);
+        }
 
+        
     }
 }

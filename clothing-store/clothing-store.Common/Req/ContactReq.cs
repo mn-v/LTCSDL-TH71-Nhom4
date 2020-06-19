@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace clothing_store.Common.Req
+﻿namespace clothing_store.Common.Req
 {
     public class ContactReq
     {

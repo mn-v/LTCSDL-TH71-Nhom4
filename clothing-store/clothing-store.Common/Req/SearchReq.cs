@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace clothing_store.Common.Req
+﻿namespace clothing_store.Common.Req
 {
     public class SearchReq
     {
@@ -15,5 +11,9 @@ namespace clothing_store.Common.Req
         public string Type { get; set; }
 
         public string Keyword { get; set; }
+
+        public string CategoryName { get; set; }
+
+        public bool Gender { get; set; }
     }
 }

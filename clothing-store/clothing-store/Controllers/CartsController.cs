@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace clothing_store.Controllers
 {
     using BLL;
-    using DAL.Models;
     using Common.Req;
     using Common.Rsp;
 
@@ -29,7 +23,15 @@ namespace clothing_store.Controllers
             return Ok(res);
         }
 
-        //thêm
+        [HttpPost("get-by-all")]
+        public IActionResult getAllCarts([FromBody] SimpleReq rep)
+        {
+            var res = new SingleRsp();
+            res.Data = _svc.All;
+            return Ok(res);
+        }
+
+        // Create new
         [HttpPost("create-cart")]
         public IActionResult CreateCart([FromBody] CartsReq req)
         {
@@ -38,20 +40,29 @@ namespace clothing_store.Controllers
             return Ok(res);
         }
 
-        //sửa
+        // Edit
         [HttpPost("update-cart")]
         public IActionResult UpdateCart([FromBody] CartsReq req)
         {
-            var res = _svc.UpdateCart(req);
+            var res = _svc.UpdateCart(req.UserId, req.Size, req.Quantity);
 
             return Ok(res);
         }
 
-        //xóa
+        // Delete
         [HttpPost("delete-cart")]
         public IActionResult DeleteCart([FromBody] CartsReq req)
         {
-            var res = _svc.DeleteCart(req.ProductId);
+            var res = _svc.DeleteCart(req.UserId);
+
+            return Ok(res);
+        }
+
+        //sửa
+        [HttpPost("find-cart")]
+        public IActionResult FindCart([FromBody] CartsReq req)
+        {
+            var res = _svc.FindCart(req.UserId);
 
             return Ok(res);
         }

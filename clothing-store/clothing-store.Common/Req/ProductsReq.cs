@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace clothing_store.Common.Req
 {
@@ -16,5 +14,10 @@ namespace clothing_store.Common.Req
         public string Description { get; set; }
         public string ImageSource { get; set; }
         public int? PromotionId { get; set; }
+        public int Page { get; set; }
+
+        public int Size { get; set; }
+
+        public string Keyword { get; set; }
     }
 }

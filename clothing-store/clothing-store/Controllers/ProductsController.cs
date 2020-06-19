@@ -1,16 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace clothing_store.Controllers
 {
     using BLL;
-    using DAL.Models;
     using Common.Req;
-    using System.Collections;
     using Common.Rsp;
 
     [Route("api/[controller]")]
@@ -22,11 +15,11 @@ namespace clothing_store.Controllers
             _svc = new ProductsSvc();
         }
 
-        [HttpPost("get-by-id")]
-        public IActionResult getProductsId([FromBody] SimpleReq rep)
+        [HttpPost("get-by-id/{id}")]
+        public IActionResult getProductsId(int id)
         {
             var res = new SingleRsp();
-            res = _svc.Read(rep.Id);
+            res = _svc.Read(id);
             return Ok(res);
         }
 
@@ -48,7 +41,7 @@ namespace clothing_store.Controllers
             return Ok(res);
         }
 
-        //thêm
+        // Create new
         [HttpPost("create-product")]
         public IActionResult CreateProduct([FromBody] ProductsReq req)
         {
@@ -57,7 +50,7 @@ namespace clothing_store.Controllers
             return Ok(res);
         }
 
-        //sửa
+        // Edit
         [HttpPost("update-product")]
         public IActionResult UpdateProduct([FromBody] ProductsReq req)
         {
@@ -66,22 +59,66 @@ namespace clothing_store.Controllers
             return Ok(res);
         }
 
-        //Product-Sale
-        [HttpPost("get-product-sale")]
-        public IActionResult GetSP_ProductSale([FromBody]ProductsReq req)
+        [HttpPost("search-product-by-gender")]
+        public IActionResult SearchProductByGender([FromBody] SearchReq req)
         {
             var res = new SingleRsp();
-            var hist = _svc.GetSP_ProductSale();
+            var pro = _svc.SearchProductByGender(req.Keyword, req.Page, req.Size, req.Gender);
+            res.Data = pro;
+            return Ok(res);
+        }
+
+        [HttpPost("delete-product")]
+        public IActionResult DeleteProduct(int id)
+        {
+            var res = _svc.DeleteProduct(id);
+
+            return Ok(res);
+        }
+
+        [HttpPost("get-all-product-by-gender-linq")]
+        public IActionResult GetAllProductByGender_Linq([FromBody]CategoriesReq req)
+        {
+            var res = new SingleRsp();
+            var hist = _svc.GetAllProductByGender_Linq(req.Gender);
             res.Data = hist;
             return Ok(res);
         }
 
-        //Product-Accessories
-        [HttpPost("get-product-accessories")]
+        [HttpPost("get-product-by-categoryName-linq")]
+        public IActionResult GetProductByCategoryName_Linq([FromBody]SearchReq req)
+        {
+            var res = new SingleRsp();
+            var hist = _svc.GetProductByCategoryName_Linq(req.Keyword, req.Page, req.Size, req.CategoryName, req.Gender);
+            res.Data = hist;
+            return Ok(res);
+        }
+
+        [HttpPost("get-product-by-promotion-linq")]
+        public IActionResult GetProductByPromotion_Linq([FromBody]CategoriesReq req)
+        {
+            var res = new SingleRsp();
+            var hist = _svc.GetProductByPromotion_Linq(req.Gender);
+            res.Data = hist;
+            return Ok(res);
+        }
+
+        // Product-Sale
+        [HttpPost("get-product-sale-linq")]
+        public IActionResult GetSP_ProductSale([FromBody]ProductsReq req)
+        {
+            var res = new SingleRsp();
+            var hist = _svc.GetSP_ProductSale(req.Keyword, req.Page, req.Size);
+            res.Data = hist;
+            return Ok(res);
+        }
+
+        // Product-Accessories
+        [HttpPost("get-product-accessories-linq")]
         public IActionResult GetSP_ProductAccessories([FromBody]ProductsReq req)
         {
             var res = new SingleRsp();
-            var hist = _svc.GetSP_ProductAccessories();
+            var hist = _svc.GetSP_ProductAccessories(req.Keyword, req.Page, req.Size);
             res.Data = hist;
             return Ok(res);
         }

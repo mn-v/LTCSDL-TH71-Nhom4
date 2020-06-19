@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
 using clothing_store.Common.Rsp;
 using clothing_store.Common.BLL;
 
@@ -11,7 +8,6 @@ namespace clothing_store.BLL
     using clothing_store.DAL.Models;
     using DAL;
     using System.Linq;
-    using System.Reflection.Metadata.Ecma335;
 
     public class CategoriesSvc:GenericSvc<CategoriesRep, Categories>
     {
@@ -26,15 +22,15 @@ namespace clothing_store.BLL
             return res;
         }
 
-        //public override int Remove(int id)
-        //{
-        //    var res = new SingleRsp();
+        public override int Remove(int id)
+        {
+            var res = new SingleRsp();
 
-        //    var m = _rep.Remove(id);
-        //    res.Data = m;
+            var m = _rep.Remove(id);
+            res.Data = m;
 
-        //    return 0;
-        //}
+            return 0;
+        }
 
         public override SingleRsp Update(Categories m)
         {
@@ -55,6 +51,7 @@ namespace clothing_store.BLL
         }
         #endregion
 
+        #region -- Methods --
         public SingleRsp CreateCategory(CategoriesReq category)
         {
             var res = new SingleRsp();
@@ -83,6 +80,11 @@ namespace clothing_store.BLL
             return res;
         }
 
+        public int DeleteCategory(int id)
+        {
+            return _rep.DeleteCategory(id);
+        }
+
         public object SearchCategory(String keyword, int page, int size)
         {
             var pro = All.Where(x => x.CategoryName.Contains(keyword));
@@ -102,5 +104,11 @@ namespace clothing_store.BLL
             };
             return res;
         }
+
+        public object GetCategoryNameByGender_Linq(bool gender)
+        {
+            return _rep.GetCategoryNameByGender_Linq(gender);
+        }
+        #endregion
     }
 }

@@ -1,15 +1,16 @@
-/* You can add global styles to this file, and also import other style files */
-
-/* Provide sufficient contrast against white background */
 @import './app/scss/animation';
 @import './app/scss/variable';
 @import './app/scss/product.scss';
+@import './app/scss/admin-pages.scss';
+@import './app/scss/responsive.scss';
+@import './app/scss/fontsize.scss';
+
 
 body {
     font-family: 'Montserrat', 'Roboto', sans-serif;
 }
 
-li{
+li {
     list-style-type: none;
 }
 
@@ -18,29 +19,12 @@ a {
     color          : black !important;
 }
 
-// FONT SIZE
-.font-15 {
-    font-size: 15px;
-}
-
-.font-14 {
-    font-size: 14px;
-}
-
-.font-13 {
-    font-size: 13px;
-}
-
-.font-12 {
-    font-size: 12px;
-}
-
 // BUTTON
 .caption__button {
-    border: none;
+    border       : none;
     border-radius: 30px;
-    
-    padding      : 0.75rem 3rem;
+
+    padding: 0.75rem 3rem;
 
     letter-spacing: 1px;
 
@@ -50,24 +34,19 @@ a {
     }
 }
 
+.btn-search{
+    border-radius: 0 .25rem .25rem 0!important;
+}
+
 // SPACING
 .d-flex-center {
-    display: flex;
-    align-items: center;
+    display        : flex;
+    align-items    : center;
     justify-content: center;
 }
 
 // BOOTSTRAP DEFAULT
-.btn.focus, .btn:focus {
-    box-shadow: none!important;
-}
-
-@media only screen and (max-width: 768px) {
-    #map
-    {
-        padding-left: 2rem;
-        iframe {
-            width: 100%;
-        }   
-    } 
+.btn.focus,
+.btn:focus {
+    box-shadow: none !important;
 }
