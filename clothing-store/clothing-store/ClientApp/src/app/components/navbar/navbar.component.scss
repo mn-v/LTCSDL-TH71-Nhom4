@@ -49,13 +49,18 @@ header, #toggle-menu {
 
         box-shadow: 0 40px 40px 0 rgba(0, 0, 0, .05);
     }
+
+    i:focus {
+        outline: none!important;
+    }
+    
 }
 
 .cart--icon {
     position: relative;
 
     .cart--show {
-        display: none;
+        // display: none;
 
         width     : 20rem;
         max-height: 25rem;
@@ -123,10 +128,6 @@ header, #toggle-menu {
 
 #toggle-menu {
     display: none;
-}
-
-#icon i:focus {
-    outline: none!important;
 }
 
 @media only screen and (max-width: 992px) {

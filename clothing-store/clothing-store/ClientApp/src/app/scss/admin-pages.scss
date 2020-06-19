@@ -88,6 +88,12 @@ hr.sidebar-divider {
 	color      : rgb(82, 82, 82);
 }
 
+.page-item.active .page-link {
+	background:linear-gradient(180deg, #3b3b3b 10%, #1d1d1d 100%);
+	border: none;
+	color: white!important;
+}
+
 @media (min-width: 768px) {
 	.sidebar {
 		width: 14rem !important;

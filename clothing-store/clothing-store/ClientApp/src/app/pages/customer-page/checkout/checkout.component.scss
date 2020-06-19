@@ -1,0 +1,11 @@
+#checkout {
+    header {
+        box-shadow: 0 0 2px 0 #dddddd;
+        background-color:white;
+    }
+
+    .header--checkout--title:not(:first-child) {
+        font-size:13px;
+        color: grey;
+    }
+}

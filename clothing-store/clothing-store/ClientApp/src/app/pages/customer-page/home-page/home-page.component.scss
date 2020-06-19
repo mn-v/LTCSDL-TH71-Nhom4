@@ -87,6 +87,16 @@
 }
 
 @media only screen and (max-width: 768px) {
+    #banner {
+        .banner__content__block, .banner__saleoff {
+            margin: 0 auto;
+            margin-bottom: 1.5rem;
+            width: 300px;
+            img {
+                width: 100%;
+            }
+        }
+    }
     .carousel-item img {
         width: 100%;
         height: 100%;

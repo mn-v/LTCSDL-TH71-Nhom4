@@ -1,15 +1,14 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
-  styleUrls: ['./admin.component.scss']
 })
 export class AdminComponent implements OnInit {
-
-  products: any = {
+  // Declare
+  kw: String = "";
+  users: any = {
     data: [],
     totalRecord: 0,
     page: 0,
@@ -17,47 +16,145 @@ export class AdminComponent implements OnInit {
     totalPages: 0
   }
 
-  constructor(
-    private http: HttpClient,
-    @Inject('BASE_URL') baseUrl: string) { }
-
-  ngOnInit() {
-    // this.searchProduct(1);
+  user: any = {
+    userId: "",
+    userName: "string",
+    password: "string",
+    phoneNumber: "string",
+    email: "string",
+    dob: "string",
+    roleId: 0
   }
+
+  constructor(private http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
+  }
+
+  // Get current data when open Modal
+  openModal(index) {
+    var item = this.users.data[index];
+    this.user = {
+      userId: item.userId,
+      userName: item.userName,
+      password: item.password,
+      phoneNumber: item.phoneNumber,
+      email: item.email,
+      dob: item.dob,
+      roleId: item.roleId
+    }
+  }
+
+  // Search Username by ID
+  search() { this.searchUser(1); };
+  searchUser(cPage) {
+    var x = {
+      page: cPage,
+      size: 5,
+      keyword: this.kw
+    }
+    this.http.post('https://localhost:44320/api/Users/search-user', x)
+      .subscribe(result => {
+        var res: any = result;
+        console.log(res);
+        if (res.success) {
+          this.users = res.data;
+        }
+        else {
+          alert(res.message);
+        }
+      }, error => console.error(error));
+  }
+
+  // Functions
+  updateUser() {
+    var x = {
+      UserId: this.user.userId,
+      UserName: this.user.userName.trim().toString(),
+      Password: this.user.password.trim(),
+      PhoneNumber: this.user.phoneNumber.trim(),
+      Dob: this.user.dob.trim(),
+      Email: this.user.email.trim(),
+      RoleId: parseInt(this.user.roleId)
+    };
+    this.http.post('https://localhost:44320/api/Users/update-user', x)
+      .subscribe(result => {
+        var res: any = result;
+        if (res.success) {
+          this.user = res.data;
+          alert("Sửa thành công!")
+          this.searchUser(1);
+        }
+        else {
+          alert("Sửa thất bại!");
+        }
+      }, error => console.error(error));
+  }
+
+  deleteUser(index) {
+    var r = confirm("Bạn muốn xóa thông tin tài khoản này?");
+    if (r == true)
+      this.user = this.users.data[index];
+    var x = this.user;
+    this.http.post('https://localhost:44320/api/Users/delete-user', x)
+      .subscribe(result => {
+        var res: any = result;
+        if (res == 1) {
+          this.searchUser(1);
+          alert("Xóa thành công!");
+        }
+        else {
+          alert("Xóa thất bại!");
+        }
+      }, error => console.error(error));
+  }
+
+  // Pagination
   searchNext() {
-    if (this.products.page < this.products.totalPages) {
-      let nextPage = this.products.page + 1;
+    if (this.users.page < this.users.totalPages) {
+      let nextPage = this.users.page + 1;
       let x = {
         page: nextPage,
-        size: 9,
-        keyword: ""
-      }
-      this.http.post("https://localhost:44320/api/Products/get-product-accessories-linq", x).subscribe(result => {
-        this.products = result;
-        this.products = this.products.data;
-      }, error => console.error(error));
-    }
-    else {
+        size: 5,
+        keyword: this.kw,
+      };
+      this.http.post('https://localhost:44320/api/Users/search-user', x)
+        .subscribe(result => {
+          var res: any = result;
+          console.log(res);
+          if (res.success) {
+            this.users = res.data;
+          }
+          else {
+            alert(res.message);
+          }
+        }, error => console.error(error));
+    } else {
       alert("Bạn đang ở trang cuối cùng!");
     }
   }
-
   searchPrevious() {
-    if (this.products.page > 1) {
-      let previous = this.products.page - 1;
+    if (this.users.page > 1) {
+      let nextPage = this.users.page - 1;
       let x = {
-        page: previous,
-        size: 9,
-        keyword: ""
-      }
-      this.http.post("https://localhost:44320/api/Products/get-product-accessories-linq", x).subscribe(result => {
-        this.products = result;
-        this.products = this.products.data;
-      }, error => console.error(error));
-    }
-    else {
+        page: nextPage,
+        size: 5,
+        keyword: this.kw,
+      };
+      this.http.post('https://localhost:44320/api/Users/search-user', x)
+        .subscribe(result => {
+          var res: any = result;
+          console.log(res);
+          if (res.success) {
+            this.users = res.data;
+          }
+          else {
+            alert(res.message);
+          }
+        }, error => console.error(error));
+    } else
       alert("Bạn đang ở trang đầu tiên!");
-    }
   }
 
+  ngOnInit() {
+    this.searchUser(1);
+  }
 }

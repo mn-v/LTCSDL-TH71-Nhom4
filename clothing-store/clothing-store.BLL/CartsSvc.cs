@@ -34,7 +34,7 @@ namespace clothing_store.BLL
         {
             var res = new SingleRsp();
 
-            var m1 = m.CartId > 0 ? _rep.Read(m.CartId) : _rep.Read(m.CartId);
+            var m1 = m.UserId > 0 ? _rep.Read(m.UserId) : _rep.Read(m.UserId);
             if (m1 == null)
             {
                 res.SetError("EZ103", "No data.");
@@ -54,7 +54,6 @@ namespace clothing_store.BLL
         {
             var res = new SingleRsp();
             Carts carts = new Carts();
-            carts.CartId = cart.CartId;
             carts.Size = cart.Size;
             carts.UnitPrice = cart.UnitPrice;
             carts.Quantity = cart.Quantity;
@@ -65,18 +64,23 @@ namespace clothing_store.BLL
             return res;
         }
 
-        public SingleRsp UpdateCart(int CartId, string Size, short Quantity)
+        public SingleRsp UpdateCart(int UserId, string Size, short Quantity)
         {
             var res = new SingleRsp();
-            res = _rep.UpdateCart(CartId, Size, Quantity);
+            res = _rep.UpdateCart(UserId, Size, Quantity);
             return res;
         }
 
-        public SingleRsp DeleteCart(int cartId)
+        public SingleRsp DeleteCart(int UserId)
         {
             var res = new SingleRsp();
-            res = _rep.DeleteCart(cartId);
+            res = _rep.DeleteCart(UserId);
             return res;
+        }
+
+        public object FindCart(int UserId)
+        {
+            return _rep.FindCart(UserId);
         }
         #endregion
     }

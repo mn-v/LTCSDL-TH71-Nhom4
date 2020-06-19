@@ -1,6 +1,7 @@
 @import './app/scss/animation';
 @import './app/scss/variable';
 @import './app/scss/product.scss';
+@import './app/scss/admin-pages.scss';
 @import './app/scss/responsive.scss';
 @import './app/scss/fontsize.scss';
 
@@ -31,6 +32,10 @@ a {
         color     : white;
         background: var(--darkred);
     }
+}
+
+.btn-search{
+    border-radius: 0 .25rem .25rem 0!important;
 }
 
 // SPACING

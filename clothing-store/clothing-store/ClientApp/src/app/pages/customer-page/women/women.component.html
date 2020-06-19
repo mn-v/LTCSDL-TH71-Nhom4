@@ -6,8 +6,8 @@
             <div class="col-md-3 pt-3">
                 <div class="searching">
                     <div class="input-group mr-sm-2">
-                        <input type="text" class="form-control font-12" placeholder="Nhập tên sản phẩm...">
-                        <button type="submit" class="btn btn-dark font-12">Tìm kiếm</button>
+                        <input type="text" [(ngModel)]="keywords" class="form-control font-12" placeholder="Nhập tên sản phẩm...">
+                        <button type="submit" class="btn btn-search btn-dark font-12" (click)="searchProductByProductName(1)" >Tìm kiếm</button>
                     </div>
                 </div>
                 <hr class="my-3">
@@ -46,11 +46,11 @@
                                 <img src="https://{{p.imageSource}}">
                                 <div class="product--block--overlay">
                                     <button type="button" class="btn btn-dark detail__button text-uppercase font-12"
-                                        routerLink="/product-detail">Xem chi tiết</button>
+                                    [routerLink]="['/product-detail', {id:p.productId}]">Xem chi tiết</button>
                                 </div>
                             </div>
                             <div>
-                                <p class="product--name font-15 m-0 pt-2 pb-1" routerLink="/product-detail">
+                                <p class="product--name font-15 m-0 pt-2 pb-1" [routerLink]="['/product-detail', {id:p.productId}]">
                                     {{p.productName}}
                                 </p>
                                 <p class="product--price font-14 m-0">
