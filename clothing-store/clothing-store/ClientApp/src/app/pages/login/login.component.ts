@@ -1,6 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -8,8 +9,10 @@ import { CookieService } from 'ngx-cookie-service';
 })
 
 export class LoginComponent {
-  headerFooter: boolean;
+  loginForm: FormGroup;
+  submitted: boolean = false;
 
+  headerFooter: boolean;
   usertk: any = {
     data: []
   };
@@ -19,10 +22,18 @@ export class LoginComponent {
 
   constructor(private http: HttpClient,
     @Inject('BASE_URL')
-    baseUrl: string, private cookieService: CookieService) {
+    baseUrl: string, private cookieService: CookieService,
+    private formBuilder: FormBuilder) {
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.loginForm = this.formBuilder.group({
+      user: ['', Validators.required],
+      password: ['', Validators.required, Validators.minLength(6)]
+    })
+  }
+
+  get formData() { return this.loginForm.controls }
 
   login() {
     var x = {
@@ -43,19 +54,27 @@ export class LoginComponent {
         else if (res.data.find(u => u.roleId == 2)) {
           alert("Đăng nhập thành công!");
           window.open('https://localhost:44320/');
-          
+
           //Lấy userId
-          this.http.post("https://localhost:44320/api/Users/get-userId" , x).subscribe(result => {
-          this.usertk = result;
-          this.usertk = this.usertk.data;
+          this.http.post("https://localhost:44320/api/Users/get-userId", x).subscribe(result => {
+            this.usertk = result;
+            this.usertk = this.usertk.data;
           }, error => console.error(error));
-          //
 
           userId = (this.usertk.userId).toString();
           this.cookieService.set("userId", userId);
         }
-       else alert("Tài khoản hoặc mật khẩu không đúng!");
-        
+        else alert("Tài khoản hoặc mật khẩu không đúng!");
+
       }, error => console.error(error));
+  }
+
+  onSubmit() {
+    this.submitted = true;
+
+    if (this.loginForm.invalid) {
+      return;
+    }
+    alert (JSON.stringify(this.loginForm.value));
   }
 }
