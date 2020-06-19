@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { CookieService } from 'ngx-cookie-service';
 import * as bcrypt from 'bcryptjs';
 
 @Component({
@@ -11,7 +12,7 @@ export class LoginComponent {
   user: string = null;
   pass: string = null;
   result: any = [];
-  constructor(private http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
+  constructor(private http: HttpClient, @Inject('BASE_URL') baseUrl: string, private cookieService: CookieService) {
 
   }
 

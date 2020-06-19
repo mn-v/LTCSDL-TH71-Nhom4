@@ -74,6 +74,14 @@ namespace clothing_store.Controllers
             return Ok(res);
         }
 
+        [HttpPost("get-userId")]
+        public IActionResult GetUserId_Linq([FromBody]UsersReq req)
+        {
+            var res = new SingleRsp();
+            res.Data = _svc.GetUserId_Linq(req.UserName, req.PassWord);
+            return Ok(res);
+        }
+
         private readonly UsersSvc _svc;
     }
 }

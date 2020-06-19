@@ -284,6 +284,9 @@ namespace clothing_store.DAL
             };
             return res;
         }
+
+        
+
         #endregion
     }
 }

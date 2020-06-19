@@ -12,6 +12,7 @@ export class MenComponent implements OnInit {
   public lstProduct: [];
   flag :string ="1";
   categoryName = "";
+  public keywords:any;
 
   products: any = {
     data: [],
@@ -62,6 +63,19 @@ export class MenComponent implements OnInit {
     }, error => console.error(error));
   }
 
+  searchProductByProductName(cPage) {
+    let x = {
+      page: cPage,
+      size: 3,
+      keyword: this.keywords,
+      gender: false
+    }
+    this.http.post("https://localhost:44320/api/Products/search-product-by-gender", x).subscribe(result => {
+      this.products = result;
+      this.products = this.products.data;
+    }, error => console.error(error));
+  }
+  
   //danh sach tat ca mat hang cua nam, hien len khi load sang trang men
   searchProductByGender(cPage) {
     let x = {

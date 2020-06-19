@@ -17,17 +17,17 @@
             <div class="col-md-7 pb-4">
 
                 <!-- Product's Details  -->
-                <h5 class="font-weight-bold">Áo thun nữ đen North California</h5>
+                <h5 class="font-weight-bold">{{product.productName}}</h5>
                 <div class="mb-2" style="border-bottom-width: 0.5px;
                 border-bottom-color: #dddddd;border-bottom-style:dotted"></div>
-                <h6 class="font-weight-bold m-0" style="color: var(--darkred);">500.000<span>Đ</span></h6>
+                <h6 class="font-weight-bold m-0" style="color: var(--darkred);"> {{product.price}}<span>Đ</span></h6>
                 <!-- {{p.price | currency: 'VND':'symbol-narrow':'.3'}} -->
 
                 <!-- Options -->
                 <div class="my-3">
                     <div class="row mb-3 d-flex align-items-baseline">
                         <label class="col-md-4">Size:</label>
-                        <select class="custom-select col-md-6">
+                        <select class="custom-select col-md-6" [(ngModel)]="size">
                             <option selected class="px-4 py-1 font-14">Chọn size</option>
                             <option value="1">S</option>
                             <option value="2">M</option>
@@ -37,10 +37,10 @@
 
                     <div class="row mb-3 d-flex align-items-baseline">
                         <label class="col-md-4">Số lượng</label>
-                        <input class="col-md-2 py-1 pr-2" type="number" id="quantity" name="quantity" min="1" max="10"
+                        <input [(ngModel)]="quanity"class="col-md-2 py-1 pr-2" type="number" id="quantity" name="quantity" min="1" max="10"
                             placeholder="0">
                         <button type="button" class="col-md-4 ml-2 btn text-light text-uppercase"
-                            style="background-color: var(--darkred);">Thêm vào giỏ</button>
+                            style="background-color: var(--darkred);" [routerLink]="['/cart', {userId:userId}]" (click) = "AddProductCart()" >Thêm vào giỏ</button>
                     </div>
                 </div>
 

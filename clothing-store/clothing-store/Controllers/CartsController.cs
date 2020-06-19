@@ -3,6 +3,7 @@
 namespace clothing_store.Controllers
 {
     using BLL;
+    using clothing_store.DAL.Models;
     using Common.Req;
     using Common.Rsp;
 
@@ -42,9 +43,9 @@ namespace clothing_store.Controllers
 
         // Edit
         [HttpPost("update-cart")]
-        public IActionResult UpdateCart(int CartId, string Size, short Quantity)
+        public IActionResult UpdateCart([FromBody] CartsReq req)
         {
-            var res = _svc.UpdateCart(CartId, Size, Quantity);
+            var res = _svc.UpdateCart(req.UserId, req.ProductId, req.Size, req.Quantity);
 
             return Ok(res);
         }
@@ -53,8 +54,36 @@ namespace clothing_store.Controllers
         [HttpPost("delete-cart")]
         public IActionResult DeleteCart([FromBody] CartsReq req)
         {
-            var res = _svc.DeleteCart(req.CartId);
+            var res = _svc.DeleteCart(req.UserId);
 
+            return Ok(res);
+
+        }
+            // Delete
+        [HttpPost("delete-product-cart")]
+        public IActionResult DeleteProductCart(Carts c)
+        {
+            var res = _svc.DeleteProductCart(c);
+            
+            return Ok(res);
+        }
+
+        //sửa
+        [HttpPost("find-cart")]
+        public IActionResult FindCart([FromBody] CartsReq req)
+        {
+            var res = _svc.FindCart(req.UserId);
+
+            return Ok(res);
+        }
+
+            //get cart
+        [HttpGet("get-cart/{id}")]
+        public IActionResult GetCart_Linq(int id)
+        {
+            var res = new SingleRsp();
+            var pro = _svc.GetCart_Linq(id);
+            res.Data = pro;
             return Ok(res);
         }
 
