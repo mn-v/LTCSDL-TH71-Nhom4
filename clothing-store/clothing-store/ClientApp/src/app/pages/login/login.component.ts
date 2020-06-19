@@ -12,7 +12,8 @@ export class LoginComponent {
   user: string = null;
   pass: string = null;
   result: any = [];
-  constructor(private http: HttpClient, @Inject('BASE_URL') baseUrl: string, private cookieService: CookieService) {
+  constructor(private http: HttpClient, @Inject('BASE_URL')
+   baseUrl: string, private cookieService: CookieService) {
 
   }
 
