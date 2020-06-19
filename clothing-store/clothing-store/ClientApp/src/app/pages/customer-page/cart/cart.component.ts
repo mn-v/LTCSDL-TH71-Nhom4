@@ -59,4 +59,22 @@ export class CartComponent implements OnInit {
 
   }
 
+  ThanhToan() {
+    this.cart.forEach(element => {
+      var x = element;
+      this.http.post("https://localhost:44320/api/Carts/delete-product-cart", x).subscribe(result => {
+        var res: any = result;
+        
+        console.log(x);
+      }, error => {
+        console.error(error);
+        alert(error);
+      }
+      );
+    });
+    alert("Bạn đã đặt hàng thành công!")
+   
+      
+  }
+
 }
