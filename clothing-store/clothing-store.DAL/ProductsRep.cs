@@ -253,6 +253,55 @@ namespace clothing_store.DAL
             return res;
         }
 
+        public object SearchProduct(String keyword, int page, int size)
+        {
+            var pro = Context.Products
+                .Join(Context.Categories, a => a.CategoryId, b => b.CategoryId, (a, b) => new
+                {
+                    a.ProductId,
+                    a.ProductName,
+                    a.Price,
+                    a.Stock,
+                    a.DateCreate,
+                    a.Description,
+                    a.ImageSource,
+                    a.CategoryId,
+                    a.PromotionId,
+                    b.CategoryName
+                })
+                .Join(Context.Promotion, a => a.PromotionId, b => b.PromotionId, (a, b) => new
+                {
+                    a.ProductId,
+                    a.ProductName,
+                    a.Price,
+                    a.Stock,
+                    a.DateCreate,
+                    a.Description,
+                    a.ImageSource,
+                    a.CategoryId,
+                    a.PromotionId,
+                    a.CategoryName,
+                    b.DiscountPercent,
+                    SalePercent = String.Format("{0:0}%", b.DiscountPercent * 100),
+                    SalePrice = a.Price * (1 - ((decimal)b.DiscountPercent))
+                }).Where(x => x.ProductName.Contains(keyword));
+
+            var offset = (page - 1) * size;
+            var total = pro.Count();
+            int totalPages = (total % size) == 0 ? (int)(total / size) : (int)((total / size) + 1);
+            var data = pro.OrderBy(x => x.ProductName).Skip(offset).Take(size).ToList();
+
+            var res = new
+            {
+                Data = data,
+                TotalRecord = total,
+                TotalPages = totalPages,
+                Page = page,
+                Size = size
+            };
+            return res;
+        }
+
         public object SearchProductByGender(String keyword, int page, int size, bool gender)
         {
             var pro = Context.Products

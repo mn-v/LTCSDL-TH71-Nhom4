@@ -3,6 +3,8 @@ using clothing_store.Common.Req;
 using clothing_store.Common.Rsp;
 using clothing_store.DAL;
 using clothing_store.DAL.Models;
+using System;
+using System.Linq;
 
 namespace clothing_store.BLL
 {
@@ -40,6 +42,11 @@ namespace clothing_store.BLL
         #endregion
 
         #region -- Methods --
+
+        public object GetAll()
+        {
+            return _rep.GetAll();
+        }
         public SingleRsp CreatePromotion(PromotionReq prom)
         {
             var res = new SingleRsp();
@@ -64,10 +71,18 @@ namespace clothing_store.BLL
             return res;
         }
 
-        public int DeletePromotion(int id)
+        public SingleRsp DeletePromotion(int id)
         {
-            return _rep.DeletePromotion(id);
+            var res = new SingleRsp();
+            res = _rep.DeletePromotion(id);
+            return res;
         }
+
+        public object SearchPromotion(String keyword, int page, int size)
+        {
+            return _rep.SearchPromotion(keyword, page, size);
+        }
+        
         #endregion
     }
 }
