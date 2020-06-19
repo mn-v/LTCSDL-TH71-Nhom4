@@ -3,9 +3,6 @@ using clothing_store.Common.Req;
 using clothing_store.Common.Rsp;
 using clothing_store.DAL;
 using clothing_store.DAL.Models;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace clothing_store.BLL
 {
@@ -42,6 +39,7 @@ namespace clothing_store.BLL
 
         #endregion
 
+        #region -- Methods --
         public SingleRsp CreatePromotion(PromotionReq prom)
         {
             var res = new SingleRsp();
@@ -70,5 +68,6 @@ namespace clothing_store.BLL
         {
             return _rep.DeletePromotion(id);
         }
+        #endregion
     }
 }

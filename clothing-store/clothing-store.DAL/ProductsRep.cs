@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using clothing_store.Common.DAL;
 
 
@@ -11,7 +10,7 @@ namespace clothing_store.DAL
 
     public class ProductsRep : GenericRep<OnlineStoreContext, Products>
     {
-        #region -- override --
+        #region -- Override --
         public override Products Read(int id)
         {
             var res = All.FirstOrDefault(p => p.ProductId == id);
@@ -25,9 +24,9 @@ namespace clothing_store.DAL
             return m.ProductId;
         }
         #endregion
-        #region -- methods --
 
-        //lay tat ca san pham cua nam hoac nu, nu la true, nam la false
+        #region -- Methods --
+        // Lấy tất cả sản phẩm của nam hoặc nữ, nam: false; nữ: true
         public object GetAllProductByGender_Linq(bool gender)
         {
             var res = Context.Products
@@ -47,7 +46,7 @@ namespace clothing_store.DAL
             return res;
         }
        
-        //lay san pham theo loai san pham 
+        // Lấy sản phẩm theo loại sản phẩm
         public object GetProductByCategoryName_Linq(String keyword, int page, int size, string categoryName, bool gender)
         {
             var pro = Context.Products
@@ -81,7 +80,7 @@ namespace clothing_store.DAL
             return res;
         }
 
-        //lay san pham co khuyen mai theo gioi tinh 
+        // Lấy sản phẩm có khuyến mãi theo giới tính
         public object GetProductByPromotion_Linq(bool gender)
         {
             var res = Context.Products
@@ -160,7 +159,7 @@ namespace clothing_store.DAL
             return res;
         }
 
-        //Product-Sale promotionId > 0 (đã test)
+        // Product-Sale promotionId > 0 (Tested)
         public object GetSP_ProductSale(String keyword, int page, int size)
         {
             var emp = Context.Products
@@ -203,7 +202,7 @@ namespace clothing_store.DAL
             return res;
         }
 
-        //Product-Accessories CategoryName chứa "Phụ kiện" (đã test)
+        //Product-Accessories CategoryName include "Phụ kiện" (Tested)
         public object GetSP_ProductAccessories(String keyword, int page, int size)
         {
             var emp = Context.Products
@@ -283,8 +282,6 @@ namespace clothing_store.DAL
             };
             return res;
         }
-
-
         #endregion
     }
 }

@@ -7,8 +7,7 @@
                 <div class="product--block--img">
                     <img src="https://{{p.imageSource}}">
                     <div class="product--block--overlay">
-                        <button type="button"
-                            class="btn btn-dark caption__button text-uppercase font-13">Thêm vào
+                        <button type="button" class="btn btn-dark caption__button text-uppercase font-13">Thêm vào
                             giỏ</button>
                     </div>
                 </div>
@@ -21,13 +20,15 @@
         </div>
     </div>
     <!-- Pagination  -->
-    <ul class="pagination d-flex justify-content-end align-items-center">
-        <li class="page-item">
-            <a href="javascript:void(0);" (click)="searchPrevious()"><i class="fas fa-caret-left"></i></a>
-        </li>
-        <li class="page-item mx-2">{{products.page}}</li>
-        <li class="page-item">
-            <a href="javascript:void(0);" (click)="searchNext()"><i class="fas fa-caret-right"></i></a>
-        </li>
-    </ul>
+    <div>
+        <ul class="pagination d-flex justify-content-end align-items-center">
+            <li class="page-item">
+                <a href="javascript:void(0)" (click)="searchPrevious()"><i class="fas fa-caret-left"></i></a>
+            </li>
+            <li class="page-item mx-2">{{products.page}}</li>
+            <li class="page-item">
+                <a href="javascript:void(0)" (click)="searchNext()"><i class="fas fa-caret-right"></i></a>
+            </li>
+        </ul>
+    </div>
 </div>

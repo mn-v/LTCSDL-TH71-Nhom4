@@ -1,13 +1,9 @@
-﻿using System;
-using clothing_store.Common.DAL;
+﻿using clothing_store.Common.DAL;
+using clothing_store.DAL.Models;
 
 
 namespace clothing_store.DAL
 {
-    using clothing_store.Common.Rsp;
-    using clothing_store.DAL.Models;
-    using System.Linq;
-
     public class ContactRep : GenericRep<OnlineStoreContext, Products>
     {
 
