@@ -2,6 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
+
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
@@ -16,6 +17,7 @@ export class CartComponent implements OnInit {
     data: []
   }
   totalMoney: number = 0;
+  m: number = 1;
   SumPro: any;
   constructor(private activateRoute: ActivatedRoute, private http: HttpClient,
     @Inject('BASE_URL') baseUrl: string, private cookieService: CookieService) {
@@ -25,10 +27,10 @@ export class CartComponent implements OnInit {
   ngOnInit() {
     this.userId = parseInt(this.cookieService.get("userId"));
     this.getCart(this.userId);
-
   }
 
   getCart(id) {
+   // window.location.reload();
     this.http.get("https://localhost:44320/api/Carts/get-cart/" + id, id).subscribe(result => {
       this.cart = result;
       this.cart = this.cart.data;
@@ -38,6 +40,7 @@ export class CartComponent implements OnInit {
       });
       console.log(this.cart);
     }, error => console.error(error));
+
   }
 
   DeleteProductCart(p) {
@@ -50,7 +53,7 @@ export class CartComponent implements OnInit {
         if (res.success) {
           alert("Bạn đã xóa một sản phẩm ra khỏi giỏ!")
           this.getCart(this.userId);
-
+          window.location.reload()
         }
         console.log(x);
       }, error => {
@@ -119,7 +122,7 @@ export class CartComponent implements OnInit {
       }
       );
     });
-    
+
 
     //xóa giỏ
     this.cart.forEach(element => {
