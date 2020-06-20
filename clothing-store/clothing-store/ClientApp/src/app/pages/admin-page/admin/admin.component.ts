@@ -130,6 +130,7 @@ export class AdminComponent implements OnInit {
       alert("Bạn đang ở trang cuối cùng!");
     }
   }
+  
   searchPrevious() {
     if (this.users.page > 1) {
       let nextPage = this.users.page - 1;
