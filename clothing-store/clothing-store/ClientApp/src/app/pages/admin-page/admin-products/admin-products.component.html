@@ -107,6 +107,27 @@
                         </table>
                     </div>
                 </div>
+
+                <div class="row card-footer m-0 d-flex justify-content-end">
+                    <div>
+                        <div class="dataTables_paginate paging_simple_numbers" id="dataTable_paginate">
+                            <ul class="pagination m-0 d-flex justify-content-end">
+                                <li class="paginate_button page-item previous ">
+                                    <a href="javascript:
+                                    void(0);" aria-controls="dataTable" data-dt-idx="0" (click)="searchPrevious()"
+                                        tabindex="0" class="page-link">Trước </a>
+                                </li>
+                                <li class="paginate_button page-item active">
+                                    <a href="#" aria-controls="dataTable" data-dt-idx="1" tabindex="0"
+                                        class="page-link">{{ products.page }}</a>
+                                <li class="paginate_button page-item next">
+                                    <a href="javascript:void(0);" aria-controls="dataTable" data-dt-idx="4"
+                                        (click)="searchNext()" tabindex="0" class="page-link"> Sau</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

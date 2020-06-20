@@ -65,6 +65,7 @@ export class AdminProductsComponent implements OnInit {
         (error) => console.error(error)
       );
   }
+  
   searchProduct(cPage) {
     let x = {
       page: cPage,

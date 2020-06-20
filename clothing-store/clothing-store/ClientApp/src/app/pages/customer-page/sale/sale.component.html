@@ -15,8 +15,8 @@
                     <p class="product--name font-15 m-0 pt-2 pb-1" [routerLink]="['/product-detail', {id:p.productID}]">{{p.productName}}</p>
                     <p class="product--price font-14 m-0">
                         <span
-                            class="text-secondary"><del>{{p.price | currency: 'VND':'symbol-narrow':'.0' }}</del></span>
-                        <span class="ml-2">{{p.salePrice | currency: 'VND':'symbol-narrow':'.0' }}</span>
+                            class="text-secondary"><del>{{p.price | currency: 'VND':'symbol-narrow':'.3' }}</del></span>
+                        <span class="ml-2">{{p.salePrice | currency: 'VND':'symbol-narrow':'.3' }}</span>
                     </p>
                 </div>
             </div>
