@@ -34,7 +34,7 @@
                             Hoạt động
                         </a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                        <a class="dropdown-item" data-toggle="modal" data-target="#logoutModal" routerLink="/">
                             <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                             Đăng xuất
                         </a>
@@ -52,7 +52,7 @@
                             <a href="#">
                                 Trang chủ >
                             </a>
-                            <div class="ml-1">Danh sách > Tài khoản</div>
+                            <div class="ml-1">Danh sách > Người dùng</div>
                         </div>
                     </div>
                     <div class="col-7 input-group">
@@ -72,25 +72,25 @@
                             <p *ngIf="!users"><em>Loading...</em></p>
                             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0"
                                 *ngIf="users.totalRecord>0">
-                                <thead>
+                                <thead class="font-15">
                                     <tr>
                                         <th class="text-center">UserID</th>
                                         <th class="text-center">Username</th>
                                         <th>Password</th>
                                         <th>Email</th>
-                                        <th>DOB</th>
+                                        <th class="text-center">DOB</th>
                                         <th>Phone Number</th>
                                         <th class="text-center">RoleID</th>
                                         <th class="text-center">Actions</th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody class="font-14">
                                     <tr *ngFor="let u of users.data; index as i;">
                                         <td class="text-center">{{u.userId}}</td>
                                         <td class="text-center">{{u.userName}}</td>
                                         <td>{{u.password}}</td>
                                         <td>{{u.email}}</td>
-                                        <td>{{u.dob}}</td>
+                                        <td class="text-center">{{u.dob| date:'dd-MM-yyyy' }}</td>
                                         <td>{{u.phoneNumber}}</td>
                                         <td class="text-center">{{u.roleId}}</td>
                                         <td class="text-center">
