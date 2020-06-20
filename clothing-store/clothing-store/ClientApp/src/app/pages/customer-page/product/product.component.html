@@ -1,14 +1,14 @@
-<section id="product">
+<section id="product-details">
     <div class="container">
         <div class="row">
             <div class="text-secondary font-12 px-3 py-2 mx-3 my-3"
-                style="background-color: var(--whitesmoke); width: 100%;">Trang chủ/ Sản phẩm nổi bật</div>
+                style="background-color: var(--whitesmoke); width: 100%;">Trang chủ/ Chi tiết sản phẩm/ <span>Mã SP: {{product.productId}}</span></div>
 
             <!-- LEFT SIDE -->
             <div id="carouselExampleControls" class="col-md-5 mb-3 carousel slide" data-ride="carousel">
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img class="d-block w-100" src="./assets/images/women/tee/1.jpg">
+                        <img class="d-block w-100" src="https://{{product.imageSource}}">
                     </div>
                 </div>
             </div>
@@ -29,12 +29,11 @@
                     <div class="row mb-3 d-flex align-items-baseline">
                         <label class="col-md-4">Size:</label>
                         <select class="custom-select col-md-6" [(ngModel)]="size">
-                            <option selected class="px-4 py-1 font-14">Chọn size</option>
                             <option value="1">S</option>
                             <option value="2">M</option>
                             <option value="3">L</option>
                         </select>
-                    </div>
+                    </div>                                 
 
                     <div class="row mb-3 d-flex align-items-baseline">
                         <label class="col-md-4">Số lượng</label>

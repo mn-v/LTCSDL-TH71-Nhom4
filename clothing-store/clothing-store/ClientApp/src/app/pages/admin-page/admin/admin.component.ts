@@ -1,21 +1,21 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
-  styleUrls: ['./admin.component.scss']
 })
 export class AdminComponent implements OnInit {
+  // Declare
   kw: String = "";
   users: any = {
     data: [],
     totalRecord: 0,
     page: 0,
-    size: 5,
+    size: 9,
     totalPages: 0
   }
+
   user: any = {
     userId: "",
     userName: "string",
@@ -25,13 +25,25 @@ export class AdminComponent implements OnInit {
     dob: "string",
     roleId: 0
   }
+
   constructor(private http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
   }
 
-  ngOnInit() {
-    this.searchUser(1);
+  // Get current data when open Modal
+  openModal(index) {
+    var item = this.users.data[index];
+    this.user = {
+      userId: item.userId,
+      userName: item.userName,
+      password: item.password,
+      phoneNumber: item.phoneNumber,
+      email: item.email,
+      dob: item.dob,
+      roleId: item.roleId
+    }
   }
 
+  // Search Username by ID
   search() { this.searchUser(1); };
   searchUser(cPage) {
     var x = {
@@ -51,18 +63,7 @@ export class AdminComponent implements OnInit {
       }, error => console.error(error));
   }
 
-  openModal(index) {
-    var item = this.users.data[index];
-    this.user = {
-      userId: item.userId,
-      userName: item.userName,
-      password: item.password,
-      phoneNumber: item.phoneNumber,
-      email: item.email,
-      dob: item.dob,
-      roleId: item.roleId
-    }
-  }
+  // Functions
   updateUser() {
     var x = {
       UserId: this.user.userId,
@@ -87,16 +88,16 @@ export class AdminComponent implements OnInit {
       }, error => console.error(error));
   }
 
-  xoaUser(index) {
+  deleteUser(index) {
     var r = confirm("Bạn muốn xóa thông tin tài khoản này?");
     if (r == true)
       this.user = this.users.data[index];
-    var x = this.user
+    var x = this.user;
     this.http.post('https://localhost:44320/api/Users/delete-user', x)
       .subscribe(result => {
         var res: any = result;
         if (res == 1) {
-          this.searchUser(1); 
+          this.searchUser(1);
           alert("Xóa thành công!");
         }
         else {
@@ -104,6 +105,8 @@ export class AdminComponent implements OnInit {
         }
       }, error => console.error(error));
   }
+
+  // Pagination
   searchNext() {
     if (this.users.page < this.users.totalPages) {
       let nextPage = this.users.page + 1;
@@ -148,5 +151,9 @@ export class AdminComponent implements OnInit {
         }, error => console.error(error));
     } else
       alert("Bạn đang ở trang đầu tiên!");
+  }
+
+  ngOnInit() {
+    this.searchUser(1);
   }
 }

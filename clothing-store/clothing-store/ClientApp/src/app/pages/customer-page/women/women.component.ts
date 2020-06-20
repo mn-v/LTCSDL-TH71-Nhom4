@@ -31,7 +31,7 @@ export class WomenComponent implements OnInit {
     this.searchProductByGender(1);
   }
 
-  //lay danh sach san pham theo ten cua loai san pham chon o phan loai
+  //  Lấy danh sách sản phẩm theo tên của loại sản phẩm chọn ở phân loại
   getProduct(cPage, name) {
     let x = {
       page: cPage,
@@ -41,15 +41,15 @@ export class WomenComponent implements OnInit {
       gender: true
     }
     this.http.post('https://localhost:44320/' + 'api/Products/get-product-by-categoryName-linq', x).subscribe(result => {
-      this.flag="1";
-      this.categoryName = name;  
+      this.flag = "1";
+      this.categoryName = name;
       this.products = result;
       this.products = this.products.data;
       console.log(this.products);
     }, error => console.error(error));
   }
 
-  //lay danh sach ten loai san pham de hien thi len phan loai
+  // Lấy danh sách tên loại sản phẩm để hiển thị lên phân loại
   getCategoryName(cGender) {
     var x = {
       gender: cGender
@@ -74,7 +74,7 @@ export class WomenComponent implements OnInit {
       }, error => console.error(error));
     }
 
-  //danh sach tat ca mat hang cua nu, hien len khi load sang trang women
+  // Danh sách tất cả mặt hàng của nữ, hiện lên khi load trang Women
   searchProductByGender(cPage) {
     let x = {
       page: cPage,
@@ -83,16 +83,16 @@ export class WomenComponent implements OnInit {
       gender: true
     }
     this.http.post("https://localhost:44320/api/Products/search-product-by-gender", x).subscribe(result => {
-      this.flag="2";  
+      this.flag = "2";
       this.products = result;
       this.products = this.products.data;
       console.log(this.products);
     }, error => console.error(error));
   }
 
-  //chia lam 2 truong hop:
-  // flag = 1 : phan trang theo phan loai san pham
-  // flag = 2 : phan trang theo san pham nu
+  // Chia làm 2 trường hợp:
+  // flag = 1 : Phân trang theo phân loại sản phẩm.
+  // flag = 2 : Phân trang theo sản phẩm Nam.
   searchNext() {
     if (this.flag == "1") {
       if (this.products.page < this.products.totalPages) {
@@ -135,9 +135,9 @@ export class WomenComponent implements OnInit {
     }
   }
 
-  //tuong tu searchNext()
+  // Tương tự như searchNext()
   searchPrevious() {
-    if(this.flag == "1"){
+    if (this.flag == "1") {
       if (this.products.page > 1) {
         let previous = this.products.page - 1;
         let x = {
@@ -157,7 +157,7 @@ export class WomenComponent implements OnInit {
         alert("Bạn đang ở trang đầu tiên!");
       }
     }
-    else{
+    else {
       if (this.products.page > 1) {
         let previous = this.products.page - 1;
         let x = {

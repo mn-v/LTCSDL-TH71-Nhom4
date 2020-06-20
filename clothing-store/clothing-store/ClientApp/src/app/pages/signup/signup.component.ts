@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import * as bcrypt from 'bcryptjs';
 
@@ -14,7 +14,7 @@ export class SignupComponent {
     email: null,
     dob: null,
     phoneNumber: null,
-    roleId: 1
+    roleId: 2
   }
 
   constructor(private http: HttpClient, @Inject('BASE_URL') baseUrl: string) {

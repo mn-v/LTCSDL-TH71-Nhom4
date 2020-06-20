@@ -6,8 +6,8 @@
             <div class="col-md-3 pt-3">
                 <div class="searching">
                     <div class="input-group mr-sm-2">
-                        <input type="text" [(ngModel)]="keywords" class="form-control mr-sm-2 font-12" placeholder="Nhập tên sản phẩm...">
-                        <button type="submit" class="btn btn-dark font-12" (click)="searchProductByProductName(1)" >Tìm kiếm</button>
+                        <input type="text" [(ngModel)]="keywords" class="form-control font-12" placeholder="Nhập tên sản phẩm...">
+                        <button type="submit" class="btn btn-search btn-dark font-12" (click)="searchProductByProductName(1)" >Tìm kiếm</button>
                     </div>
                 </div>
                 <hr class="my-3">
@@ -35,13 +35,13 @@
             </div>
 
             <!-- RIGHT SIDE  -->
-            <div class="col-md-9 py-3">
-                <div class="text-secondary font-12 px-3 py-2 mr-3 ml-4 mb-3"
-                    style="background-color: var(--whitesmoke); width: 98%;">Trang chủ/ Sản phẩm nữ</div>
-                <div class="row ml-3">
+            <div class="col-md-9 pt-3">
+                <div class="txt--title text-secondary font-12"
+                    style="">Trang chủ/ Sản phẩm nữ</div>
+                <div class="product--block--container row">
                     <!-- Block product  -->
-                    <div class="mb-4 d-flex flex-wrap" *ngIf="products.totalRecord">
-                        <div class="product--block col-md-4 mb-3" *ngFor="let p of products.data">
+                    <div class="d-flex flex-wrap" *ngIf="products.totalRecord">
+                        <div class="product--block col-md-4" *ngFor="let p of products.data">
                             <div class="product--block--img">
                                 <img src="https://{{p.imageSource}}">
                                 <div class="product--block--overlay">
@@ -65,11 +65,11 @@
         <!-- Pagination  -->
         <ul class="pagination d-flex justify-content-end align-items-center">
             <li class="page-item">
-                <a href="javascript:void(0)" (click)="searchPrevious()"><i class="fas fa-caret-left"></i></a>
+                <a href="javascript:void(0)" (click)="searchPrevious()"><i class="fas fa-long-arrow-alt-left"></i></a>
             </li>
             <li class="page-item mx-2">{{products.page}}</li>
             <li class="page-item">
-                <a href="javascript:void(0)" (click)="searchNext()"><i class="fas fa-caret-right"></i></a>
+                <a href="javascript:void(0)" (click)="searchNext()"><i class="fas fa-long-arrow-alt-right"></i></a>
             </li>
         </ul>
     </div>

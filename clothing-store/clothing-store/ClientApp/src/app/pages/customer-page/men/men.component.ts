@@ -7,12 +7,12 @@ import { HttpClient } from '@angular/common/http';
 })
 
 export class MenComponent implements OnInit {
-  public res:any;
-  public lstCategoryName : [];
+  public res: any;
+  public lstCategoryName: [];
   public lstProduct: [];
-  flag :string ="1";
+  flag: string = "1";
   categoryName = "";
-  public keywords:any;
+  public keywords: any;
 
   products: any = {
     data: [],
@@ -25,8 +25,8 @@ export class MenComponent implements OnInit {
   constructor(
     private http: HttpClient,
     @Inject('BASE_URL') baseUrl: string) {
-      
-    }
+
+  }
 
   ngOnInit() {
     this.searchProductByGender(1);
@@ -40,9 +40,9 @@ export class MenComponent implements OnInit {
       keyword: "",
       categoryName: name,
       gender: false
-    } 
+    }
     this.http.post('https://localhost:44320/' + 'api/Products/get-product-by-categoryName-linq', x).subscribe(result => {
-      this.flag="1";
+      this.flag = "1";
       this.categoryName = name;
       this.products = result;
       this.products = this.products.data;
@@ -50,19 +50,20 @@ export class MenComponent implements OnInit {
     }, error => console.error(error));
   }
 
-  //lay danh sach ten loai san pham de hien thi len phan loai
-  getCategoryName(cGender){
-    var x ={
+  // Lấy danh sách tên loại sản phẩm để hiển thị lên phân loại
+  getCategoryName(cGender) {
+    var x = {
       gender: cGender
-    }     
+    }
     this.http.post('https://localhost:44320/' + 'api/Categories/get-categoryname-by-gender-linq', x)
-    .subscribe(result => {
-      this.res = result;
-      this.lstCategoryName = this.res.data;
-      console.log(this.lstCategoryName);
-    }, error => console.error(error));
+      .subscribe(result => {
+        this.res = result;
+        this.lstCategoryName = this.res.data;
+        console.log(this.lstCategoryName);
+      }, error => console.error(error));
   }
 
+  // Search sản phẩm theo tên
   searchProductByProductName(cPage) {
     let x = {
       page: cPage,
@@ -75,8 +76,8 @@ export class MenComponent implements OnInit {
       this.products = this.products.data;
     }, error => console.error(error));
   }
-  
-  //danh sach tat ca mat hang cua nam, hien len khi load sang trang men
+
+  // Danh sách tất cả các mặt hàng của nam, hiện lên khi load trang Men
   searchProductByGender(cPage) {
     let x = {
       page: cPage,
@@ -85,15 +86,15 @@ export class MenComponent implements OnInit {
       gender: false
     }
     this.http.post("https://localhost:44320/api/Products/search-product-by-gender", x).subscribe(result => {
-      this.flag="2";
+      this.flag = "2";
       this.products = result;
       this.products = this.products.data;
     }, error => console.error(error));
   }
 
-  //chia lam 2 truong hop:
-  // flag = 1 : phan trang theo phan loai san pham
-  // flag = 2 : phan trang theo san pham nam
+  // Chia làm 2 trường hợp:
+  // flag = 1 : Phân trang theo phân loại sản phẩm.
+  // flag = 2 : Phân trang theo sản phẩm Nam.
   searchNext() {
     if (this.flag == "1") {
       if (this.products.page < this.products.totalPages) {
@@ -136,9 +137,9 @@ export class MenComponent implements OnInit {
     }
   }
 
-  //tuong tu searchNext()
+  // Tương tự như searchNext()
   searchPrevious() {
-    if(this.flag == "1"){
+    if (this.flag == "1") {
       if (this.products.page > 1) {
         let previous = this.products.page - 1;
         let x = {
@@ -158,7 +159,7 @@ export class MenComponent implements OnInit {
         alert("Bạn đang ở trang đầu tiên!");
       }
     }
-    else{
+    else {
       if (this.products.page > 1) {
         let previous = this.products.page - 1;
         let x = {

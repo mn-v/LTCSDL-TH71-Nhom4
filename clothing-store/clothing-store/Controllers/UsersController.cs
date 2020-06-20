@@ -66,7 +66,7 @@ namespace clothing_store.Controllers
             return Ok(res);
         }
 
-        [HttpPost("check-tai-khoan")]
+        [HttpPost("check-account")]
         public IActionResult CheckAcc_Linq([FromBody]UsersReq req)
         {
             var res = new SingleRsp();

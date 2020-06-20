@@ -1,4 +1,4 @@
-header {
+header, #toggle-menu {
     position: sticky;
     top     : 0;
     z-index : 1000;
@@ -49,13 +49,18 @@ header {
 
         box-shadow: 0 40px 40px 0 rgba(0, 0, 0, .05);
     }
+
+    i:focus {
+        outline: none!important;
+    }
+    
 }
 
 .cart--icon {
     position: relative;
 
     .cart--show {
-        display: none;
+        // display: none;
 
         width     : 20rem;
         max-height: 25rem;
@@ -125,12 +130,26 @@ header {
     display: none;
 }
 
-#icon i:focus {
-    outline: none!important;
+@media only screen and (max-width: 992px) {
+
+    // NAVBAR
+    #top-header {
+        display: none;
+    }
+
+    #logo-brand {
+        font-size: 44px;
+    }
+
+    #menu a {
+        font-size: 13px;
+        padding  : 0.5rem;
+    }
 }
 
 @media only screen and (max-width: 768px) {
 
+    // NAVBAR 
     header,
     #top-header {
         display: none;
@@ -149,20 +168,5 @@ header {
         &:hover {
             opacity: 0.8;
         }
-    }
-}
-
-@media only screen and (max-width: 992px) {
-    #top-header {
-        display: none;
-    }
-
-    #logo-brand {
-        font-size: 44px;
-    }
-
-    #menu a {
-        font-size: 13px;
-        padding  : 0.5rem;
     }
 }

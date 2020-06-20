@@ -81,3 +81,23 @@
         outline: none;
     }
 }
+
+// SPACING
+.txt--title {
+    width: 96%;
+
+    margin : 0 1rem 1rem;
+    padding: 0.5rem 1rem;
+
+    background-color: var(--whitesmoke);
+}
+
+.product--block--container {
+    margin-left: 1rem;
+
+    .product--block {
+        padding    : 0 0.5rem;
+        margin-left: -0.5rem;
+        margin-bottom: 1rem;
+    }
+}

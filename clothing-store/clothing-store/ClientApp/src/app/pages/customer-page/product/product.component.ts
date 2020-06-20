@@ -1,8 +1,8 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
-import { WomenComponent } from '../women/women.component';
 import { CookieService } from 'ngx-cookie-service';
+
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
@@ -87,10 +87,5 @@ export class ProductComponent implements OnInit {
 
 
   }
-
-  
-
-
-
 
 }
