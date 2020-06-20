@@ -32,24 +32,6 @@ export class AdminPromotionComponent implements OnInit {
     this.searchPromotion(1);
   }
 
-  searchPromotion(cPage) {
-    let x = {
-      page: cPage,
-      size: 3,
-      keyword: "",
-    };
-    this.http
-      .post("https://localhost:44320/" + "api/Promotion/search-promotion", x)
-      .subscribe(
-        (result) => {
-          this.promotions = result;
-          this.promotions = this.promotions.data;
-          console.log(this.promotions);
-        },
-        (error) => console.error(error)
-      );
-  }
-
   searchNext() {
     if (this.promotions.page < this.promotions.totalPages) {
       let nextPage = this.promotions.page + 1;
@@ -117,6 +99,24 @@ export class AdminPromotionComponent implements OnInit {
       this.promotion = index;
     }
     $('#Modal').modal("show");
+  }
+
+  searchPromotion(cPage) {
+    let x = {
+      page: cPage,
+      size: 3,
+      keyword: "",
+    };
+    this.http
+      .post("https://localhost:44320/" + "api/Promotion/search-promotion", x)
+      .subscribe(
+        (result) => {
+          this.promotions = result;
+          this.promotions = this.promotions.data;
+          console.log(this.promotions);
+        },
+        (error) => console.error(error)
+      );
   }
 
   addPromotion()

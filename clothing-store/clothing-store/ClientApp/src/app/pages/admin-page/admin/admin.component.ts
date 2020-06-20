@@ -79,11 +79,11 @@ export class AdminComponent implements OnInit {
         var res: any = result;
         if (res.success) {
           this.user = res.data;
-          alert("Sửa thành công!")
+          alert("Cập nhật thành công!")
           this.searchUser(1);
         }
         else {
-          alert("Sửa thất bại!");
+          alert("Cập nhật thất bại!");
         }
       }, error => console.error(error));
   }
