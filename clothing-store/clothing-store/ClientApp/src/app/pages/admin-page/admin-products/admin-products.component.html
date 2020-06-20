@@ -108,8 +108,8 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <form class="form-inline my-2 my-lg-0">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Tìm kiếm..." aria-label="Search">
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Tìm kiếm</button>
+                    <input name="first" [(ngModel)]="key" class="form-control mr-sm-2" type="text" placeholder="Tìm kiếm..." aria-label="Search">
+                    <button (click)="searchProduct(1)" class="btn btn-outline-success my-2 my-sm-0" type="submit">Tìm kiếm</button>
                 </form>
             </div>
 
@@ -183,23 +183,6 @@
                                     <th>Hình ảnh</th>
                                     <th>Thao tác</th>
                                 </tr>
-
-                            <tfoot>
-                                <tr>
-                                    <th>Mã SP</th>
-                                    <th>Tên SP</th>
-                                    <th>Loại SP</th>
-                                    <th>Giá gốc</th>
-                                    <th>Giảm giá</th>
-                                    <th>Giá sale</th>
-                                    <th>Tồn kho</th>
-                                    <th>Ngày tạo</th>
-                                    <th>Mô tả</th>
-                                    <th>Hình ảnh</th>
-                                    <th>Thao tác</th>
-                                </tr>
-                            </tfoot>
-    
                             <tbody>
                                 <tr *ngFor="let p of products.data">
                                     <td>{{ p.productId }}</td>
@@ -325,7 +308,7 @@
 			</div>
 			<div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Trở về</button>
-				<button type="button" (click)="deleteProduct(productId)" class="btn btn-danger">Xóa</button>
+				<button type="button" (click)="deleteProduct(product)" class="btn btn-danger">Xóa</button>
 			</div>
 		</div>
 	</div>

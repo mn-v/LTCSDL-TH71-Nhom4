@@ -12,8 +12,8 @@ export class AdminCategoryComponent implements OnInit {
   categories: any = {
     data: [],
     totalRecord: 0,
-    page: 0,
-    size: 5,
+    page: 1,
+    size: 10,
     totalPages: 0,
   };
 
@@ -26,6 +26,7 @@ export class AdminCategoryComponent implements OnInit {
     gioiTinh: "",
   };
 
+  key :any = "";
   isEdit: boolean = true;
 
   constructor(private http: HttpClient, @Inject("BASE_URL") baseUrl: string) {}
@@ -37,8 +38,8 @@ export class AdminCategoryComponent implements OnInit {
   searchCategory(cPage) {
     let x = {
       page: cPage,
-      size: 5,
-      keyword: "",
+      size: 10,
+      keyword: this.key
     };
     this.http
       .post("https://localhost:44320/" + "api/Categories/search-category", x)
@@ -57,8 +58,8 @@ export class AdminCategoryComponent implements OnInit {
       let nextPage = this.categories.page + 1;
       let x = {
         page: nextPage,
-        size: 5,
-        keyword: "",
+        size: 10,
+        keyword: this.key
       };
       this.http
         .post("https://localhost:44320/api/Categories/search-category", x)
@@ -79,8 +80,8 @@ export class AdminCategoryComponent implements OnInit {
       let nextPage = this.categories.page - 1;
       let x = {
         page: nextPage,
-        size: 5,
-        keyword: "",
+        size: 10,
+        keyword: this.key
       };
       this.http
         .post("https://localhost:44320/api/Categories/search-category", x)
@@ -155,13 +156,15 @@ export class AdminCategoryComponent implements OnInit {
       }, error => console.error(error));
   }
 
-  deleteCategory()
+  deleteCategory(index)
   {
-    this.http.post('https://localhost:44320/api/Categories/delete-category', this.categories.categoryId).subscribe(result=>{
+    var x = index;
+    this.http.post('https://localhost:44320/api/Categories/delete-category', x).subscribe(result=>{
         var res:any = result;
         if(res.success){
           alert("New product have been deleted successfully!");
           this.searchCategory(1);
+          $('#myModal').modal("hide");
         }
       }, error => console.error(error));
   }

@@ -3,6 +3,7 @@
 namespace clothing_store.Promotion
 {
     using BLL;
+    using clothing_store.DAL.Models;
     using Common.Req;
     using Common.Rsp;
 
@@ -24,7 +25,7 @@ namespace clothing_store.Promotion
         }
 
         [HttpPost("get-by-all")]
-        public IActionResult GetAll([FromBody] SimpleReq rep)
+        public IActionResult GetAll()
         {
             var res = new SingleRsp();
             var pro = _svc.GetAll();
@@ -50,9 +51,9 @@ namespace clothing_store.Promotion
         }
 
         [HttpPost("delete-promotion")]
-        public IActionResult DeletePromotion(int id)
+        public IActionResult DeletePromotion(Promotion req)
         {
-            var res = _svc.DeletePromotion(id);
+            var res = _svc.DeletePromotion(req);
 
             return Ok(res);
         }

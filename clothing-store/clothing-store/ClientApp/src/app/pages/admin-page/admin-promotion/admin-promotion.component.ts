@@ -12,8 +12,8 @@ export class AdminPromotionComponent implements OnInit {
   promotions: any = {
     data: [],
     totalRecord: 0,
-    page: 0,
-    size: 3,
+    page: 1,
+    size: 10,
     totalPages: 0,
   };
 
@@ -25,6 +25,7 @@ export class AdminPromotionComponent implements OnInit {
     discount: 0,
   };
 
+  key :any = "";
   isEdit: boolean = true; 
 
   constructor(private http: HttpClient, @Inject("BASE_URL") baseUrl: string) {}
@@ -36,8 +37,8 @@ export class AdminPromotionComponent implements OnInit {
   searchPromotion(cPage) {
     let x = {
       page: cPage,
-      size: 3,
-      keyword: "",
+      size: 10,
+      keyword: this.key
     };
     this.http
       .post("https://localhost:44320/" + "api/Promotion/search-promotion", x)
@@ -56,8 +57,8 @@ export class AdminPromotionComponent implements OnInit {
       let nextPage = this.promotions.page + 1;
       let x = {
         page: nextPage,
-        size: 3,
-        keyword: "",
+        size: 10,
+        keyword: this.key
       };
       this.http
         .post("https://localhost:44320/api/Promotion/search-promotion", x)
@@ -78,8 +79,8 @@ export class AdminPromotionComponent implements OnInit {
       let nextPage = this.promotions.page - 1;
       let x = {
         page: nextPage,
-        size: 5,
-        keyword: "",
+        size: 10,
+        keyword: this.key
       };
       this.http
         .post("https://localhost:44320/api/Promotion/search-promotion", x)
@@ -124,7 +125,6 @@ export class AdminPromotionComponent implements OnInit {
   {
     var x = this.promotion;
     this.promotion.discountPercent = this.promotion.discount / 100;
-    console.log(x);
     this.http.post('https://localhost:44320/api/Promotion/create-promotion', x).subscribe(result=>{
         var res:any = result;
         if(res.success){
@@ -142,7 +142,6 @@ export class AdminPromotionComponent implements OnInit {
   {
     var x = this.promotion;
     this.promotion.discountPercent = this.promotion.discount / 100;
-    console.log(x);
     this.http.post('https://localhost:44320/api/Promotion/update-promotion', x).subscribe(result=>{
         var res:any = result;
         if(res.success){
@@ -155,15 +154,16 @@ export class AdminPromotionComponent implements OnInit {
       }, error => console.error(error));
   }
 
-  deletePromotion()
+  deletePromotion(index)
   {
-    console.log(this.promotion.promotionId);
-    this.http.post('https://localhost:44320/api/Promotion/delete-promotion', this.promotion.promotionId)
+    var x = index;
+    this.http.post('https://localhost:44320/api/Promotion/delete-promotion', x)
     .subscribe(result=>{
         var res:any = result;
         if(res.success){
           this.searchPromotion(1);
           alert("New product have been deleted successfully!");
+          $('#myModal').modal("hide");
         }
       }, error => console.error(error));
   }

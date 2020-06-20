@@ -108,8 +108,8 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <form class="form-inline my-2 my-lg-0">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Tìm kiếm..." aria-label="Search">
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Tìm kiếm</button>
+                    <input name="first" [(ngModel)]="key" class="form-control mr-sm-2" type="text" placeholder="Tìm kiếm..." aria-label="Search">
+                    <button (click)="searchPromotion(1)" class="btn btn-outline-success my-2 my-sm-0" type="submit">Tìm kiếm</button>
                 </form>
             </div>
 
@@ -269,7 +269,7 @@
 			</div>
 			<div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Trở về</button>
-				<button type="button" (click)="deletePromotion()" class="btn btn-danger">Xóa</button>
+				<button type="button" (click)="deletePromotion(promotion)" class="btn btn-danger">Xóa</button>
 			</div>
 		</div>
 	</div>

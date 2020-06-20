@@ -28,15 +28,16 @@ namespace clothing_store.DAL
         public object GetAll()
         {
             var res = Context.Promotion.Select(p => new
-            {
-                p.PromotionId,
-                p.PromotionName,
-                p.DiscountPercent,
-                SalePercent = String.Format("{0:0}%", p.DiscountPercent * 100),
-                Discount = p.DiscountPercent * 100
-            });
+                {
+                    p.PromotionId,
+                    p.PromotionName,
+                    p.DiscountPercent,
+                    SalePercent = String.Format("{0:0}%", p.DiscountPercent * 100),
+                    Discount = Math.Round(p.DiscountPercent * 100)
+                }).ToList();
             return res;
         }
+
         public SingleRsp CreatePromotion(Promotion promotion)
         {
             var res = new SingleRsp();
@@ -110,19 +111,16 @@ namespace clothing_store.DAL
             return res;
         }
 
-        public SingleRsp DeletePromotion(int id)
+        public SingleRsp DeletePromotion(Promotion prom)
         {
             var res = new SingleRsp();
-            var list = Context.Promotion
-               .Where(x => x.PromotionId == id).ToList();
-            Promotion promotion = list.FirstOrDefault();
             using (var context = new OnlineStoreContext())
             {
                 using (var tran = context.Database.BeginTransaction())
                 {
                     try
                     {
-                        var t = context.Promotion.Remove(promotion);
+                        var t = context.Promotion.Remove(prom);
                         context.SaveChanges();
                         tran.Commit();
                     }

@@ -12,7 +12,7 @@ export class AdminProductsComponent implements OnInit {
     data: [],
     totalRecord: 0,
     page: 0,
-    size: 5,
+    size: 10,
     totalPages: 0,
   };
 
@@ -33,6 +33,7 @@ export class AdminProductsComponent implements OnInit {
   promotion: any = {
   }
 
+  key :any = "";
   isEdit: boolean = true;
 
   constructor(private http: HttpClient, @Inject("BASE_URL") baseUrl: string) {}
@@ -69,8 +70,8 @@ export class AdminProductsComponent implements OnInit {
   searchProduct(cPage) {
     let x = {
       page: cPage,
-      size: 5,
-      keyword: "",
+      size: 10,
+      keyword: this.key
     };
     this.http
       .post("https://localhost:44320/" + "api/Products/search-product", x)
@@ -89,8 +90,8 @@ export class AdminProductsComponent implements OnInit {
       let nextPage = this.products.page + 1;
       let x = {
         page: nextPage,
-        size: 5,
-        keyword: "",
+        size: 10,
+        keyword: this.key
       };
       this.http
         .post("https://localhost:44320/api/Products/search-product", x)
@@ -111,8 +112,8 @@ export class AdminProductsComponent implements OnInit {
       let nextPage = this.products.page - 1;
       let x = {
         page: nextPage,
-        size: 5,
-        keyword: "",
+        size: 10,
+        keyword: this.key
       };
       this.http
         .post("https://localhost:44320/api/Products/search-product", x)
@@ -197,6 +198,7 @@ export class AdminProductsComponent implements OnInit {
         if(res.success){
           this.searchProduct(1);
           alert("New product have been deleted successfully!");
+          $('#myModal').modal("hide");
         }
       }, error => console.error(error));
   }

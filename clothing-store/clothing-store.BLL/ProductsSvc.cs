@@ -114,9 +114,11 @@ namespace clothing_store.BLL
             return _rep.GetProductByPromotion_Linq(gender);
         }
 
-        public int DeleteProduct(int id)
+        public SingleRsp DeleteProduct(Products pro)
         {
-            return _rep.DeleteProduct(id);
+            var res = new SingleRsp();
+            res = _rep.DeleteProduct(pro);
+            return res;
         }
 
         public object SearchProductByGender(String keyword, int page, int size, bool gender)

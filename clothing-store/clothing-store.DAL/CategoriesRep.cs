@@ -72,15 +72,25 @@ namespace clothing_store.DAL
             return res;
         }
 
-        public int DeleteCategory(int id)
+        public SingleRsp DeleteCategory(Categories categories)
         {
-            var res = 0;
-            var context = new OnlineStoreContext();
-            var category = base.All.FirstOrDefault(c => c.CategoryId == id);
-            if (category != null)
+            var res = new SingleRsp();
+            using (var context = new OnlineStoreContext())
             {
-                context.Categories.Remove(category);
-                res = context.SaveChanges();
+                using (var tran = context.Database.BeginTransaction())
+                {
+                    try
+                    {
+                        var t = context.Categories.Remove(categories);
+                        context.SaveChanges();
+                        tran.Commit();
+                    }
+                    catch (Exception ex)
+                    {
+                        tran.Rollback();
+                        res.SetError(ex.StackTrace);
+                    }
+                }
             }
             return res;
         }
