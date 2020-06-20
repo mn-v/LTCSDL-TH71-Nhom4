@@ -1,5 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import * as bcrypt from 'bcryptjs';
 
 @Component({
   selector: 'app-signup',
@@ -22,17 +23,24 @@ export class SignupComponent {
 
   addUser() {
     var x = this.users;
-    this.http.post('https://localhost:44320/api/Users/create-user', x)
-      .subscribe(result => {
-        var res: any = result;
-        console.log(res);
-        if (res.success) {
-          alert("Bạn đã đăng kí thành công!")
-          this.users = res.data;
-        }
-        else {
-          alert("Đăng kí không thành công!");
-        }
-      }, error => console.error(error));
+    bcrypt.hash(this.users.passWord, 10, (err, hash) => {
+      if (!err) {
+        x.passWord = hash;
+        this.http.post('https://localhost:44320/api/Users/create-user', x)
+          .subscribe(result => {
+            var res: any = result;
+            if (res.success) {
+              alert("Bạn đã đăng kí thành công!")
+              window.open('http://localhost:4200/login','_self');
+            }
+            else {
+              alert("Đăng kí không thành công!");
+            }
+          }, error => console.error(error));
+      } else {
+        alert("Đăng kí không thành công");
+        console.log('Error: ', err)
+      }
+    })
   }
 }

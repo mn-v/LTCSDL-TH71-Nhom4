@@ -70,17 +70,10 @@ namespace clothing_store.Controllers
         public IActionResult CheckAcc_Linq([FromBody]UsersReq req)
         {
             var res = new SingleRsp();
-            res.Data = _svc.CheckAcc_Linq(req.UserName, req.PassWord);
+            res.Data = _svc.CheckAcc_Linq(req.UserName);
             return Ok(res);
         }
 
-        [HttpPost("get-userId")]
-        public IActionResult GetUserId_Linq([FromBody]UsersReq req)
-        {
-            var res = new SingleRsp();
-            res.Data = _svc.GetUserId_Linq(req.UserName, req.PassWord);
-            return Ok(res);
-        }
 
         private readonly UsersSvc _svc;
     }
