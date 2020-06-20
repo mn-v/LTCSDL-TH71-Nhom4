@@ -34,6 +34,7 @@ export class AdminPromotionComponent implements OnInit {
     this.searchPromotion(1);
   }
 
+  //hien ds giam gia
   searchPromotion(cPage) {
     let x = {
       page: cPage,
@@ -46,7 +47,6 @@ export class AdminPromotionComponent implements OnInit {
         (result) => {
           this.promotions = result;
           this.promotions = this.promotions.data;
-          console.log(this.promotions);
         },
         (error) => console.error(error)
       );
@@ -96,12 +96,14 @@ export class AdminPromotionComponent implements OnInit {
     }
   }
 
+  //modal xoa
   deleteModal(index)
   {
     this.promotion = index;
     $('#myModal').modal("show");
   }
 
+  //modal tao va sua
   openModal(isNew, index)
   {
     if(isNew)
@@ -121,6 +123,7 @@ export class AdminPromotionComponent implements OnInit {
     $('#Modal').modal("show");
   }
 
+  //them
   addPromotion()
   {
     var x = this.promotion;
@@ -132,12 +135,13 @@ export class AdminPromotionComponent implements OnInit {
           $('#Modal').modal("hide")
           this.promotion = res.data;
           this.isEdit = true;
-          this.searchPromotion(1);
+          location.reload();
           ;
         }
       }, error => console.error(error));
   }
 
+  //sua
   updatePromotion()
   {
     var x = this.promotion;
@@ -147,13 +151,14 @@ export class AdminPromotionComponent implements OnInit {
         if(res.success){
           this.promotion = res.data;
           this.isEdit = true;
-          this.searchPromotion(1);
           alert("New product have been saved successfully!");
           $('#Modal').modal("hide");
+          location.reload();
         }
       }, error => console.error(error));
   }
 
+  //xoa
   deletePromotion(index)
   {
     var x = index;
@@ -161,9 +166,9 @@ export class AdminPromotionComponent implements OnInit {
     .subscribe(result=>{
         var res:any = result;
         if(res.success){
-          this.searchPromotion(1);
           alert("New product have been deleted successfully!");
           $('#myModal').modal("hide");
+          location.reload();
         }
       }, error => console.error(error));
   }

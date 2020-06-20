@@ -93,7 +93,11 @@ namespace clothing_store.DAL
                 p.DiscountPercent,
                 SalePercent = String.Format("{0:0}%", p.DiscountPercent * 100),
                 Discount = p.DiscountPercent * 100
-            }).Where(x => x.PromotionName.Contains(keyword));
+            });
+            if (!string.IsNullOrEmpty(keyword))
+            {
+                pro = pro.Where(x => x.PromotionName.Contains(keyword));
+            }
 
             var offset = (page - 1) * size;
             var total = pro.Count();

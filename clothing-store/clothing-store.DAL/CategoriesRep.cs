@@ -105,8 +105,11 @@ namespace clothing_store.DAL
                 p.Description,
                 p.Gender,
                 GioiTinh = p.Gender == true ? "Nữ" : "Nam"
-                //int totalPage = (total % size) == 0 ? (int)(total / size) : (int)((total / size) + 1);
-            }).Where(x => x.CategoryName.Contains(keyword));
+            });
+            if (!string.IsNullOrEmpty(keyword))
+            {
+                category = category.Where(x => x.CategoryName.Contains(keyword));
+            }
 
             var offset = (page - 1) * size;
             var total = category.Count();

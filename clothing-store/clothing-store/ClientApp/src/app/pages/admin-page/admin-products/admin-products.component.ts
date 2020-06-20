@@ -44,6 +44,7 @@ export class AdminProductsComponent implements OnInit {
     this.getPromotion();
   }
 
+  //lay ds giam gia de hien len select control
   getPromotion() {
     this.http
       .post("https://localhost:44320/" + "api/Promotion/get-by-all", null)
@@ -56,6 +57,7 @@ export class AdminProductsComponent implements OnInit {
       );
   }
 
+  //lay ds phan loai de hien len select control
   getCategories() {
     this.http
       .post("https://localhost:44320/" + "api/Categories/get-all", null)
@@ -67,6 +69,8 @@ export class AdminProductsComponent implements OnInit {
         (error) => console.error(error)
       );
   }
+
+  //hien ds san pham
   searchProduct(cPage) {
     let x = {
       page: cPage,
@@ -129,12 +133,14 @@ export class AdminProductsComponent implements OnInit {
     }
   }
 
+  //modal xoa
   deleteModal(index)
   {
     this.product = index;
     $('#myModal').modal("show");
   }
 
+  //modal them va sua
   openModal(isNew, index)
   {
     if(isNew)
@@ -159,6 +165,7 @@ export class AdminProductsComponent implements OnInit {
     $('#Modal').modal("show");
   }
 
+  //them
   addProduct()
   {
     var x = this.product;
@@ -168,13 +175,14 @@ export class AdminProductsComponent implements OnInit {
         if(res.success){
           this.product = res.data;
           this.isEdit = true;
-          this.searchProduct(1);
           alert("New product have been added successfully!");
           $('#Modal').modal("hide");
+          location.reload();
         }
       }, error => console.error(error));
   }
 
+  //sua
   updateProduct()
   {
     var x = this.product;
@@ -183,22 +191,23 @@ export class AdminProductsComponent implements OnInit {
         if(res.success){
           this.product = res.data;
           this.isEdit = true;
-          this.searchProduct(1);
           alert("New product have been saved successfully!");
           $('#Modal').modal("hide");
+          location.reload();
         }
       }, error => console.error(error));
   }
 
+  //xoa
   deleteProduct(index)
   {
     var x = index;
     this.http.post('https://localhost:44320/api/Products/delete-product', x).subscribe(result=>{
         var res:any = result;
         if(res.success){
-          this.searchProduct(1);
           alert("New product have been deleted successfully!");
           $('#myModal').modal("hide");
+          location.reload();
         }
       }, error => console.error(error));
   }

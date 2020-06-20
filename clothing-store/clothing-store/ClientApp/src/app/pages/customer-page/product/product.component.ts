@@ -53,6 +53,8 @@ export class ProductComponent implements OnInit {
   }
 
   AddProductCart() {
+    //mớ code
+         
     this.activateRoute.paramMap.subscribe(params => {
       this.detail(parseInt(this.cookieService.get("proId")));
     })

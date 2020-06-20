@@ -219,7 +219,7 @@
 </div>
 </div>
 
-<!-- CREATE AND UPDATE CATEGORY -->
+<!--MODAL CREATE AND UPDATE CATEGORY -->
 <div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -251,7 +251,7 @@
                     <label class="col-sm-4 col-form-label">Thuộc giới tính</label>
                     <div class="col-sm-8">
                         <form>
-                            <label class="radio-inline">
+                            <label class="radio-inline"> <!-- nam se return ve false, nu se return ve true -->
                               <input [(ngModel)]="category.gender" [value]="false" type="radio" name="optradio" checked>Nam
                             </label>
                             <label class="radio-inline">
@@ -270,7 +270,7 @@
     </div>
 </div>
 
-<!-- DELETE CATEGORY-->
+<!-- MODAL DELETE CATEGORY-->
 <div id="myModal" class="modal fade">
 	<div class="modal-dialog modal-confirm">
 		<div class="modal-content">

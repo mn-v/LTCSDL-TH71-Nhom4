@@ -295,7 +295,11 @@ namespace clothing_store.DAL
                     b.DiscountPercent,
                     SalePercent = String.Format("{0:0}%", b.DiscountPercent * 100),
                     SalePrice = a.Price * (1 - ((decimal)b.DiscountPercent))
-                }).Where(x => x.ProductName.Contains(keyword));
+                });
+            if(!string.IsNullOrEmpty(keyword))
+            {
+                pro = pro.Where(x => x.ProductName.Contains(keyword));
+            }
 
             var offset = (page - 1) * size;
             var total = pro.Count();
