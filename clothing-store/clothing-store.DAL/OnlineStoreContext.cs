@@ -31,11 +31,7 @@ namespace clothing_store.DAL.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-<<<<<<< HEAD
                 optionsBuilder.UseSqlServer("Data Source=Dell67\\MSSQLSERVER01;Initial Catalog=OnlineStore;Persist Security Info=True;User ID=sa;Password=tuan67;Pooling=False;MultipleActiveResultSets=False;Encrypt=False;TrustServerCertificate=True;");
-=======
-                optionsBuilder.UseSqlServer("Data Source=.;Initial Catalog=OnlineStore;Persist Security Info=True;User ID=sa;Password=123456;Pooling=False;MultipleActiveResultSets=False;Encrypt=False;TrustServerCertificate=True;");
->>>>>>> 134de205c0182b123e1ac7219b7c5b3a85b69a40
             }
         }
 

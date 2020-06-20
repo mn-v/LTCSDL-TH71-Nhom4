@@ -151,7 +151,7 @@ namespace clothing_store.DAL
             var res = 0;
             var context = new OnlineStoreContext();
             var pro = base.All.FirstOrDefault(p => p.ProductId == id);
-            if(pro != null)
+            if (pro != null)
             {
                 context.Products.Remove(pro);
                 res = context.SaveChanges();

@@ -69,9 +69,9 @@ namespace clothing_store.Controllers
         }
 
         [HttpPost("delete-product")]
-        public IActionResult DeleteProduct(int id)
+        public IActionResult DeleteProduct([FromBody] ProductsReq req)
         {
-            var res = _svc.DeleteProduct(id);
+            var res = _svc.DeleteProduct(req.ProductId);
 
             return Ok(res);
         }

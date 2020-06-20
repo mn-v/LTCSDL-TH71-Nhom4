@@ -158,6 +158,7 @@ export class AdminProductsComponent implements OnInit {
       this.http
       .post("https://localhost:44320/" + "api/Products/delete-product", x)
       .subscribe(
+       
         (result) => {
           var res:any = result;
           if(res == 1){
