@@ -33,6 +33,8 @@ namespace clothing_store.DAL
             {
                 using (var tran = context.Database.BeginTransaction())
                 {
+
+
                     try
                     {
                         var t = context.Orders.Add(orders);
@@ -69,6 +71,13 @@ namespace clothing_store.DAL
                     }
                 }
             }
+            return res;
+        }
+
+        public SingleRsp CheckOut(int OrderId)
+        {
+            var res = new SingleRsp();
+            
             return res;
         }
         #endregion

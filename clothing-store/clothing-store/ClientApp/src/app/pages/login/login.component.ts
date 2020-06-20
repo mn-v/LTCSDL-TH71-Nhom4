@@ -2,22 +2,20 @@ import { Component, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
 import * as bcrypt from 'bcryptjs';
-
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
 })
 export class LoginComponent {
   headerFooter: boolean;
+
   usertk: any = {
     data: []
   };
-
   user: string = null;
   pass: string = null;
   result: any = [];
-  constructor(private http: HttpClient, @Inject('BASE_URL')
-   baseUrl: string, private cookieService: CookieService) {
+  constructor(private http: HttpClient, @Inject('BASE_URL') baseUrl: string, private cookieService: CookieService) {
 
   }
 
@@ -72,6 +70,7 @@ export class LoginComponent {
                 window.open('https://localhost:44320/');
                 userId = (this.result[0].userId).toString();
               }
+              this.cookieService.set("userId", this.result[0].userId.toString());
             }
             else {
               alert("Mật khẩu không đúng!");
@@ -82,5 +81,7 @@ export class LoginComponent {
           alert("Tài khoản không đúng!!!");
         }
       }, error => error => console.error(error));
+
+
   }
 }

@@ -98,7 +98,7 @@
                                             <button type="button" class="btn btn-primary" data-toggle="modal"
                                                 data-target="#exampleModal" (click)="openModal(false,p)">
                                                 <i class="fas fa-edit"></i></button>
-                                            <button id="delete" class="btn btn-danger" (click)="deleteProduct()"><i
+                                            <button id="delete" class="btn btn-danger" (click)="deleteProduct(p)"><i
                                                     class="fas fa-trash-alt"></i></button>
                                         </div>
                                     </td>
@@ -133,7 +133,7 @@
     </div>
 </div>
 
-<!-- CREATE AND UPDATE PRODUCT -->
+<!--MODAL CREATE AND UPDATE PRODUCT -->
 <div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -203,7 +203,7 @@
     </div>
 </div>
 
-<!-- DELETE PRODUCT-->
+<!-- MODAL DELETE PRODUCT -->
 <div id="myModal" class="modal fade">
     <div class="modal-dialog modal-confirm">
         <div class="modal-content">
@@ -215,8 +215,8 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Trở về</button>
-                <button type="button" (click)="deleteProduct()" class="btn btn-danger">Xóa</button>
-            </div>
-        </div>
-    </div>
+				<button type="button" (click)="deleteProduct(product)" class="btn btn-danger">Xóa</button>
+			</div>
+		</div>
+	</div>
 </div>

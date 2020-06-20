@@ -62,7 +62,8 @@
                                     kiếm</button>
                             </div>
                         </div>
-                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#Modal" (click)="openModal()">
+                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#Modal"
+                            (click)="openModal()">
                             Tạo mới
                         </button>
                     </div>
@@ -122,8 +123,7 @@
         </div>
     </div>
 </div>
-
-<!-- CREATE AND UPDATE CATEGORY -->
+<!--MODAL CREATE AND UPDATE CATEGORY -->
 <div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -160,7 +160,8 @@
                                     checked class="mr-2">Nam
                             </label>
                             <label class="radio-inline m-0 mx-2">
-                                <input [(ngModel)]="category.gender" [value]="true" type="radio" name="optradio" class="mr-2">Nữ
+                                <input [(ngModel)]="category.gender" [value]="true" type="radio" name="optradio"
+                                    class="mr-2">Nữ
                             </label>
                         </form>
                     </div>
@@ -176,7 +177,7 @@
     </div>
 </div>
 
-<!-- DELETE CATEGORY-->
+<!-- MODAL DELETE CATEGORY-->
 <div id="myModal" class="modal fade">
     <div class="modal-dialog modal-confirm">
         <div class="modal-content">
@@ -188,7 +189,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Trở về</button>
-                <button type="button" (click)="deleteCategory()" class="btn btn-danger">Xóa</button>
+                <button type="button" (click)="deleteCategory(category)" class="btn btn-danger">Xóa</button>
             </div>
         </div>
     </div>

@@ -25,7 +25,7 @@ export class SignupComponent {
     var x = this.users;
     bcrypt.hash(this.users.passWord, 10, (err, hash) => {
       if (!err) {
-        x.passWord = hash;
+        x.passWord = hash;  
         this.http.post('https://localhost:44320/api/Users/create-user', x)
           .subscribe(result => {
             var res: any = result;

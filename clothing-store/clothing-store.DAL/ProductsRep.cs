@@ -24,18 +24,6 @@ namespace clothing_store.DAL
             m = base.Delete(m);
             return m.ProductId;
         }
-        public int DeleteProduct(int id)
-        {
-            var res = 0;
-            var context = new OnlineStoreContext();
-            var pro = base.All.FirstOrDefault(p => p.ProductId == id);
-            if (pro != null)
-            {
-                context.Products.Remove(pro);
-                res = context.SaveChanges();
-            }
-            return res;
-        }
         #endregion
 
         #region -- Methods --
@@ -159,7 +147,28 @@ namespace clothing_store.DAL
             return res;
         }
 
-     
+        public SingleRsp DeleteProduct(Products pro)
+        {
+            var res = new SingleRsp();
+            using (var context = new OnlineStoreContext())
+            {
+                using (var tran = context.Database.BeginTransaction())
+                {
+                    try
+                    {
+                        var t = context.Products.Remove(pro);
+                        context.SaveChanges();
+                        tran.Commit();
+                    }
+                    catch (Exception ex)
+                    {
+                        tran.Rollback();
+                        res.SetError(ex.StackTrace);
+                    }
+                }
+            }
+            return res;
+        }
 
         // Product-Sale promotionId > 0 (Tested)
         public object GetSP_ProductSale(String keyword, int page, int size)
@@ -286,7 +295,11 @@ namespace clothing_store.DAL
                     b.DiscountPercent,
                     SalePercent = String.Format("{0:0}%", b.DiscountPercent * 100),
                     SalePrice = a.Price * (1 - ((decimal)b.DiscountPercent))
-                }).Where(x => x.ProductName.Contains(keyword));
+                });
+            if(!string.IsNullOrEmpty(keyword))
+            {
+                pro = pro.Where(x => x.ProductName.Contains(keyword));
+            }
 
             var offset = (page - 1) * size;
             var total = pro.Count();
@@ -334,7 +347,25 @@ namespace clothing_store.DAL
             return res;
         }
 
-        
+        public object getProductsId(int id)
+        {
+            var res = Context.Products
+                .Join(Context.Promotion, a => a.PromotionId, b => b.PromotionId, (a, b) => new
+                {
+                    a.ProductId,
+                    a.ProductName,
+                    a.Price,
+                    a.ImageSource,
+                    a.DateCreate,
+                    a.Stock,
+                    a.Description,
+                    a.PromotionId,
+                    b.DiscountPercent,
+                    SalePercent = String.Format("{0:0}%", b.DiscountPercent * 100)
+                }).Where(x => x.ProductId == id).First();
+
+            return res;
+        }
 
         #endregion
     }

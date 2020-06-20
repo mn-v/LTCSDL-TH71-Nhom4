@@ -104,6 +104,12 @@ namespace clothing_store.BLL
             return _rep.GetSP_ProductAccessories(keyword, page, size);
         }
 
+        //Product-get
+        public object getProductsId(int id)
+        {
+            return _rep.getProductsId(id);
+        }
+
         public object GetProductByCategoryName_Linq(String keyword, int page, int size, string categoryName, bool gender)
         {
             return _rep.GetProductByCategoryName_Linq(keyword, page, size, categoryName, gender);
@@ -114,9 +120,11 @@ namespace clothing_store.BLL
             return _rep.GetProductByPromotion_Linq(gender);
         }
 
-        public int DeleteProduct(int id)
+        public SingleRsp DeleteProduct(Products pro)
         {
-            return _rep.DeleteProduct(id);
+            var res = new SingleRsp();
+            res = _rep.DeleteProduct(pro);
+            return res;
         }
 
         public object SearchProductByGender(String keyword, int page, int size, bool gender)

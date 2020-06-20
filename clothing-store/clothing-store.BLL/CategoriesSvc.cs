@@ -80,9 +80,11 @@ namespace clothing_store.BLL
             return res;
         }
 
-        public int DeleteCategory(int id)
+        public SingleRsp DeleteCategory(Categories categories)
         {
-            return _rep.DeleteCategory(id);
+            var res = new SingleRsp();
+            res = _rep.DeleteCategory(categories);
+            return res;
         }
 
         public object SearchCategory(String keyword, int page, int size)

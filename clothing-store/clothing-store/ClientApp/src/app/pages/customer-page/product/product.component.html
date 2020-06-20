@@ -20,7 +20,8 @@
                 <h5 class="font-weight-bold">{{product.productName}}</h5>
                 <div class="mb-2" style="border-bottom-width: 0.5px;
                 border-bottom-color: #dddddd;border-bottom-style:dotted"></div>
-                <h6 class="font-weight-bold m-0" style="color: var(--darkred);"> {{product.price | currency: 'VND':'symbol-narrow':'.3'}}</h6>
+                <h6 class="font-weight-bold m-0" style="color: var(--darkred);"> {{product.price| currency: 'VND':'symbol-narrow':'.3'}}</h6>
+                <h6 class="font-weight-bold m-0" style="color: var(--darkred);">{{PriceSale | currency: 'VND':'symbol-narrow':'.3'}}</h6>
 
                 <!-- Options -->
                 <div class="my-3">

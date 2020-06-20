@@ -101,8 +101,6 @@ export class WomenComponent implements OnInit {
           page: nextPage,
           size: 12,
           keyword: "",
-          categoryName: this.categoryName,
-          gender: true
         }
         this.http.post('https://localhost:44320/' + 'api/Products/get-product-by-categoryName-linq', x).subscribe(result => {
           this.products = result;

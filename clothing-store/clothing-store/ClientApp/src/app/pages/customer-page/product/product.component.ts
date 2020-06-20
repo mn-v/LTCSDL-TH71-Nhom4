@@ -12,7 +12,7 @@ export class ProductComponent implements OnInit {
   product: any = {
     data: []
   };
-
+  PriceSale: any;
   cart: any = {
     data: []
   };
@@ -28,25 +28,33 @@ export class ProductComponent implements OnInit {
   }
 
   ngOnInit() {
+    let productId;
     this.activateRoute.paramMap.subscribe(params => {
-      let productId = params.get('id')
+      productId = params.get('id');
+      
       this.cookieService.set("proId", params.get('id').toString());
-      this.detail(productId);
+      
       this.userId = parseInt(this.cookieService.get("userId"));
       this.quanity = 1;
-      console.log(parseInt(this.cookieService.get("proId")))
-    })
+      
+    });
+    this.detail(parseInt(productId));
+    
   }
 
-  detail(id) {
+  detail(id) {                                 
     this.http.post("https://localhost:44320/api/Products/get-by-id/" + id, id).subscribe(result => {
       this.product = result;
       this.product = this.product.data;
+      console.log(this.product);
+      this.PriceSale = "Giảm giá: " + this.product.salePercent ;
     }, error => console.error(error));
 
   }
 
   AddProductCart() {
+    //mớ code
+         
     this.activateRoute.paramMap.subscribe(params => {
       this.detail(parseInt(this.cookieService.get("proId")));
     })

@@ -71,10 +71,10 @@ namespace clothing_store.BLL
             return res;
         }
 
-        public SingleRsp DeletePromotion(int id)
+        public SingleRsp DeletePromotion(Promotion prom)
         {
             var res = new SingleRsp();
-            res = _rep.DeletePromotion(id);
+            res = _rep.DeletePromotion(prom);
             return res;
         }
 

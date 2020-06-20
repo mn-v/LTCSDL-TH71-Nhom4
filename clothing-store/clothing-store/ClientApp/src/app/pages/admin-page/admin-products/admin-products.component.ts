@@ -11,7 +11,7 @@ export class AdminProductsComponent implements OnInit {
     data: [],
     totalRecord: 0,
     page: 0,
-    size: 5,
+    size: 10,
     totalPages: 0,
   };
 
@@ -32,6 +32,7 @@ export class AdminProductsComponent implements OnInit {
   promotion: any = {
   }
 
+  key :any = "";
   isEdit: boolean = true;
 
   constructor(private http: HttpClient, @Inject("BASE_URL") baseUrl: string) {}
@@ -42,6 +43,7 @@ export class AdminProductsComponent implements OnInit {
     this.getPromotion();
   }
 
+  // Lấy ds giảm giá để hiển thị lên select control
   getPromotion() {
     this.http
       .post("https://localhost:44320/" + "api/Promotion/get-by-all", null)
@@ -54,6 +56,7 @@ export class AdminProductsComponent implements OnInit {
       );
   }
 
+  // Lấy ds phân loại để hiển thị lên select control
   getCategories() {
     this.http
       .post("https://localhost:44320/" + "api/Categories/get-all", null)
@@ -65,12 +68,13 @@ export class AdminProductsComponent implements OnInit {
         (error) => console.error(error)
       );
   }
-  
+
+  // Hiện danh sách sản phẩm
   searchProduct(cPage) {
     let x = {
       page: cPage,
-      size: 5,
-      keyword: "",
+      size: 10,
+      keyword: this.key
     };
     this.http
       .post("https://localhost:44320/" + "api/Products/search-product", x)
@@ -89,8 +93,8 @@ export class AdminProductsComponent implements OnInit {
       let nextPage = this.products.page + 1;
       let x = {
         page: nextPage,
-        size: 5,
-        keyword: "",
+        size: 10,
+        keyword: this.key
       };
       this.http
         .post("https://localhost:44320/api/Products/search-product", x)
@@ -111,8 +115,8 @@ export class AdminProductsComponent implements OnInit {
       let nextPage = this.products.page - 1;
       let x = {
         page: nextPage,
-        size: 5,
-        keyword: "",
+        size: 10,
+        keyword: this.key
       };
       this.http
         .post("https://localhost:44320/api/Products/search-product", x)
@@ -128,6 +132,7 @@ export class AdminProductsComponent implements OnInit {
     }
   }
 
+  // MODAL
   deleteModal(index)
   {
     this.product = index;
@@ -158,6 +163,7 @@ export class AdminProductsComponent implements OnInit {
     $('#Modal').modal("show");
   }
 
+  // Thêm
   addProduct()
   {
     var x = this.product;
@@ -167,13 +173,14 @@ export class AdminProductsComponent implements OnInit {
         if(res.success){
           this.product = res.data;
           this.isEdit = true;
-          this.searchProduct(1);
           alert("New product have been added successfully!");
           $('#Modal').modal("hide");
+          location.reload();
         }
       }, error => console.error(error));
   }
 
+  // Cập nhật
   updateProduct()
   {
     var x = this.product;
@@ -182,21 +189,23 @@ export class AdminProductsComponent implements OnInit {
         if(res.success){
           this.product = res.data;
           this.isEdit = true;
-          this.searchProduct(1);
           alert("New product have been saved successfully!");
           $('#Modal').modal("hide");
+          location.reload();
         }
       }, error => console.error(error));
   }
 
+  // Xóa
   deleteProduct(index)
   {
     var x = index;
     this.http.post('https://localhost:44320/api/Products/delete-product', x).subscribe(result=>{
         var res:any = result;
         if(res.success){
-          this.searchProduct(1);
           alert("New product have been deleted successfully!");
+          $('#myModal').modal("hide");
+          location.reload();
         }
       }, error => console.error(error));
   }
