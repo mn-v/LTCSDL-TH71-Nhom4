@@ -24,8 +24,8 @@ export class MenComponent implements OnInit {
 
   constructor(
     private http: HttpClient,
-    @Inject('BASE_URL') baseUrl: string) {
-
+    @Inject('BASE_URL') baseUrl: string,
+  ) {
   }
 
   // Lấy danh sách sản phẩm theo tên của loại sản phẩm chọn ở phân loại
@@ -178,5 +178,6 @@ export class MenComponent implements OnInit {
 
   ngOnInit() {
     this.searchProductByGender(1);
+    // AOS.init();
   }
 }
