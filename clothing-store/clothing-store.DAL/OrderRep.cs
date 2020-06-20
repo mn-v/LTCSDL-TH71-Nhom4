@@ -33,6 +33,8 @@ namespace clothing_store.DAL
             {
                 using (var tran = context.Database.BeginTransaction())
                 {
+
+
                     try
                     {
                         var t = context.Orders.Add(orders);
