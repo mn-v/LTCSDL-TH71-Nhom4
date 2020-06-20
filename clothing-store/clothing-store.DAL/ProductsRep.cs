@@ -285,7 +285,25 @@ namespace clothing_store.DAL
             return res;
         }
 
-        
+        public object getProductsId(int id)
+        {
+            var res = Context.Products
+                .Join(Context.Promotion, a => a.PromotionId, b => b.PromotionId, (a, b) => new
+                {
+                    a.ProductId,
+                    a.ProductName,
+                    a.Price,
+                    a.ImageSource,
+                    a.DateCreate,
+                    a.Stock,
+                    a.Description,
+                    a.PromotionId,
+                    b.DiscountPercent,
+                    SalePercent = String.Format("{0:0}%", b.DiscountPercent * 100)
+                }).Where(x => x.ProductId == id).First();
+
+            return res;
+        }
 
         #endregion
     }

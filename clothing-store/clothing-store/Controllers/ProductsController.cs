@@ -19,7 +19,8 @@ namespace clothing_store.Controllers
         public IActionResult getProductsId(int id)
         {
             var res = new SingleRsp();
-            res = _svc.Read(id);
+            var pro = _svc.getProductsId(id);
+            res.Data = pro;
             return Ok(res);
         }
 
