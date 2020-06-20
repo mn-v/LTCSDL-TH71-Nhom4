@@ -82,32 +82,18 @@ namespace clothing_store.DAL
             }
             return res;
         }
-        public object CheckAcc_Linq(String username, String password)
+
+        public object CheckAcc_Linq(String username)
         {
             var res = Context.Users
-                .Where(x => x.UserName == username && x.Password == password)
+                .Where(x => x.UserName == username)
                 .Select(u => new {
                     u.UserId,
-                    u.RoleId
+                    u.RoleId,
+                    u.Password
                 }).ToList();
             return res;
         }
-
-        public object GetUserId_Linq(String username, String password)
-        {
-            var user = Context.Users
-                .Where(x => x.UserName == username && x.Password == password)
-                .Select(u => new {
-                    u.UserId
-                }).ToList();
-            var res = user.First();
-            return res;
-        }
-
-
-
-
-
 
     }
 }
