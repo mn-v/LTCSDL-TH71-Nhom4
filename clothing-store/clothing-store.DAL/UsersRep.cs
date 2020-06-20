@@ -40,47 +40,61 @@ namespace clothing_store.DAL
             return res;
         }
 
-        public object CheckAcc(String username, String password)
+        public int DeleteUser(int id)
         {
-            List<object> res = new List<object>();
-            var cnn = (SqlConnection)Context.Database.GetDbConnection();
-            if (cnn.State == ConnectionState.Closed)
+            var res = 0;
+            var context = new OnlineStoreContext();
+            var use = base.All.FirstOrDefault(u => u.UserId == id);
+            if (use != null)
             {
-                cnn.Open();
+                context.Users.Remove(use);
+                res = context.SaveChanges();
             }
-            try
+            return res;
+        }
+
+        public SingleRsp UpdateUser(int UserId, string UserName, string Password, string PhoneNumber, string Dob, string Email, int RoleId)
+        {
+            var res = new SingleRsp();
+            using (var context = new OnlineStoreContext())
             {
-                SqlDataAdapter da = new SqlDataAdapter();
-                DataSet ds = new DataSet();
-
-                var cmd = cnn.CreateCommand();
-
-                cmd.CommandText = "[CheckAcc]";
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@user", username);
-                cmd.Parameters.AddWithValue("@pass", password);
-                da.SelectCommand = cmd;
-                da.Fill(ds);
-
-                if (ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
+                using (var tran = context.Database.BeginTransaction())
                 {
-                    foreach (DataRow row in ds.Tables[0].Rows)
+                    try
                     {
-                        var x = new
-                        {
-                            RoleID = row["RoleID"],         
-                        };
-                        res.Add(x);
+                        Users use = Context.Users.Where(x => x.UserId == UserId).ToList().FirstOrDefault();
+                        use.UserName = UserName;
+                        use.Password = Password;
+                        use.PhoneNumber = PhoneNumber;
+                        use.Dob = Dob;
+                        use.Email = Email;
+                        use.RoleId = RoleId;
+                        var t = context.Users.Update(use);
+                        context.SaveChanges();
+                        tran.Commit();
+                    }
+                    catch (Exception ex)
+                    {
+                        tran.Rollback();
+                        res.SetError(ex.StackTrace);
                     }
                 }
             }
-            catch (Exception ex)
-            {
-                res = null;
-            }
-
             return res;
         }
+        public object CheckAcc_Linq(String username, String password)
+        {
+            var res = Context.Users
+                .Where(x => x.UserName == username && x.Password == password)
+                .Select(u => new {
+                    u.UserId,
+                    u.RoleId
+                }).ToList();
+            return res;
+        }
+
+        
+
 
     }
 }

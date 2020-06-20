@@ -6,7 +6,6 @@ declare var $: any;
 @Component({
   selector: "app-admin-products",
   templateUrl: "./admin-products.component.html",
-  styleUrls: ["./admin-products.component.scss"],
 })
 export class AdminProductsComponent implements OnInit {
   products: any = {

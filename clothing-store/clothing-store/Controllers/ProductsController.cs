@@ -15,11 +15,11 @@ namespace clothing_store.Controllers
             _svc = new ProductsSvc();
         }
 
-        [HttpPost("get-by-id")]
-        public IActionResult getProductsId([FromBody] SimpleReq rep)
+        [HttpPost("get-by-id/{id}")]
+        public IActionResult getProductsId(int id)
         {
             var res = new SingleRsp();
-            res = _svc.Read(rep.Id);
+            res = _svc.Read(id);
             return Ok(res);
         }
 

@@ -17,11 +17,24 @@ namespace clothing_store.DAL
             return res;
         }
 
+
         public int Remove(int id)
         {
             var m = base.All.FirstOrDefault(p => p.ProductId == id);
             m = base.Delete(m);
             return m.ProductId;
+        }
+        public int DeleteProduct(int id)
+        {
+            var res = 0;
+            var context = new OnlineStoreContext();
+            var pro = base.All.FirstOrDefault(p => p.ProductId == id);
+            if (pro != null)
+            {
+                context.Products.Remove(pro);
+                res = context.SaveChanges();
+            }
+            return res;
         }
         #endregion
 
@@ -159,6 +172,7 @@ namespace clothing_store.DAL
             return res;
         }
 
+
         // Product-Sale promotionId > 0 (Tested)
         public object GetSP_ProductSale(String keyword, int page, int size)
         {
@@ -282,6 +296,9 @@ namespace clothing_store.DAL
             };
             return res;
         }
+
+        
+
         #endregion
     }
 }

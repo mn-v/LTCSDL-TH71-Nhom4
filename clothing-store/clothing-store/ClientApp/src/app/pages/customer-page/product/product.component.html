@@ -1,14 +1,14 @@
-<section id="product">
+<section id="product-details">
     <div class="container">
         <div class="row">
             <div class="text-secondary font-12 px-3 py-2 mx-3 my-3"
-                style="background-color: var(--whitesmoke); width: 100%;">Trang chủ/ Sản phẩm nổi bật</div>
+                style="background-color: var(--whitesmoke); width: 100%;">Trang chủ/ Chi tiết sản phẩm/ <span>Mã SP: {{product.productId}}</span></div>
 
             <!-- LEFT SIDE -->
             <div id="carouselExampleControls" class="col-md-5 mb-3 carousel slide" data-ride="carousel">
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img class="d-block w-100" src="./assets/images/women/tee/1.jpg">
+                        <img class="d-block w-100" src="https://{{product.imageSource}}">
                     </div>
                 </div>
             </div>
@@ -17,30 +17,28 @@
             <div class="col-md-7 pb-4">
 
                 <!-- Product's Details  -->
-                <h5 class="font-weight-bold">Áo thun nữ đen North California</h5>
+                <h5 class="font-weight-bold">{{product.productName}}</h5>
                 <div class="mb-2" style="border-bottom-width: 0.5px;
                 border-bottom-color: #dddddd;border-bottom-style:dotted"></div>
-                <h6 class="font-weight-bold m-0" style="color: var(--darkred);">500.000<span>Đ</span></h6>
-                <!-- {{p.price | currency: 'VND':'symbol-narrow':'.3'}} -->
+                <h6 class="font-weight-bold m-0" style="color: var(--darkred);"> {{product.price | currency: 'VND':'symbol-narrow':'.3'}}</h6>
 
                 <!-- Options -->
                 <div class="my-3">
                     <div class="row mb-3 d-flex align-items-baseline">
                         <label class="col-md-4">Size:</label>
-                        <select class="custom-select col-md-6">
-                            <option selected class="px-4 py-1 font-14">Chọn size</option>
+                        <select class="custom-select col-md-6" [(ngModel)]="size">
                             <option value="1">S</option>
                             <option value="2">M</option>
                             <option value="3">L</option>
                         </select>
-                    </div>
+                    </div>                                 
 
                     <div class="row mb-3 d-flex align-items-baseline">
                         <label class="col-md-4">Số lượng</label>
-                        <input class="col-md-2 py-1 pr-2" type="number" id="quantity" name="quantity" min="1" max="10"
+                        <input [(ngModel)]="quanity"class="col-md-2 py-1 pr-2" type="number" id="quantity" name="quantity" min="1" max="10"
                             placeholder="0">
-                        <button type="button" class="col-md-4 ml-2 btn text-light text-uppercase"
-                            style="background-color: var(--darkred);">Thêm vào giỏ</button>
+                        <button type="button" class="col-md-4 btn--cart btn text-light text-uppercase"
+                            style="background-color: var(--darkred);" [routerLink]="['/cart', {id:product.productId}, {price:product.price}]" >Thêm vào giỏ</button>
                     </div>
                 </div>
 
