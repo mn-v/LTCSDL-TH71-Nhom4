@@ -1,5 +1,7 @@
 import { Component, OnInit, Inject } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
+import { error } from "protractor";
+declare var $: any;
 
 @Component({
   selector: "app-admin-products",
@@ -23,7 +25,7 @@ export class AdminProductsComponent implements OnInit {
     dateCreate: "",
   };
 
-  constructor(private http: HttpClient, @Inject("BASE_URL") baseUrl: string) {}
+  constructor(private http: HttpClient, @Inject("BASE_URL") baseUrl: string) { }
 
   ngOnInit() {
     this.searchProduct(1);
@@ -90,4 +92,84 @@ export class AdminProductsComponent implements OnInit {
       alert("Bạn đang ở trang đầu tiên!");
     }
   }
+
+  openModal(isNew, index) {
+    if (isNew) {
+      this.product = {
+        categoryId: 1,
+        productName: "",
+        price: 0,
+        stock: 0,
+        dateCreate: ""
+      }
+    }
+    $('#exampleModalCreate').modal("show");
+  }
+
+  openModalE(index) {
+      this.product = index;
+    $('#exampleModalEdit').modal("show");
+  }
+
+  
+
+  addProduct() {
+    var x = this.product;
+
+    this.http
+      .post("https://localhost:44320/" + "api/Products/create-product", x)
+      .subscribe(
+        (result) => {
+          var res:any = result;
+          if(res.success){
+            this.product = res.data;
+            this.searchProduct(1);
+            alert("Thêm mới thành công!!!");
+          }
+        },
+        (error) => console.error(error)
+      );
+  }
+
+  updateProduct() {
+    var x = this.product;
+
+    this.http
+      .post("https://localhost:44320/" + "api/Products/update-product", x)
+      .subscribe(
+        (result) => {
+          var res:any = result;
+          if(res.success){
+            this.product = res.data;
+            this.searchProduct(1);
+            alert("Cập nhật thành công!!!");
+          }
+        },
+        (error) => console.error(error)
+      );
+  }
+
+  deleteProduct(index){
+      var r = confirm("Bạn muốn xóa sản phẩm này không?");
+      if(r == true)
+        this.product = this.products.data[index];
+      var x = this.product;
+      this.http
+      .post("https://localhost:44320/" + "api/Products/delete-product", x)
+      .subscribe(
+       
+        (result) => {
+          var res:any = result;
+          if(res == 1){
+            this.searchProduct(1);
+            alert("Xóa thành công!!!");
+          }
+          else{
+            alert("Xóa thất bại!!!");
+          }
+        },
+        (error) => console.error(error)
+      );
+  }
+
 }

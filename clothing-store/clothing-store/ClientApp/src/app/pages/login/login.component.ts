@@ -31,9 +31,14 @@ export class LoginComponent {
         var res: any = result;
         console.log(res);
         this.result = res.data;
+
+        if (res.data.find(ds => ds.roleID == 2)) {
+          alert("Dang nhap admin thanh cong!")
+
         var userId;
         if (res.data.find(u => u.roleId == 1)) {
           alert("Bạn đang được chuyển hướng với quyền truy cập của ADMIN!");
+
           window.open('https://localhost:44320/admin');
         }
         else if (res.data.find(u => u.roleId == 2)) {

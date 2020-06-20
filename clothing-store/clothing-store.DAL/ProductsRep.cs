@@ -159,7 +159,19 @@ namespace clothing_store.DAL
             return res;
         }
 
-     
+        public int DeleteProduct(int id)
+        {
+            var res = 0;
+            var context = new OnlineStoreContext();
+            var pro = base.All.FirstOrDefault(p => p.ProductId == id);
+            if (pro != null)
+            {
+                context.Products.Remove(pro);
+                res = context.SaveChanges();
+            }
+            return res;
+        }
+
 
         // Product-Sale promotionId > 0 (Tested)
         public object GetSP_ProductSale(String keyword, int page, int size)

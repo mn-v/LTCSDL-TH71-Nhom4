@@ -29,6 +29,7 @@ export class SignupComponent {
         if (res.success) {
           alert("Bạn đã đăng kí thành công!")
           this.users = res.data;
+          
         }
         else {
           alert("Đăng kí không thành công!");
