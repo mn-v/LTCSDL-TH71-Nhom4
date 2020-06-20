@@ -57,7 +57,7 @@ export class LoginComponent {
         } else {
           alert("Tài khoản không đúng!!!");
         }
-      }, error => error => console.error(error));
+      }, error => console.error(error));
 
 
   }

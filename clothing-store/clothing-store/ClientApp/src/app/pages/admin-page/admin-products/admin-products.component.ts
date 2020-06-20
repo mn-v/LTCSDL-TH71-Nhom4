@@ -18,7 +18,6 @@ export class AdminProductsComponent implements OnInit {
 
   product: any = {
     productId: "1",
-    categoryId: "1",
     productName: "Áo thun",
     categoryId: 1,
     price: 250000,
