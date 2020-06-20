@@ -17,7 +17,7 @@ export class WomenComponent implements OnInit {
     data: [],
     totalRecord: 0,
     page: 0,
-    size: 5,
+    size: 12,
     totalPages: 0
   }
 
@@ -35,7 +35,7 @@ export class WomenComponent implements OnInit {
   getProduct(cPage, name) {
     let x = {
       page: cPage,
-      size: 3,
+      size: 12,
       keyword: "",
       categoryName: name,
       gender: true
@@ -64,7 +64,7 @@ export class WomenComponent implements OnInit {
     searchProductByProductName(cPage) {
       let x = {
         page: cPage,
-        size: 3,
+        size: 12,
         keyword: this.keywords,
         gender: true
       }
@@ -78,7 +78,7 @@ export class WomenComponent implements OnInit {
   searchProductByGender(cPage) {
     let x = {
       page: cPage,
-      size: 3,
+      size: 12,
       keyword: "",
       gender: true
     }
@@ -99,7 +99,7 @@ export class WomenComponent implements OnInit {
         let nextPage = this.products.page + 1;
         let x = {
           page: nextPage,
-          size: 3,
+          size: 12,
           keyword: "",
           categoryName: this.categoryName,
           gender: true
@@ -119,7 +119,7 @@ export class WomenComponent implements OnInit {
         let nextPage = this.products.page + 1;
         let x = {
           page: nextPage,
-          size: 3,
+          size: 12,
           keyword: "",
           gender: true
         }
@@ -142,7 +142,7 @@ export class WomenComponent implements OnInit {
         let previous = this.products.page - 1;
         let x = {
           page: previous,
-          size: 3,
+          size: 12,
           keyword: "",
           categoryName: this.categoryName,
           gender: true
@@ -162,7 +162,7 @@ export class WomenComponent implements OnInit {
         let previous = this.products.page - 1;
         let x = {
           page: previous,
-          size: 3,
+          size: 12,
           keyword: "",
           gender: true
         }

@@ -27,9 +27,6 @@
               {
                 "input": "./node_modules/bootstrap/dist/css/bootstrap.min.css"
               },
-              {
-                "input": "./node_modules/aos/dist/aos.css"
-              },
               "src/styles.scss"
             ],
             "scripts": [
