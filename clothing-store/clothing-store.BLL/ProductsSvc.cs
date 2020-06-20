@@ -6,6 +6,7 @@ using clothing_store.Common.Req;
 using clothing_store.DAL.Models;
 using clothing_store.DAL;
 using System.Linq;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace clothing_store.BLL
 {
@@ -43,25 +44,7 @@ namespace clothing_store.BLL
         #endregion
 
         #region -- Methods --
-        public object SearchProduct(String keyword, int page, int size)
-        {
-            var pro = All.Where(x => x.ProductName.Contains(keyword));
-
-            var offset = (page - 1) * size;
-            var total = pro.Count();
-            int totalPages = (total % size) == 0 ? (int)(total / size) : (int)((total / size) + 1);
-            var data = pro.OrderBy(x => x.ProductName).Skip(offset).Take(size).ToList();
-
-            var res = new
-            {
-                Data = data,
-                TotalRecord = total,
-                TotalPages = totalPages,
-                Page = page,
-                Size = size
-            };
-            return res;
-        }
+        
         
         public SingleRsp CreateProduct(ProductsReq pro)
         {
@@ -90,8 +73,8 @@ namespace clothing_store.BLL
             products.ProductName = pro.ProductName;
             products.Price = pro.Price;
             products.Stock = pro.Stock;
-            products.DateCreate = products.DateCreate; //ngay tao ko sua dc nhung neu ko de vao thi loi nen cho no bang chinh no
-            products.Description = pro.Description;    //co the loi do dateCreate duoc ghi vao cot description => can't convert type
+            products.DateCreate = pro.DateCreate; 
+            products.Description = pro.Description;   
             products.ImageSource = pro.ImageSource;
             products.PromotionId = pro.PromotionId;
 
@@ -99,6 +82,10 @@ namespace clothing_store.BLL
             return res;
         }
 
+        public object SearchProduct(String keyword, int page, int size)
+        {
+            return _rep.SearchProduct(keyword, page, size);
+        }
         #endregion
 
         public object GetAllProductByGender_Linq(bool gender)
@@ -117,6 +104,12 @@ namespace clothing_store.BLL
             return _rep.GetSP_ProductAccessories(keyword, page, size);
         }
 
+        //Product-get
+        public object getProductsId(int id)
+        {
+            return _rep.getProductsId(id);
+        }
+
         public object GetProductByCategoryName_Linq(String keyword, int page, int size, string categoryName, bool gender)
         {
             return _rep.GetProductByCategoryName_Linq(keyword, page, size, categoryName, gender);
@@ -127,9 +120,11 @@ namespace clothing_store.BLL
             return _rep.GetProductByPromotion_Linq(gender);
         }
 
-        public int DeleteProduct(int id)
+        public SingleRsp DeleteProduct(Products pro)
         {
-            return _rep.DeleteProduct(id);
+            var res = new SingleRsp();
+            res = _rep.DeleteProduct(pro);
+            return res;
         }
 
         public object SearchProductByGender(String keyword, int page, int size, bool gender)

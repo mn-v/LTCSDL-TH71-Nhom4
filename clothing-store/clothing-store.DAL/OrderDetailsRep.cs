@@ -24,12 +24,33 @@ namespace clothing_store.DAL
             m = base.Delete(m);
             return m.ProductId;
         }
-        
+
         #endregion
 
         #region -- Methods --
-        
 
+        public SingleRsp CreateOrderDetails(OrderDetails orderDetails)
+        {
+            var res = new SingleRsp();
+            using (var context = new OnlineStoreContext())
+            {
+                using (var tran = context.Database.BeginTransaction())
+                {
+                    try
+                    {
+                        var t = context.OrderDetails.Add(orderDetails);
+                        context.SaveChanges();
+                        tran.Commit();
+                    }
+                    catch (Exception ex)
+                    {
+                        tran.Rollback();
+                        res.SetError(ex.StackTrace);
+                    }
+                }
+            }
+            return res;
+        }
 
 
         #endregion

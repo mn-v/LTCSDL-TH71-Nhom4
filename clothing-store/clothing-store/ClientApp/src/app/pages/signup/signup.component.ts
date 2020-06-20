@@ -38,7 +38,7 @@ export class SignupComponent {
             }
           }, error => console.error(error));
       } else {
-        alert("Dang ki khong thanh cong!");
+        alert("Dang ki khong thanh cong!!!");
         console.log('Error: ', err)
       }
     })

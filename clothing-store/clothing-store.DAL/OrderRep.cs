@@ -71,6 +71,13 @@ namespace clothing_store.DAL
             }
             return res;
         }
+
+        public SingleRsp CheckOut(int OrderId)
+        {
+            var res = new SingleRsp();
+            
+            return res;
+        }
         #endregion
 
 

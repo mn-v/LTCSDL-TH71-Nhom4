@@ -72,16 +72,55 @@ namespace clothing_store.DAL
             return res;
         }
 
-        public int DeleteCategory(int id)
+        public SingleRsp DeleteCategory(Categories categories)
         {
-            var res = 0;
-            var context = new OnlineStoreContext();
-            var category = base.All.FirstOrDefault(c => c.CategoryId == id);
-            if (category != null)
+            var res = new SingleRsp();
+            using (var context = new OnlineStoreContext())
             {
-                context.Categories.Remove(category);
-                res = context.SaveChanges();
+                using (var tran = context.Database.BeginTransaction())
+                {
+                    try
+                    {
+                        var t = context.Categories.Remove(categories);
+                        context.SaveChanges();
+                        tran.Commit();
+                    }
+                    catch (Exception ex)
+                    {
+                        tran.Rollback();
+                        res.SetError(ex.StackTrace);
+                    }
+                }
             }
+            return res;
+        }
+
+        public object SearchCategory(String keyword, int page, int size)
+        {
+            var category = Context.Categories.Select(p => new
+            {
+                p.CategoryId,
+                p.CategoryName,
+                p.Title,
+                p.Description,
+                p.Gender,
+                GioiTinh = p.Gender == true ? "Nữ" : "Nam"
+                //int totalPage = (total % size) == 0 ? (int)(total / size) : (int)((total / size) + 1);
+            }).Where(x => x.CategoryName.Contains(keyword));
+
+            var offset = (page - 1) * size;
+            var total = category.Count();
+            int totalPages = (total % size) == 0 ? (int)(total / size) : (int)((total / size) + 1);
+            var data = category.OrderBy(x => x.CategoryName).Skip(offset).Take(size).ToList();
+
+            var res = new
+            {
+                Data = data,
+                TotalRecord = total,
+                TotalPages = totalPages,
+                Page = page,
+                Size = size
+            };
             return res;
         }
 

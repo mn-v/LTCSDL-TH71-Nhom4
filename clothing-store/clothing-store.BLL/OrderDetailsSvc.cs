@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-using clothing_store.Common.Rsp;
+﻿using clothing_store.Common.Rsp;
 using clothing_store.Common.BLL;
 
 namespace clothing_store.BLL
@@ -10,10 +6,8 @@ namespace clothing_store.BLL
     using clothing_store.Common.Req;
     using clothing_store.DAL.Models;
     using DAL;
-    using System.Linq;
-    using System.Reflection.Metadata.Ecma335;
 
-    public class OrderSvc : GenericSvc<OrderRep, Orders>
+    public class OrderDetailsSvc : GenericSvc<OrderDetailsRep, OrderDetails>
     {
         #region -- Overrides --
         public override SingleRsp Read(int id)
@@ -26,29 +20,21 @@ namespace clothing_store.BLL
             return res;
         }
 
-
-        #endregion
-
-
-        public SingleRsp CreateOrder(OrderReq order)
+        public override int Remove(int id)
         {
-            DateTime now = DateTime.Now;
-            order.OrderDate = now;
             var res = new SingleRsp();
-            Orders orders = new Orders();
-            orders.OrderId = order.OrderId;
-            orders.UserId = order.UserId;
-            orders.OrderDate = order.OrderDate;
-            orders.ShipName = order.ShipName;
-            orders.ShipAddress = order.ShipAddress;
-            orders.ShipPhoneNumber = order.ShipPhoneNumber;
-            orders.Status = order.Status;
 
-            res = _rep.CreateOrder(orders);
-            return res;
+            var m = _rep.Remove(id);
+            res.Data = m;
+
+            return 0;
         }
 
-        public SingleRsp CreateOrderDetail(OrderDetailsReq orderDetail)
+       
+        #endregion
+
+        #region -- Methods --
+        public SingleRsp CreateOrderDetails(OrderDetailsReq orderDetail)
         {
             var res = new SingleRsp();
             OrderDetails orderDetails = new OrderDetails();
@@ -63,8 +49,7 @@ namespace clothing_store.BLL
             return res;
         }
 
-        
-
-
+       
+        #endregion
     }
 }

@@ -15,7 +15,6 @@ namespace clothing_store.DAL.Models
 
         public virtual DbSet<Carts> Carts { get; set; }
         public virtual DbSet<Categories> Categories { get; set; }
-        
         public virtual DbSet<OrderDetails> OrderDetails { get; set; }
         public virtual DbSet<Orders> Orders { get; set; }
         public virtual DbSet<ProductSize> ProductSize { get; set; }
@@ -31,7 +30,7 @@ namespace clothing_store.DAL.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("Data Source=.;Initial Catalog=OnlineStore;Persist Security Info=True;User ID=sa;Password=123456;Pooling=False;MultipleActiveResultSets=False;Encrypt=False;TrustServerCertificate=True;");
+                optionsBuilder.UseSqlServer("Data Source=.\\SQLEXPRESSOR;Initial Catalog=OnlineStore;Persist Security Info=True;User ID=sa;Password=thanhkieuvt24;Pooling=False;MultipleActiveResultSets=False;Encrypt=False;TrustServerCertificate=True;");
             }
         }
 
@@ -338,7 +337,12 @@ namespace clothing_store.DAL.Models
                     .IsRequired()
                     .HasMaxLength(10)
                     .IsUnicode(false);
-              
+
+                entity.Property(e => e.Address)
+                    .IsRequired()
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
 
                 entity.Property(e => e.RoleId).HasColumnName("RoleID");
 
