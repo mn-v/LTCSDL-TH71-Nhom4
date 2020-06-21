@@ -80,29 +80,16 @@ namespace clothing_store.BLL
             return res;
         }
 
-        public int DeleteCategory(int id)
+        public SingleRsp DeleteCategory(Categories categories)
         {
-            return _rep.DeleteCategory(id);
+            var res = new SingleRsp();
+            res = _rep.DeleteCategory(categories);
+            return res;
         }
 
         public object SearchCategory(String keyword, int page, int size)
         {
-            var pro = All.Where(x => x.CategoryName.Contains(keyword));
-
-            var offset = (page - 1) * size;
-            var total = pro.Count();
-            int totalPages = (total % size) == 0 ? (int)(total / size) : (int)((total / size) + 1);
-            var data = pro.OrderBy(x => x.CategoryName).Skip(offset).Take(size).ToList();
-
-            var res = new
-            {
-                Data = data,
-                TotalRecord = total,
-                TotalPages = totalPages,
-                Page = page,
-                Size = size
-            };
-            return res;
+            return _rep.SearchCategory(keyword, page, size);
         }
 
         public object GetCategoryNameByGender_Linq(bool gender)

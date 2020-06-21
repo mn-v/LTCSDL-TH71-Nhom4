@@ -40,7 +40,6 @@ const routes: Routes = [
   { path: 'admin-category', component: AdminCategoryComponent },
   { path: 'admin-promotion', component: AdminPromotionComponent },
 
-  { path: 'admin-user', component: AdminUserComponent },
 
 
   // FUNCTIONS

@@ -20,7 +20,9 @@
                 <h5 class="font-weight-bold">{{product.productName}}</h5>
                 <div class="mb-2" style="border-bottom-width: 0.5px;
                 border-bottom-color: #dddddd;border-bottom-style:dotted"></div>
-                <h6 class="font-weight-bold m-0" style="color: var(--darkred);"> {{product.price | currency: 'VND':'symbol-narrow':'.3'}}</h6>
+                <h6 class="font-weight-bold m-0" style="color: var(--darkred);"> {{product.price}}<span> Đ</span></h6>
+                <h6 class="font-weight-bold m-0" style="color: var(--darkred);">{{PriceSale}}</h6>
+                <!-- {{p.price | currency: 'VND':'symbol-narrow':'.3'}} -->
 
                 <!-- Options -->
                 <div class="my-3">
@@ -37,8 +39,8 @@
                         <label class="col-md-4">Số lượng</label>
                         <input [(ngModel)]="quanity"class="col-md-2 py-1 pr-2" type="number" id="quantity" name="quantity" min="1" max="10"
                             placeholder="0">
-                        <button type="button" class="col-md-4 btn--cart btn text-light text-uppercase"
-                            style="background-color: var(--darkred);" [routerLink]="['/cart', {id:product.productId}, {price:product.price}]" >Thêm vào giỏ</button>
+                        <button type="button" class="col-md-4 ml-2 btn text-light text-uppercase"
+                            style="background-color: var(--darkred);" [routerLink]="['/cart', {userId:userId}]" (click) = "AddProductCart()" >Thêm vào giỏ</button>
                     </div>
                 </div>
 

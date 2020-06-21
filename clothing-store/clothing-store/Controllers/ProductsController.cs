@@ -3,6 +3,7 @@
 namespace clothing_store.Controllers
 {
     using BLL;
+    using clothing_store.DAL.Models;
     using Common.Req;
     using Common.Rsp;
 
@@ -19,7 +20,8 @@ namespace clothing_store.Controllers
         public IActionResult getProductsId(int id)
         {
             var res = new SingleRsp();
-            res = _svc.Read(id);
+            var pro = _svc.getProductsId(id);
+            res.Data = pro;
             return Ok(res);
         }
 
@@ -69,9 +71,9 @@ namespace clothing_store.Controllers
         }
 
         [HttpPost("delete-product")]
-        public IActionResult DeleteProduct([FromBody] ProductsReq req)
+        public IActionResult DeleteProduct(Products req)
         {
-            var res = _svc.DeleteProduct(req.ProductId);
+            var res = _svc.DeleteProduct(req);
 
             return Ok(res);
         }
