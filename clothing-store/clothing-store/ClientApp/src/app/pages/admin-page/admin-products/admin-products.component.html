@@ -117,7 +117,9 @@
                     <span style="margin-right: 0.25em;">Admin</span>
                     <i class="fas fa-fw fa-user"></i>
                 </a>
-
+            </div>
+        </nav>
+    </div>
     <app-sidebar class=" bg-gradient-primary"></app-sidebar>
     <div id="content-wrapper" class="d-flex flex-column">
         <!-- Main Content -->
@@ -138,8 +140,8 @@
                         </div>
                         <span class="font-13">Admin</span>
                     </a>
-
-
+                </div>
+            </nav>
             <!-- Data -->
             <div class="card shadow my-4">
                 <div class="card-header py-3 d-flex justify-content-end">
@@ -162,19 +164,7 @@
                                     <th>Ngày tạo</th>
                                     <th></th>
                                 </tr>
-
-                            <tfoot>
-                                <tr>
-                                    <th>Mã SP</th>
-                                    <th>Loại SP</th>
-                                    <th>Tên SP</th>
-                                    <th>Giá </th>
-                                    <th>Tồn kho</th>
-                                    <th>Ngày tạo</th>
-                                    <th></th>
-                                </tr>
-                            </tfoot>
-
+                            </thead>
                             <tbody>
                                 <tr *ngFor="let p of products.data; index as i;">
                                     <td>{{ p.productId }}</td>
@@ -194,7 +184,6 @@
                         </table>
                     </div>
                 </div>
-
                 <div class="card-footer dataTables_paginate paging_simple_numbers d-flex justify-content-end" id="dataTable_paginate">
                     <ul class="pagination">
                         <li class="paginate_button page-item previous ">
@@ -231,7 +220,7 @@
                         </a>
                     </div>
                 </div>
-            </nav>
+            </div>
             <!-- End of Topbar -->
     
             <!-- Begin Page Content -->
@@ -281,6 +270,7 @@
                                         <th>Ngày tạo</th>
                                         <th class="text-center">Thao tác</th>
                                     </tr>
+                                </thead>
                                 <tbody>
                                     <tr *ngFor="let p of products.data">
                                         <td class="text-center">{{ p.productId }}</td>

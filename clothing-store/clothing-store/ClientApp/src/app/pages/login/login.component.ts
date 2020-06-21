@@ -1,6 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
+import * as bcrypt from 'bcryptjs';
 
 @Component({
   selector: 'app-login',
@@ -9,6 +10,11 @@ import { CookieService } from 'ngx-cookie-service';
 
 export class LoginComponent {
   headerFooter: boolean;
+
+  // usertk: any = {
+  //   data: []
+  // };
+
   user: string = null;
   pass: string = null;
   result: any = [];
@@ -25,32 +31,34 @@ export class LoginComponent {
       username: this.user,
       password: this.pass
     };
-
     this.http.post('https://localhost:44320/api/Users/check-account', x)
       .subscribe(result => {
         var res: any = result;
-        console.log(res);
-        this.result = res.data;
-
-        if (res.data.find(ds => ds.roleID == 2)) {
-          alert("Dang nhap admin thanh cong!")
-
         var userId;
-        if (res.data.find(u => u.roleId == 1)) {
-          alert("Bạn đang được chuyển hướng với quyền truy cập của ADMIN!");
-
-          window.open('https://localhost:44320/admin');
+        this.result = res.data;
+        if (res.success && res.data.length > 0) {
+          bcrypt.compare(x.password, this.result[0].password, (err, res) => {
+            if (res == true) {
+              if (this.result[0].roleId == 1) {
+                alert("Bạn đang được chuyển hướng với quyền truy cập của ADMIN!");
+                window.open('https://localhost:44320/admin');
+              }
+              else {
+                alert("Đăng nhập thành công!");
+                window.open('https://localhost:44320/');
+                userId = (this.result[0].userId).toString();
+              }
+              this.cookieService.set("userId", this.result[0].userId.toString());
+            }
+            else {
+              alert("Mật khẩu không đúng!");
+              console.log('Error: ', err)
+            }
+          });
+        } else {
+          alert("Tài khoản không đúng!!!");
         }
-        else if (res.data.find(u => u.roleId == 2)) {
-          alert("Đăng nhập thành công!");
-          window.open('https://localhost:44320/');
-          userId = (this.result[0].userId).toString();
-          this.cookieService.set("userId", userId);
-        }
-
-        // Lấy UserId
-        else
-          alert("Tài khoản hoặc mật khẩu không đúng!");
-      }, error => console.error(error));
+      },error => console.error(error));
+    
   }
 }
