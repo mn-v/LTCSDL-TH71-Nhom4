@@ -53,35 +53,33 @@ export class LoginComponent {
 
 
       // Phước
-        this.http.post('https://localhost:44320/api/Users/check-tai-khoan', x)
-      .subscribe(result => {
-        var res: any = result;
-        var userId;
-        this.result = res.data;
-        if (res.success && res.data.length > 0) {
-          bcrypt.compare(x.password, this.result[0].password, (err, res) => {
-            if (res == true) {
-              if (this.result[0].roleId == 1) {
-                alert("Bạn đang được chuyển hướng với quyền truy cập của ADMIN!");
-                window.open('https://localhost:44320/admin');
-              }
-              else {
-                alert("Đăng nhập thành công!");
-                window.open('https://localhost:44320/');
-                userId = (this.result[0].userId).toString();
-              }
-              this.cookieService.set("userId", this.result[0].userId.toString());
-            }
-            else {
-              alert("Mật khẩu không đúng!");
-              console.log('Error: ', err)
-            }
-          });
-        } else {
-          alert("Tài khoản không đúng!!!");
-        }
-      }, error => error => console.error(error));
-
-
+      //   this.http.post('https://localhost:44320/api/Users/check-tai-khoan', x)
+      // .subscribe(result => {
+      //   var res: any = result;
+      //   var userId;
+      //   this.result = res.data;
+      //   if (res.success && res.data.length > 0) {
+      //     bcrypt.compare(x.password, this.result[0].password, (err, res) => {
+      //       if (res == true) {
+      //         if (this.result[0].roleId == 1) {
+      //           alert("Bạn đang được chuyển hướng với quyền truy cập của ADMIN!");
+      //           window.open('https://localhost:44320/admin');
+      //         }
+      //         else {
+      //           alert("Đăng nhập thành công!");
+      //           window.open('https://localhost:44320/');
+      //           userId = (this.result[0].userId).toString();
+      //         }
+      //         this.cookieService.set("userId", this.result[0].userId.toString());
+      //       }
+      //       else {
+      //         alert("Mật khẩu không đúng!");
+      //         console.log('Error: ', err)
+      //       }
+      //     });
+      //   } else {
+      //     alert("Tài khoản không đúng!!!");
+      //   }
+      // }, error => error => console.error(error));
   }
 }
