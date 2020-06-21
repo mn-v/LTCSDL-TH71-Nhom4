@@ -124,43 +124,43 @@ export class AdminCategoryComponent implements OnInit {
   // Thêm
   addCategory() {
     var x = this.category;
-    this.http.post('https://localhost:44320/api/Categories/create-category', x).subscribe(result => {
-      var res: any = result;
-      if (res.success) {
-        this.category = res.data;
-        this.isEdit = true;
-        alert("New product have been added successfully!");
-        $('#Modal').modal("hide");
-        location.reload();
-      }
-    }, error => console.error(error));
+    this.http.post('https://localhost:44320/api/Categories/create-category', x).subscribe(result=>{
+        var res:any = result;
+        if(res.success){
+          this.category = res.data;
+          this.isEdit = true;
+          alert("Thêm mới thành công!");
+          $('#Modal').modal("hide");
+          location.reload();
+        }
+      }, error => console.error(error));
   }
 
   // Sửa
   updateCategory() {
     var x = this.category;
-    this.http.post('https://localhost:44320/api/Categories/update-category', x).subscribe(result => {
-      var res: any = result;
-      if (res.success) {
-        this.category = res.data;
-        this.isEdit = true;
-        alert("New product have been saved successfully!");
-        $('#Modal').modal("hide");
-        location.reload();
-      }
-    }, error => console.error(error));
+    this.http.post('https://localhost:44320/api/Categories/update-category', x).subscribe(result=>{
+        var res:any = result;
+        if(res.success){
+          this.category = res.data;
+          this.isEdit = true;
+          alert("Cập nhật thành công!");
+          $('#Modal').modal("hide");
+          location.reload();
+        }
+      }, error => console.error(error));
   }
 
   // Xóa
   deleteCategory(index) {
     var x = index;
-    this.http.post('https://localhost:44320/api/Categories/delete-category', x).subscribe(result => {
-      var res: any = result;
-      if (res.success) {
-        alert("New product have been deleted successfully!");
-        $('#myModal').modal("hide");
-        location.reload();
-      }
-    }, error => console.error(error));
+    this.http.post('https://localhost:44320/api/Categories/delete-category', x).subscribe(result=>{
+        var res:any = result;
+        if(res.success){
+          alert("Xóa thành công!");
+          $('#myModal').modal("hide");
+          location.reload();
+        }
+      }, error => console.error(error));
   }
 }

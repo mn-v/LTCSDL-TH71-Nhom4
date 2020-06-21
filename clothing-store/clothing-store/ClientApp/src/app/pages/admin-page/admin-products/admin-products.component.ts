@@ -5,6 +5,7 @@ declare var $:any;
 @Component({
   selector: "app-admin-products",
   templateUrl: "./admin-products.component.html",
+  //styleUrls: ["./admin-products.component.scss"],
 })
 export class AdminProductsComponent implements OnInit {
   products: any = {
@@ -16,6 +17,7 @@ export class AdminProductsComponent implements OnInit {
   };
 
   product: any = {
+    productId: "1",
     productName: "Áo thun",
     categoryId: 1,
     price: 250000,
@@ -173,7 +175,7 @@ export class AdminProductsComponent implements OnInit {
         if(res.success){
           this.product = res.data;
           this.isEdit = true;
-          alert("New product have been added successfully!");
+          alert("Thêm mới thành công!");
           $('#Modal').modal("hide");
           location.reload();
         }
@@ -189,7 +191,7 @@ export class AdminProductsComponent implements OnInit {
         if(res.success){
           this.product = res.data;
           this.isEdit = true;
-          alert("New product have been saved successfully!");
+          alert("Cập nhật thành công!");
           $('#Modal').modal("hide");
           location.reload();
         }
@@ -203,7 +205,7 @@ export class AdminProductsComponent implements OnInit {
     this.http.post('https://localhost:44320/api/Products/delete-product', x).subscribe(result=>{
         var res:any = result;
         if(res.success){
-          alert("New product have been deleted successfully!");
+          alert("Xóa thành công!");
           $('#myModal').modal("hide");
           location.reload();
         }

@@ -21,6 +21,7 @@ import { AdminPromotionComponent } from './pages/admin-page/admin-promotion/admi
 import { SignupComponent } from './pages/signup/signup.component';
 import { LoginComponent } from './pages/login/login.component';
 
+
 const routes: Routes = [
   // CUSTOMER
   { path: '', component: HomePageComponent },
@@ -39,9 +40,12 @@ const routes: Routes = [
   { path: 'admin-category', component: AdminCategoryComponent },
   { path: 'admin-promotion', component: AdminPromotionComponent },
 
+
+
   // FUNCTIONS
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
+
 ];
 
 @NgModule({

@@ -27,9 +27,9 @@ export class MenComponent implements OnInit {
     @Inject('BASE_URL') baseUrl: string,
   ) {
   }
-
-  // Lấy danh sách sản phẩm theo tên của loại sản phẩm chọn ở phân loại
-  getProduct(cPage, name) {
+  
+  //lay danh sach san pham theo ten cua loai san pham chon o phan loai
+  getProduct(cPage, name){
     let x = {
       page: cPage,
       size: 12,

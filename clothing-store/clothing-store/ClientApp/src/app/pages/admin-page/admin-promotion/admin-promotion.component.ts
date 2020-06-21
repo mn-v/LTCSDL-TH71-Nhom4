@@ -121,43 +121,43 @@ export class AdminPromotionComponent implements OnInit {
   addPromotion() {
     var x = this.promotion;
     this.promotion.discountPercent = this.promotion.discount / 100;
-    this.http.post('https://localhost:44320/api/Promotion/create-promotion', x).subscribe(result => {
-      var res: any = result;
-      if (res.success) {
-        alert("New product have been added successfully!");
-        $('#Modal').modal("hide")
-        this.promotion = res.data;
-        this.isEdit = true;
-        location.reload();
-        ;
-      }
-    }, error => console.error(error));
+    this.http.post('https://localhost:44320/api/Promotion/create-promotion', x).subscribe(result=>{
+        var res:any = result;
+        if(res.success){
+          this.promotion = res.data;
+          this.isEdit = true;
+          alert("Thêm mới thành công!");
+          $('#Modal').modal("hide")
+          location.reload();
+          ;
+        }
+      }, error => console.error(error));
   }
 
   // Cập nhật
   updatePromotion() {
     var x = this.promotion;
     this.promotion.discountPercent = this.promotion.discount / 100;
-    this.http.post('https://localhost:44320/api/Promotion/update-promotion', x).subscribe(result => {
-      var res: any = result;
-      if (res.success) {
-        this.promotion = res.data;
-        this.isEdit = true;
-        alert("New product have been saved successfully!");
-        $('#Modal').modal("hide");
-        location.reload();
-      }
-    }, error => console.error(error));
+    this.http.post('https://localhost:44320/api/Promotion/update-promotion', x).subscribe(result=>{
+        var res:any = result;
+        if(res.success){
+          this.promotion = res.data;
+          this.isEdit = true;
+          alert("Cập nhật thành công!");
+          $('#Modal').modal("hide");
+          location.reload();
+        }
+      }, error => console.error(error));
   }
 
   // Xóa
   deletePromotion(index) {
     var x = index;
     this.http.post('https://localhost:44320/api/Promotion/delete-promotion', x)
-      .subscribe(result => {
-        var res: any = result;
-        if (res.success) {
-          alert("New product have been deleted successfully!");
+    .subscribe(result=>{
+        var res:any = result;
+        if(res.success){
+          alert("Xóa thành công!");
           $('#myModal').modal("hide");
           location.reload();
         }
