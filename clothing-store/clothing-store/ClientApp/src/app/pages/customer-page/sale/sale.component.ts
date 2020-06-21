@@ -11,7 +11,7 @@ export class SaleComponent implements OnInit {
     data: [],
     totalRecord: 0,
     page: 0,
-    size: 5,
+    size: 9,
     totalPages: 0
   }
 

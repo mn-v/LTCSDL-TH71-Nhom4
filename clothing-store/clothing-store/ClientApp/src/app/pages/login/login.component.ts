@@ -1,4 +1,5 @@
-import { Component, Inject } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
+import { Router, NavigationEnd } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
 import * as bcrypt from 'bcryptjs';
@@ -11,10 +12,9 @@ import * as bcrypt from 'bcryptjs';
 export class LoginComponent {
   headerFooter: boolean;
 
-  // usertk: any = {
-  //   data: []
-  // };
-
+  usertk: any = {
+    data: []
+  };
   user: string = null;
   pass: string = null;
   result: any = [];
@@ -58,7 +58,10 @@ export class LoginComponent {
         } else {
           alert("Tài khoản không đúng!!!");
         }
-      },error => console.error(error));
-    
+      }, error => console.error(error));
+
+
   }
+
+  //1 ít code ở đây nữa :((()))
 }

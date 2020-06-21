@@ -15,7 +15,6 @@ namespace clothing_store.DAL.Models
 
         public virtual DbSet<Carts> Carts { get; set; }
         public virtual DbSet<Categories> Categories { get; set; }
-        
         public virtual DbSet<OrderDetails> OrderDetails { get; set; }
         public virtual DbSet<Orders> Orders { get; set; }
         public virtual DbSet<ProductSize> ProductSize { get; set; }
@@ -310,7 +309,13 @@ namespace clothing_store.DAL.Models
                 entity.HasKey(e => e.UserId);
 
                 entity.Property(e => e.UserId)
-                    .HasColumnName("UserID");
+                    .HasColumnName("UserId");
+
+                entity.Property(e => e.UserName)
+                    .HasColumnName("UserName");
+     
+
+
 
                 entity.Property(e => e.Dob)
                     .IsRequired()
@@ -333,7 +338,12 @@ namespace clothing_store.DAL.Models
                     .IsRequired()
                     .HasMaxLength(10)
                     .IsUnicode(false);
-              
+
+                entity.Property(e => e.Address)
+                    .IsRequired()
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
 
                 entity.Property(e => e.RoleId).HasColumnName("RoleID");
 

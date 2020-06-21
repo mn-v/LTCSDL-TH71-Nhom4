@@ -41,6 +41,7 @@ const routes: Routes = [
   { path: 'admin-promotion', component: AdminPromotionComponent },
 
 
+
   // FUNCTIONS
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },

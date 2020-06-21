@@ -18,7 +18,7 @@ export class MenComponent implements OnInit {
     data: [],
     totalRecord: 0,
     page: 0,
-    size: 12,
+    size: 9,
     totalPages: 0
   }
 
@@ -28,11 +28,15 @@ export class MenComponent implements OnInit {
 
   }
 
-  // Lấy danh sách sản phẩm theo tên của loại sản phẩm chọn ở phân loại
-  getProduct(cPage, name) {
+  ngOnInit() {
+    this.searchProductByGender(1);
+  }
+
+  //lay danh sach san pham theo ten cua loai san pham chon o phan loai
+  getProduct(cPage, name){
     let x = {
       page: cPage,
-      size: 12,
+      size: 9,
       keyword: "",
       categoryName: name,
       gender: false
@@ -63,7 +67,7 @@ export class MenComponent implements OnInit {
   searchProductByProductName(cPage) {
     let x = {
       page: cPage,
-      size: 12,
+      size: 9,
       keyword: this.keywords,
       gender: false
     }
@@ -77,7 +81,7 @@ export class MenComponent implements OnInit {
   searchProductByGender(cPage) {
     let x = {
       page: cPage,
-      size: 12,
+      size: 9,
       keyword: "",
       gender: false
     }
@@ -97,7 +101,7 @@ export class MenComponent implements OnInit {
         let nextPage = this.products.page + 1;
         let x = {
           page: nextPage,
-          size: 12,
+          size: 9,
           keyword: "",
           categoryName: this.categoryName,
           gender: false
@@ -117,7 +121,7 @@ export class MenComponent implements OnInit {
         let nextPage = this.products.page + 1;
         let x = {
           page: nextPage,
-          size: 12,
+          size: 9,
           keyword: "",
           gender: false
         }
@@ -140,7 +144,7 @@ export class MenComponent implements OnInit {
         let previous = this.products.page - 1;
         let x = {
           page: previous,
-          size: 12,
+          size: 9,
           keyword: "",
           categoryName: this.categoryName,
           gender: false
@@ -160,7 +164,7 @@ export class MenComponent implements OnInit {
         let previous = this.products.page - 1;
         let x = {
           page: previous,
-          size: 12,
+          size: 9,
           keyword: "",
           gender: false
         }
@@ -174,9 +178,5 @@ export class MenComponent implements OnInit {
         alert("Bạn đang ở trang đầu tiên!");
       }
     }
-  }
-
-  ngOnInit() {
-    this.searchProductByGender(1);
   }
 }

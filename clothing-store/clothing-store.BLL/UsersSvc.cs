@@ -69,10 +69,11 @@ namespace clothing_store.BLL
             };
             return res;
         }
-        public object CheckAcc_Linq(String username, String password)
+        public object CheckAcc_Linq(String username)
         {
-            return _rep.CheckAcc_Linq(username, password);
+            return _rep.CheckAcc_Linq(username);
         }
+    
         #endregion
     }
 }
