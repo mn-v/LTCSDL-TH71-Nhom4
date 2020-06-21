@@ -130,10 +130,10 @@ export class AdminPromotionComponent implements OnInit {
     this.http.post('https://localhost:44320/api/Promotion/create-promotion', x).subscribe(result=>{
         var res:any = result;
         if(res.success){
-          alert("New product have been added successfully!");
-          $('#Modal').modal("hide")
           this.promotion = res.data;
           this.isEdit = true;
+          alert("Thêm mới thành công!");
+          $('#Modal').modal("hide")
           location.reload();
           ;
         }
@@ -150,7 +150,7 @@ export class AdminPromotionComponent implements OnInit {
         if(res.success){
           this.promotion = res.data;
           this.isEdit = true;
-          alert("New product have been saved successfully!");
+          alert("Cập nhật thành công!");
           $('#Modal').modal("hide");
           location.reload();
         }
@@ -165,7 +165,7 @@ export class AdminPromotionComponent implements OnInit {
     .subscribe(result=>{
         var res:any = result;
         if(res.success){
-          alert("New product have been deleted successfully!");
+          alert("Xóa thành công!");
           $('#myModal').modal("hide");
           location.reload();
         }

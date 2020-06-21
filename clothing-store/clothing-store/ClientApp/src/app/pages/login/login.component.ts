@@ -30,7 +30,7 @@ export class LoginComponent {
       username: this.user,
       password: this.pass
     };
-    this.http.post('https://localhost:44320/api/Users/check-tai-khoan', x)
+    this.http.post('https://localhost:44320/api/Users/check-account', x)
       .subscribe(result => {
         var res: any = result;
         var userId;
@@ -38,7 +38,7 @@ export class LoginComponent {
         if (res.success && res.data.length > 0) {
           bcrypt.compare(x.password, this.result[0].password, (err, res) => {
             if (res == true) {
-              if (this.result[0].roleId == 0) {
+              if (this.result[0].roleId == 1) {
                 alert("Bạn đang được chuyển hướng với quyền truy cập của ADMIN!");
                 window.open('https://localhost:44320/admin');
               }
