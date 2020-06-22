@@ -36,7 +36,7 @@
                     <div class="row card-header d-flex align-items-baseline m-0 py-0 px-2">
                         <p class="col-md-5 font-13">* Đơn vị Giá sản phẩm: 1.000 VND</p>
                         <div class="col-md-7 py-3 d-flex justify-content-end">
-                            <button type="button" class="btn btn-success px-4" data-toggle="modal" data-target="#Modal">
+                            <button type="button" class="btn btn-success px-4" data-toggle="modal" data-target="#Modal" (click)="openModal(true)">
                                 Tạo mới
                             </button>
                         </div>
@@ -111,6 +111,75 @@
 </div>
 
 <!--MODAL CREATE AND UPDATE PRODUCT -->
+<div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" *ngIf="!isEdit" id="exampleModalLabel">Tạo mới</h5>
+                <h5 class="modal-title" *ngIf="isEdit" id="exampleModalLabel">Chỉnh sửa</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label">Tên sản phẩm</label>
+                    <div class="col-sm-8">
+                        <input class="form-control" [(ngModel)]="product.productName">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label">Loại sản phẩm</label>
+                    <div class="col-sm-8">
+                        <select [(ngModel)]='product.categoryId'>
+                            <option *ngFor="let category of categories.data" [ngValue]="category.categoryId">
+                                {{category.categoryName}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label">Giá</label>
+                    <div class="col-sm-8">
+                        <input type="number" class="form-control" [(ngModel)]="product.price">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label">Số lượng</label>
+                    <div class="col-sm-8">
+                        <input type="number" class="form-control" [(ngModel)]="product.stock">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label">Mô tả</label>
+                    <div class="col-sm-8">
+                        <input class="form-control" [(ngModel)]="product.description">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label">Hình ảnh</label>
+                    <div class="col-sm-8">
+                        <input class="form-control" [(ngModel)]="product.imageSource">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label">Giảm giá (%)</label>
+                    <div class="col-sm-8">
+                        <select [(ngModel)]='product.promotionId'>
+                            <option *ngFor="let prom of promotion.data" [ngValue]="prom.promotionId">
+                                {{prom.discount}}</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                <button type="button" (click)="addProduct()" *ngIf="!isEdit" class="btn btn-success">Tạo
+                    mới</button>
+                <button type="button" (click)="updateProduct()" *ngIf="isEdit" class="btn btn-success">Lưu</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">

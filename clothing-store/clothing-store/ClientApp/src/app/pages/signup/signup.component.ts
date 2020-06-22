@@ -30,7 +30,7 @@ export class SignupComponent {
           .subscribe(result => {
             var res: any = result;
             if (res.success) {
-              alert("Dang ki thanh cong!")
+              alert("Đăng kí thành công!")
               window.open('http://localhost:44320/login', '_self');
             }
             else {

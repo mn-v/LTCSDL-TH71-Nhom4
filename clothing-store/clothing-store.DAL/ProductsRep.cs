@@ -353,6 +353,7 @@ namespace clothing_store.DAL
                 .Join(Context.Promotion, a => a.PromotionId, b => b.PromotionId, (a, b) => new
                 {
                     a.ProductId,
+                    a.CategoryId,
                     a.ProductName,
                     a.Price,
                     a.ImageSource,
