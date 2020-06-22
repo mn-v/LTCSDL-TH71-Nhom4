@@ -120,7 +120,7 @@ export class CartComponent implements OnInit {
         alert(error);
       }
       );
-    });
+    }); 
 
 
     // Xóa giỏ

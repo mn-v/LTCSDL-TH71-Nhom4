@@ -335,10 +335,6 @@ namespace clothing_store.DAL.Models
                     .HasMaxLength(10)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Address)
-                    .IsRequired()
-                    .HasMaxLength(255)
-                    .IsUnicode(false);
 
 
                 entity.Property(e => e.RoleId).HasColumnName("RoleID");
