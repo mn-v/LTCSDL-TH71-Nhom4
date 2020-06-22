@@ -24,7 +24,7 @@
             <div class="product--body row font-15 m-0" *ngFor="let p of cart">
                 <div style="width:25%;">
                     <div class="product--img--container d-flex">
-                        <img class="product--img" src="./assets/images/men/tee/1.jpg" style="width: 30%;">
+                        <img class="product--img" src="https://{{p.imageSource}}" style="width: 30%;">
                         <h6 class="product--name font-13 pl-4" [routerLink]="['/product-detail', {id:p.productId}]">{{p.productName}}</h6>
                     </div>
                 </div>
