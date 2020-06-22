@@ -211,5 +211,4 @@ export class AdminProductsComponent implements OnInit {
         }
       }, error => console.error(error));
   }
-
 }

@@ -27,6 +27,8 @@ import { AdminPromotionComponent } from './pages/admin-page/admin-promotion/admi
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { LoginComponent } from './pages/login/login.component';
+import { SignupComponent } from './pages/signup/signup.component';
 
 
 @NgModule({

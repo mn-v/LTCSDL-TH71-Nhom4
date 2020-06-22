@@ -14,7 +14,7 @@
                 <div class="product--header__color">Đơn giá</div>
                 <div class="product--header__color">Giá sale</div>
                 <div class="product--header__color">Số lượng</div>
-                <div class="product--header__color">Số tiền</div>
+                <div class="product--header__color">Thành tiền</div>
                 <div class="product--header__color">Thao tác</div>
             </div>
         </div>
@@ -29,10 +29,10 @@
                     </div>
                 </div>
                 <div class="product--body--details">{{p.size}}</div>
-                <div class="product--body--details">{{p.price | currency: 'VND':'symbol-narrow':'.0'}}</div>
-                <div class="product--header__color">{{p.priceSale | currency: 'VND':'symbol-narrow':'.0'}}</div>
+                <div class="product--body--details">{{p.price | currency: 'VND':'symbol-narrow':'.3'}}</div>
+                <div class="product--header__color">{{p.priceSale | currency: 'VND':'symbol-narrow':'.3'}}</div>
                 <div class="product--body--details">{{p.quantity}}</div>
-                <div class="product--body--details" style="color: var(--darkred);">{{p.total | currency: 'VND':'symbol-narrow':'.0'}}</div>
+                <div class="product--body--details" style="color: var(--darkred);">{{p.total | currency: 'VND':'symbol-narrow':'.3'}}</div>
                 <div class="product--body--details product__trash" >
                     <i class="far fa-trash-alt" (click) = DeleteProductCart(p)></i>
                     <!-- <button class="btn btn-sm btn-danger" (click) = DeleteProductCart(p)>Xóa</button> -->

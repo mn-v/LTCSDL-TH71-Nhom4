@@ -14,7 +14,7 @@ export class SignupComponent {
     email: null,
     dob: null,
     phoneNumber: null,
-    roleId: 2
+    roleId: 1
   }
 
   constructor(private http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
@@ -30,15 +30,15 @@ export class SignupComponent {
           .subscribe(result => {
             var res: any = result;
             if (res.success) {
-              alert("Bạn đã đăng kí thành công!")
+              alert("Dang ki thanh cong!")
               window.open('http://localhost:4200/login','_self');
             }
             else {
-              alert("Đăng kí không thành công!");
+              alert("Dang ki khong thanh cong!");
             }
           }, error => console.error(error));
       } else {
-        alert("Đăng kí không thành công");
+        alert("Dang ki khong thanh cong!!!");
         console.log('Error: ', err)
       }
     })
