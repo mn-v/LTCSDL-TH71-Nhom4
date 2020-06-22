@@ -45,7 +45,7 @@ export class AdminProductsComponent implements OnInit {
     this.getPromotion();
   }
 
-  //lay ds giam gia de hien len select control
+  // Lấy ds giảm giá để hiển thị lên select control
   getPromotion() {
     this.http
       .post("https://localhost:44320/" + "api/Promotion/get-by-all", null)
@@ -58,7 +58,7 @@ export class AdminProductsComponent implements OnInit {
       );
   }
 
-  //lay ds phan loai de hien len select control
+  // Lấy ds phân loại để hiển thị lên select control
   getCategories() {
     this.http
       .post("https://localhost:44320/" + "api/Categories/get-all", null)
@@ -71,7 +71,7 @@ export class AdminProductsComponent implements OnInit {
       );
   }
 
-  //hien ds san pham
+  // Hiện danh sách sản phẩm
   searchProduct(cPage) {
     let x = {
       page: cPage,
@@ -134,14 +134,13 @@ export class AdminProductsComponent implements OnInit {
     }
   }
 
-  //modal xoa
+  // MODAL
   deleteModal(index)
   {
     this.product = index;
     $('#myModal').modal("show");
   }
 
-  //modal them va sua
   openModal(isNew, index)
   {
     if(isNew)
@@ -166,7 +165,7 @@ export class AdminProductsComponent implements OnInit {
     $('#Modal').modal("show");
   }
 
-  //them
+  // Thêm
   addProduct()
   {
     var x = this.product;
@@ -183,7 +182,7 @@ export class AdminProductsComponent implements OnInit {
       }, error => console.error(error));
   }
 
-  //sua
+  // Cập nhật
   updateProduct()
   {
     var x = this.product;
@@ -199,7 +198,7 @@ export class AdminProductsComponent implements OnInit {
       }, error => console.error(error));
   }
 
-  //xoa
+  // Xóa
   deleteProduct(index)
   {
     var x = index;
@@ -212,5 +211,4 @@ export class AdminProductsComponent implements OnInit {
         }
       }, error => console.error(error));
   }
-
 }

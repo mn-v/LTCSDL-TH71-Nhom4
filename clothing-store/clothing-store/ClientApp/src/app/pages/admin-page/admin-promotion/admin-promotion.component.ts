@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
-declare var $:any;
+declare var $: any;
 
 @Component({
   selector: 'app-admin-promotion',
@@ -24,16 +24,16 @@ export class AdminPromotionComponent implements OnInit {
     discount: 0,
   };
 
-  key :any = "";
-  isEdit: boolean = true; 
+  key: any = "";
+  isEdit: boolean = true;
 
-  constructor(private http: HttpClient, @Inject("BASE_URL") baseUrl: string) {}
+  constructor(private http: HttpClient, @Inject("BASE_URL") baseUrl: string) { }
 
   ngOnInit() {
     this.searchPromotion(1);
   }
 
-  //hien ds giam gia
+  // Hiện danh sách giảm giá
   searchPromotion(cPage) {
     let x = {
       page: cPage,
@@ -95,18 +95,14 @@ export class AdminPromotionComponent implements OnInit {
     }
   }
 
-  //modal xoa
-  deleteModal(index)
-  {
+  // MODAL 
+  deleteModal(index) {
     this.promotion = index;
     $('#myModal').modal("show");
   }
 
-  //modal tao va sua
-  openModal(isNew, index)
-  {
-    if(isNew)
-    {
+  openModal(isNew, index) {
+    if (isNew) {
       this.isEdit = false
       this.promotion = {
         promotionId: 0,
@@ -114,17 +110,15 @@ export class AdminPromotionComponent implements OnInit {
         discount: 0,
       };
     }
-    else
-    {
+    else {
       this.isEdit = true;
       this.promotion = index;
     }
     $('#Modal').modal("show");
   }
 
-  //them
-  addPromotion()
-  {
+  // Thêm
+  addPromotion() {
     var x = this.promotion;
     this.promotion.discountPercent = this.promotion.discount / 100;
     this.http.post('https://localhost:44320/api/Promotion/create-promotion', x).subscribe(result=>{
@@ -140,9 +134,8 @@ export class AdminPromotionComponent implements OnInit {
       }, error => console.error(error));
   }
 
-  //sua
-  updatePromotion()
-  {
+  // Cập nhật
+  updatePromotion() {
     var x = this.promotion;
     this.promotion.discountPercent = this.promotion.discount / 100;
     this.http.post('https://localhost:44320/api/Promotion/update-promotion', x).subscribe(result=>{
@@ -157,9 +150,8 @@ export class AdminPromotionComponent implements OnInit {
       }, error => console.error(error));
   }
 
-  //xoa
-  deletePromotion(index)
-  {
+  // Xóa
+  deletePromotion(index) {
     var x = index;
     this.http.post('https://localhost:44320/api/Promotion/delete-promotion', x)
     .subscribe(result=>{

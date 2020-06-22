@@ -31,9 +31,7 @@ export class ProductComponent implements OnInit {
     let productId;
     this.activateRoute.paramMap.subscribe(params => {
       productId = params.get('id');
-      
       this.cookieService.set("proId", params.get('id').toString());
-      
       this.userId = parseInt(this.cookieService.get("userId"));
       this.quanity = 1;
       
@@ -49,12 +47,10 @@ export class ProductComponent implements OnInit {
       console.log(this.product);
       this.PriceSale = "Giảm giá: " + this.product.salePercent ;
     }, error => console.error(error));
-
   }
 
   AddProductCart() {
     //mớ code
-         
     this.activateRoute.paramMap.subscribe(params => {
       this.detail(parseInt(this.cookieService.get("proId")));
     })
@@ -84,8 +80,5 @@ export class ProductComponent implements OnInit {
       this.cart = result;
       this.cart = this.cart.data;
     }, error => console.error(error));
-
-
   }
-
 }

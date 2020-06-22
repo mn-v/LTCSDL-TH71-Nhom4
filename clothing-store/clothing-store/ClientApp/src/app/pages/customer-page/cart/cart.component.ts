@@ -8,11 +8,13 @@ import { CookieService } from 'ngx-cookie-service';
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.scss']
 })
+
 export class CartComponent implements OnInit {
   userId: any;
   cart: any = {
     data: []
   };
+
   user: any = {
     data: []
   }
@@ -30,17 +32,16 @@ export class CartComponent implements OnInit {
   }
 
   getCart(id) {
-   // window.location.reload();
     this.http.get("https://localhost:44320/api/Carts/get-cart/" + id, id).subscribe(result => {
       this.cart = result;
       this.cart = this.cart.data;
-      this.SumPro = "Tổng tiền (" + this.cart.length + " sản phẩm): ";
+      this.SumPro = "Tổng tiền (" + this.cart.length  + " sản phẩm): "; 
       this.cart.forEach(element => {
         this.totalMoney += element.total;
       });
+      console.log(this.userId);
       console.log(this.cart);
     }, error => console.error(error));
-
   }
 
   DeleteProductCart(p) {
@@ -53,7 +54,7 @@ export class CartComponent implements OnInit {
         if (res.success) {
           alert("Bạn đã xóa một sản phẩm ra khỏi giỏ!")
           this.getCart(this.userId);
-          window.location.reload()
+          window.location.reload();
         }
         console.log(x);
       }, error => {
@@ -66,11 +67,9 @@ export class CartComponent implements OnInit {
   }
 
   ThanhToan() {
-
-
-    //Lấy thông tin user
+    // Lấy thông tin user
     var a = {
-      id: this.userId,
+      id: this.userId,  
       Keyword: ""
     };
 
@@ -83,7 +82,7 @@ export class CartComponent implements OnInit {
     }
     );
 
-    //thêm vào bảng order
+    // Thêm vào bảng Order
     let b = {
       "orderId": 0,
       "userId": this.userId,
@@ -102,7 +101,7 @@ export class CartComponent implements OnInit {
     }
     );
 
-    //thêm vào bảng orderDetails
+    // Thêm vào bảng orderDetails
     this.cart.forEach(element => {
       let c = {
         "orderId": 0,
@@ -121,15 +120,14 @@ export class CartComponent implements OnInit {
         alert(error);
       }
       );
-    });
+    }); 
 
 
-    //xóa giỏ
+    // Xóa giỏ
     this.cart.forEach(element => {
       var x = element;
       this.http.post("https://localhost:44320/api/Carts/delete-product-cart", x).subscribe(result => {
         var res: any = result;
-
         console.log(x);
       }, error => {
         console.error(error);
@@ -138,7 +136,5 @@ export class CartComponent implements OnInit {
       );
     });
     alert("Bạn đã đặt hàng thành công!")
-
   }
-
 }

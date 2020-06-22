@@ -5,6 +5,9 @@
 @import './app/scss/responsive.scss';
 @import './app/scss/fontsize.scss';
 
+html {
+    scroll-behavior: smooth;
+}
 
 body {
     font-family: 'Montserrat', 'Roboto', sans-serif;
@@ -34,8 +37,8 @@ a {
     }
 }
 
-.btn-search{
-    border-radius: 0 .25rem .25rem 0!important;
+.btn-search {
+    border-radius: 0 .25rem .25rem 0 !important;
 }
 
 // SPACING

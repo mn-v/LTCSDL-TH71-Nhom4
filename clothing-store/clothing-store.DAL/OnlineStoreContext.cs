@@ -30,8 +30,7 @@ namespace clothing_store.DAL.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-
-                optionsBuilder.UseSqlServer("Data Source=.;Initial Catalog=OnlineStore;Persist Security Info=True;User ID=sa;Password=123;Pooling=False;MultipleActiveResultSets=False;Encrypt=False;TrustServerCertificate=True;");
+                optionsBuilder.UseSqlServer("Data Source=.\\DIOSVO;Initial Catalog=OnlineStore;Persist Security Info=True;User ID=sa;Password=diosvo0321;Pooling=False;MultipleActiveResultSets=False;Encrypt=False;TrustServerCertificate=True;");
             }
         }
 
@@ -40,9 +39,6 @@ namespace clothing_store.DAL.Models
             modelBuilder.Entity<Carts>(entity =>
             {
                 entity.HasKey(e => new {e.Size,  e.ProductId, e.UserId });
-
-               
-
                 entity.Property(e => e.ProductId)
                 .HasColumnName("ProductID");
 
@@ -339,10 +335,6 @@ namespace clothing_store.DAL.Models
                     .HasMaxLength(10)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Address)
-                    .IsRequired()
-                    .HasMaxLength(255)
-                    .IsUnicode(false);
 
 
                 entity.Property(e => e.RoleId).HasColumnName("RoleID");

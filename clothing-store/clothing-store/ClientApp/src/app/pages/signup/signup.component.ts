@@ -25,20 +25,20 @@ export class SignupComponent {
     var x = this.users;
     bcrypt.hash(this.users.passWord, 10, (err, hash) => {
       if (!err) {
-        x.passWord = hash;  
+        x.passWord = hash;
         this.http.post('https://localhost:44320/api/Users/create-user', x)
           .subscribe(result => {
             var res: any = result;
             if (res.success) {
               alert("Dang ki thanh cong!")
-              window.open('http://localhost:4200/login','_self');
+              window.open('http://localhost:44320/login', '_self');
             }
             else {
-              alert("Dang ki khong thanh cong!");
+              alert("Đăng kí thành công");
             }
           }, error => console.error(error));
       } else {
-        alert("Dang ki khong thanh cong!!!");
+        alert("Đăng kí không thành công");
         console.log('Error: ', err)
       }
     })

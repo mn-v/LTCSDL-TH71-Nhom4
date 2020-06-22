@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-declare var $:any;
+declare var $: any;
 
 @Component({
   selector: 'app-admin-category',
@@ -25,16 +25,16 @@ export class AdminCategoryComponent implements OnInit {
     gioiTinh: "",
   };
 
-  key :any = "";
+  key: any = "";
   isEdit: boolean = true;
 
-  constructor(private http: HttpClient, @Inject("BASE_URL") baseUrl: string) {}
+  constructor(private http: HttpClient, @Inject("BASE_URL") baseUrl: string) { }
 
   ngOnInit() {
     this.searchCategory(1);
   }
 
-  // hien thi danh sach loai san pham
+  // Hiển thị danh sách loại sản phẩm
   searchCategory(cPage) {
     let x = {
       page: cPage,
@@ -97,38 +97,32 @@ export class AdminCategoryComponent implements OnInit {
     }
   }
 
-  //modal xoa
-  deleteModal(index)
-  {
+  // MODAL
+  deleteModal(index) {
     this.category = index;
     $('#myModal').modal("show");
   }
 
-  // modal them va sua
-  openModal(isNew, index)
-  {
-    if(isNew)
-    {
+  openModal(isNew, index) {
+    if (isNew) {
       this.isEdit = false
-      this.category={
+      this.category = {
         categoryName: "",
         title: "",
         description: "",
         gender: false,
       }
     }
-    else
-    {
+    else {
       this.isEdit = true;
       this.category = index;
     }
     $('#Modal').modal("show");
   }
 
-  //sau khi them sua xoa se an dialog va refresh lai trang bang ham location.reload()
-  // them
-  addCategory()
-  {
+  // Sau khi thêm/ xóa/ sửa sẽ dialog và refresh lại trang bằng hàm location.reload()
+  // Thêm
+  addCategory() {
     var x = this.category;
     this.http.post('https://localhost:44320/api/Categories/create-category', x).subscribe(result=>{
         var res:any = result;
@@ -142,9 +136,8 @@ export class AdminCategoryComponent implements OnInit {
       }, error => console.error(error));
   }
 
-  //sua
-  updateCategory()
-  {
+  // Sửa
+  updateCategory() {
     var x = this.category;
     this.http.post('https://localhost:44320/api/Categories/update-category', x).subscribe(result=>{
         var res:any = result;
@@ -158,9 +151,8 @@ export class AdminCategoryComponent implements OnInit {
       }, error => console.error(error));
   }
 
-  //xoa
-  deleteCategory(index)
-  {
+  // Xóa
+  deleteCategory(index) {
     var x = index;
     this.http.post('https://localhost:44320/api/Categories/delete-category', x).subscribe(result=>{
         var res:any = result;

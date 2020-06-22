@@ -8,7 +8,6 @@ import * as bcrypt from 'bcryptjs';
   selector: 'app-login',
   templateUrl: './login.component.html',
 })
-
 export class LoginComponent {
   headerFooter: boolean;
 
@@ -18,20 +17,16 @@ export class LoginComponent {
   user: string = null;
   pass: string = null;
   result: any = [];
+  constructor(private http: HttpClient, @Inject('BASE_URL') baseUrl: string, private cookieService: CookieService) {
 
-  constructor(private http: HttpClient,
-    @Inject('BASE_URL')
-    baseUrl: string, private cookieService: CookieService) {
   }
-
-  ngOnInit() {}
 
   login() {
     var x = {
       username: this.user,
       password: this.pass
     };
-    this.http.post('https://localhost:44320/api/Users/check-account', x)
+    this.http.post('https://localhost:44320/api/Users/check-tai-khoan', x)
       .subscribe(result => {
         var res: any = result;
         var userId;
@@ -41,11 +36,11 @@ export class LoginComponent {
             if (res == true) {
               if (this.result[0].roleId == 1) {
                 alert("Bạn đang được chuyển hướng với quyền truy cập của ADMIN!");
-                window.open('https://localhost:44320/admin');
+                window.open('https://localhost:44320/admin', '_self');
               }
               else {
                 alert("Đăng nhập thành công!");
-                window.open('https://localhost:44320/');
+                window.open('https://localhost:44320/', '_self');
                 userId = (this.result[0].userId).toString();
               }
               this.cookieService.set("userId", this.result[0].userId.toString());
@@ -59,9 +54,5 @@ export class LoginComponent {
           alert("Tài khoản không đúng!!!");
         }
       }, error => console.error(error));
-
-
   }
-
-  //1 ít code ở đây nữa :((()))
 }
