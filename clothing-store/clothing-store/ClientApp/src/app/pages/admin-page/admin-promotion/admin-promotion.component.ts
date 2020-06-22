@@ -12,7 +12,7 @@ export class AdminPromotionComponent implements OnInit {
     data: [],
     totalRecord: 0,
     page: 1,
-    size: 10,
+    size: 5,
     totalPages: 0,
   };
 
@@ -37,7 +37,7 @@ export class AdminPromotionComponent implements OnInit {
   searchPromotion(cPage) {
     let x = {
       page: cPage,
-      size: 10,
+      size: 5,
       keyword: this.key
     };
     this.http
@@ -56,7 +56,7 @@ export class AdminPromotionComponent implements OnInit {
       let nextPage = this.promotions.page + 1;
       let x = {
         page: nextPage,
-        size: 10,
+        size: 5,
         keyword: this.key
       };
       this.http
@@ -78,7 +78,7 @@ export class AdminPromotionComponent implements OnInit {
       let nextPage = this.promotions.page - 1;
       let x = {
         page: nextPage,
-        size: 10,
+        size: 5,
         keyword: this.key
       };
       this.http

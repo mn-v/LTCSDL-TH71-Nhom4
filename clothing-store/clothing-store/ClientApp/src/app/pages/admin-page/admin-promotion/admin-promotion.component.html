@@ -29,7 +29,7 @@
                                     kiếm</button>
                             </div>
                         </div>
-                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#Modal">
+                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#Modal" (click)="openModal(true)">
                             Tạo mới
                         </button>
                     </div>
@@ -92,8 +92,8 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" *ngIf="!isEdit" id="exampleModalLabel">Tạo mới</h5>
-                <h5 class="modal-title" *ngIf="isEdit" id="exampleModalLabel">Chỉnh sửa</h5>
+                <h5 class="modal-title" *ngIf="!isEdit" id="exampleModalLabel" (click)="addPromotion()">Tạo mới</h5>
+                <h5 class="modal-title" *ngIf="isEdit" id="exampleModalLabel" (click)="updatePromotion()">Chỉnh sửa</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
