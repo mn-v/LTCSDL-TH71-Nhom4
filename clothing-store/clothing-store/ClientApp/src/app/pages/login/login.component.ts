@@ -40,7 +40,7 @@ export class LoginComponent {
               }
               else {
                 alert("Đăng nhập thành công!");
-                window.open('https://localhost:44320/', '_self');
+                window.open('https://localhost:44320','_self');
                 userId = (this.result[0].userId).toString();
               }
               this.cookieService.set("userId", this.result[0].userId.toString());
