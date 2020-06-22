@@ -56,7 +56,7 @@
                                     <tr *ngFor="let u of users.data; index as i;">
                                         <td class="text-center">{{u.userId}}</td>
                                         <td class="text-center">{{u.userName}}</td>
-                                        <td>{{u.password}}</td>
+                                        <td>{{u.password | slice:0:6}}</td>
                                         <td>{{u.email}}</td>
                                         <td class="text-center">{{u.dob| date:'dd-MM-yyyy' }}</td>
                                         <td>{{u.phoneNumber}}</td>
